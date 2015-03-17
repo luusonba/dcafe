@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{544D1591-F06A-4022-8625-6E46364DF094}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TTTT</RootNamespace>
+    <AssemblyName>TTTT</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="conn.cs" />
+    <Compile Include="Dang_nhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dang_nhap.designer.cs">
+      <DependentUpon>Dang_nhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetPN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetPN.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetPX.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetPX.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetQLHH.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetQLHH.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetTONKHO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTONKHO.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPN.Designer.cs">
+      <DependentUpon>FormPN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPX.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPX.Designer.cs">
+      <DependentUpon>FormPX.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormQLHH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormQLHH.Designer.cs">
+      <DependentUpon>FormQLHH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormTONKHO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormTONKHO.Designer.cs">
+      <DependentUpon>FormTONKHO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kho.cs" />
+    <Compile Include="Kinhdoanh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kinhdoanh.designer.cs">
+      <DependentUpon>Kinhdoanh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quan ly gia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quan ly gia.designer.cs">
+      <DependentUpon>Quan ly gia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="them_hang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="them_hang.designer.cs">
+      <DependentUpon>them_hang.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dang_nhap.resx">
+      <DependentUpon>Dang_nhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPN.resx">
+      <DependentUpon>FormPN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPX.resx">
+      <DependentUpon>FormPX.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormQLHH.resx">
+      <DependentUpon>FormQLHH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormTONKHO.resx">
+      <DependentUpon>FormTONKHO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kinhdoanh.resx">
+      <DependentUpon>Kinhdoanh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Quan ly gia.resx">
+      <DependentUpon>Quan ly gia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPN.rdlc" />
+    <EmbeddedResource Include="Reportpx.rdlc" />
+    <EmbeddedResource Include="ReportQLHH.rdlc" />
+    <EmbeddedResource Include="ReportTONKHO.rdlc" />
+    <EmbeddedResource Include="them_hang.resx">
+      <DependentUpon>them_hang.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="DataSetPN.xsc">
+      <DependentUpon>DataSetPN.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetPN.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetPN.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetPN.xss">
+      <DependentUpon>DataSetPN.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetPX.xsc">
+      <DependentUpon>DataSetPX.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetPX.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetPX.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetPX.xss">
+      <DependentUpon>DataSetPX.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetQLHH.xsc">
+      <DependentUpon>DataSetQLHH.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetQLHH.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetQLHH.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetQLHH.xss">
+      <DependentUpon>DataSetQLHH.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetTONKHO.xsc">
+      <DependentUpon>DataSetTONKHO.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetTONKHO.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTONKHO.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetTONKHO.xss">
+      <DependentUpon>DataSetTONKHO.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="res\150.ico" />
+    <Content Include="res\Chat.ico" />
+    <Content Include="res\Contacts.ico" />
+    <Content Include="res\Database.ico" />
+    <Content Include="res\Edit.ico" />
+    <Content Include="res\Error.ico" />
+    <Content Include="res\Folder.ico" />
+    <Content Include="res\Graphic.ico" />
+    <Content Include="res\Help.ico" />
+    <Content Include="res\Maintenance.ico" />
+    <Content Include="res\Misc-Box.ico" />
+    <Content Include="res\nunchaku2-white.ico" />
+    <Content Include="res\Options.ico" />
+    <Content Include="res\Packed.ico" />
+    <Content Include="res\shell32.dll_I0086_0409.ico" />
+    <Content Include="res\Stats.ico" />
+    <Content Include="res\Stop.ico" />
+    <Content Include="res\Tip.ico" />
+    <Content Include="res\WLM.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
