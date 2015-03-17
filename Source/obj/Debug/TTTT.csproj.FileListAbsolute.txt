@@ -1,0 +1,17 @@
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.Dang_nhap.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.Form1.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.Form2.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.FormPN.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.FormPX.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.FormQLHH.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.FormTONKHO.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.Kinhdoanh.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.Main.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.Properties.Resources.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.Quan_ly_gia.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.them_hang.resources
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.csproj.GenerateResource.Cache
+D:\Study\DCafe\trunk\Source\obj\Debug\RdlCompile.cache
+D:\Study\DCafe\trunk\Source\obj\Debug\RdlCompile.compiled
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.exe
+D:\Study\DCafe\trunk\Source\obj\Debug\TTTT.csprojResolveAssemblyReference.cache

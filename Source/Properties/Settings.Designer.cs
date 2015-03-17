@@ -26,22 +26,11 @@ namespace TTTT.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LINHNGU-PC\\LINHNGU;Initial Catalog=thuc_tap_1;Integrated Security=Tru" +
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=315QUANLM4W8\\SQLEXPRESS;Initial Catalog=QuanLy;Integrated Security=Tru" +
             "e")]
-        public string thuc_tap_1ConnectionString {
+        public string QuanLyConnectionString {
             get {
-                return ((string)(this["thuc_tap_1ConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LINHNGU-PC;Initial Catalog=vd;Persist Security Info=True;User ID=linh" +
-            ";Password=linh")]
-        public string vdConnectionString {
-            get {
-                return ((string)(this["vdConnectionString"]));
+                return ((string)(this["QuanLyConnectionString"]));
             }
         }
     }

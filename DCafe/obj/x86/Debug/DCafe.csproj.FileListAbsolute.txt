@@ -1,0 +1,8 @@
+D:\Study\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.Properties.Resources.resources
+D:\Study\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.csproj.GenerateResource.Cache
+D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.exe
+D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.pdb
+D:\Study\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.exe
+D:\Study\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.pdb
+D:\Study\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.frmLogin.resources
+D:\Study\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.frmMain.resources

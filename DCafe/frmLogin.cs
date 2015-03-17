@@ -1,0 +1,79 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using DCafe;
+namespace DCafe
+{
+    public partial class frmLogin : Form
+    {
+        public frmLogin()
+        {
+            InitializeComponent();
+        }               
+
+        private void btn_dn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (txt_tk.Text.Length == 0)
+                {
+                    MessageBox.Show("Vui lòng nhập tên tài khoản", "THÔNG BÁO", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    txt_tk.Text = "";
+                    txt_mk.Text = "";
+                    txt_tk.Focus();
+                }
+                else if (txt_mk.Text.Length == 0)
+                {
+                    MessageBox.Show("Vui lòng nhập Mật khẩu", "THÔNG BÁO", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                    txt_tk.Text = "";
+                    txt_mk.Text = "";
+                    txt_tk.Focus();
+                }
+                else
+                {
+                    string mk = "Select ma_nv, ten_nhanvien, password from T_Nhanvien where (password =@password and ma_nv =@ma_nv)";
+                    Conn conn = new Conn();
+                    SqlConnection con = conn.openConn();                    
+                    SqlCommand cmd = new SqlCommand(mk, con);
+                    cmd.Parameters.AddWithValue("password", txt_mk.Text);
+                    cmd.Parameters.AddWithValue("ma_nv", txt_tk.Text);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        this.Visible = false;
+                        frmMain f = new frmMain();                        
+                        f.Show();                        
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tên hoặc mật khẩu không đúng", "THÔNG BÁO", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                        txt_mk.Text = "";                        
+                        txt_mk.Focus();
+                    }
+                    conn.closeConn();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_huy_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        public string _txt_tk
+        {
+            get { return txt_tk.Text; }
+        }
+    }
+}
