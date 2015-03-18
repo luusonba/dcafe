@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DCafe
 {
-    class ClsThanhpham
+    public class ClsThanhpham
     {
         public string Ma_Thanhpham { get; set; }
         public string Ten_Thanhpham { get; set; }

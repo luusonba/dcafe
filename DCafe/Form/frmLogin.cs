@@ -47,10 +47,10 @@ namespace DCafe
                     cmd.Parameters.AddWithValue("ma_nv", txt_tk.Text);
                     SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
-                    {
-                        this.Visible = false;
+                    {                        
                         frmMain f = new frmMain();                        
-                        f.Show();                        
+                        f.Show();
+                        this.Visible = false;
                     }
                     else
                     {
@@ -70,7 +70,7 @@ namespace DCafe
 
         private void btn_huy_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
         public string _txt_tk
         {

@@ -23,6 +23,7 @@ namespace DCafe
             sqlCon = conn.createConn();
             clsNhanvien = new ClsNhanvien();
             clsNguyenlieu = new ClsNguyenlieu();
+            clsThanhpham = new ClsThanhpham();
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -153,7 +154,7 @@ namespace DCafe
         private void btnNguyenlieu_Click(object sender, EventArgs e)
         {
             tabPages.SelectedTab = tabNguyenlieu;
-            Load_Nguyenlieu("");
+            Load_Nguyenlieu("");            
         }
 
         public void Load_Nguyenlieu(string where)
@@ -315,10 +316,9 @@ namespace DCafe
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //Load_Nhanvien("");
-            //Load_Nguyenlieu("");
+            Load_Nhanvien("");            
             Load_Khuvuc();
-            Load_Donvi();
+            Load_Donvi();                    
             rbNam.Checked = true;
         }
 
@@ -386,22 +386,22 @@ namespace DCafe
 
         private void grdDsSanpham_SelectionChanged(object sender, EventArgs e)
         {
-            //foreach (DataGridViewRow row in grdDsSanpham.SelectedRows)
-            //{
-            //    clsThanhpham.Ma_Thanhpham= row.Cells[0].Value.ToString();
-            //    clsThanhpham.Ten_Thanhpham = row.Cells[1].Value.ToString();
-            //    clsThanhpham.Dongia = Convert.ToInt16(row.Cells[2].Value);
-            //    clsThanhpham.Giaban = Convert.ToInt16(row.Cells[3].Value);
-            //    clsThanhpham.Donvi = row.Cells[4].Value.ToString();
-            //    clsThanhpham.Thoidiem = Convert.ToDateTime(row.Cells[5].Value);
-            //}
+            foreach (DataGridViewRow row in grdDsSanpham.SelectedRows)
+            {
+                clsThanhpham.Ma_Thanhpham = row.Cells[0].Value.ToString();
+                clsThanhpham.Ten_Thanhpham = row.Cells[1].Value.ToString();
+                clsThanhpham.Dongia = Convert.ToInt16(row.Cells[2].Value);
+                clsThanhpham.Giaban = Convert.ToInt16(row.Cells[3].Value);
+                clsThanhpham.Donvi = row.Cells[4].Value.ToString();
+                clsThanhpham.Thoidiem = Convert.ToDateTime(row.Cells[5].Value);
+            }
 
-            //txtMa_Sanpham.Text = clsThanhpham.Ma_Thanhpham;
-            //txtTen_Sanpham.Text = clsThanhpham.Ten_Thanhpham;
-            //txtDongiaSP.Text = clsThanhpham.Dongia.ToString();
-            //txtGiaban.Text = clsThanhpham.Giaban.ToString();
-            //cbDonviSP.SelectedValue = clsThanhpham.Donvi;
-            //dtThoidiemSP.Value = clsThanhpham.Thoidiem;
+            txtMa_Sanpham.Text = clsThanhpham.Ma_Thanhpham;
+            txtTen_Sanpham.Text = clsThanhpham.Ten_Thanhpham;
+            txtDongiaSP.Text = clsThanhpham.Dongia.ToString();
+            txtGiaban.Text = clsThanhpham.Giaban.ToString();
+            cbDonviSP.SelectedValue = clsThanhpham.Donvi;
+            dtThoidiemSP.Value = clsThanhpham.Thoidiem;
         }
 
 
