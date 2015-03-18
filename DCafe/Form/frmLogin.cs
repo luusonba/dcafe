@@ -40,7 +40,8 @@ namespace DCafe
                 {
                     string mk = "Select ma_nv, ten_nhanvien, password from T_Nhanvien where (password =@password and ma_nv =@ma_nv)";
                     Conn conn = new Conn();
-                    SqlConnection con = conn.openConn();                    
+                    SqlConnection con = conn.createConn();
+                    con.Open();
                     SqlCommand cmd = new SqlCommand(mk, con);
                     cmd.Parameters.AddWithValue("password", txt_mk.Text);
                     cmd.Parameters.AddWithValue("ma_nv", txt_tk.Text);
@@ -57,7 +58,7 @@ namespace DCafe
                         txt_mk.Text = "";                        
                         txt_mk.Focus();
                     }
-                    conn.closeConn();
+                    con.Close();
                 }
                 
             }
