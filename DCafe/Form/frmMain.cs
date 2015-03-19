@@ -167,8 +167,8 @@ namespace DCafe
         }
 
         public void Load_Nguyenlieu(string where)
-        {
-            string sql = "SELECT ma_nguyenlieu, RTRIM(ten_nguyenlieu) as ten_nguyenlieu, dongia, donvi, thoidiem FROM T_Nguyenlieu " + where;
+        {		
+            string sql = "SELECT ma_nguyenlieu, RTRIM(ten_nguyenlieu) as ten_nguyenlieu, dongia, t2.ten_donvi as donvi, thoidiem FROM T_Nguyenlieu t1 LEFT OUTER JOIN T_Donvi t2 ON t1.donvi = t2.ma_donvi " + where;
             SqlDataAdapter ada = new SqlDataAdapter(sql, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -268,8 +268,8 @@ namespace DCafe
         }
 
         public void Load_Thanhpham(string where)
-         {
-             string sql = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) as ten_thanhpham, dongia, giaban, donvi, thoidiem FROM T_Thanhpham " + where;
+        {
+            string sql = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) as ten_thanhpham, dongia, giaban, t2.ten_donvi as donvi, thoidiem FROM T_Thanhpham t1 LEFT OUTER JOIN T_Donvi t2 ON t1.donvi = t2.ma_donvi " + where;
             SqlDataAdapter ada = new SqlDataAdapter(sql, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
