@@ -20,3 +20,7 @@ D:\ThisisEnd\DCafe\trunk\DCafe\bin\Debug\DCafe.exe.manifest
 D:\ThisisEnd\DCafe\trunk\DCafe\bin\Debug\DCafe.application
 D:\ThisisEnd\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.exe.manifest
 D:\ThisisEnd\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.application
+D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.exe.manifest
+D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.application
+D:\Study\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.exe.manifest
+D:\Study\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.application

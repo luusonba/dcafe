@@ -13,7 +13,7 @@ namespace DCafe
 
         public SqlConnection createConn() 
         {
-            string strCn = "Data Source=USER-4FE94ECC99\\SQLEXPRESS;Initial Catalog=QuanLy;Integrated Security=True";            
+            string strCn = "Data Source=315QUANLM4W8\\SQLEXPRESS;Initial Catalog=QuanLy;Integrated Security=True";            
             Cn = new SqlConnection(strCn);                        
             return Cn;
         }

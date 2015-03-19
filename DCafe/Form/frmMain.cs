@@ -52,7 +52,7 @@ namespace DCafe
 
         public void Load_Nhanvien(string where)
         {
-            string mk = "SELECT ma_nv, password, RTRIM(ten_nhanvien) AS ten_nhanvien, gioitinh, ma_kv, is_admin FROM T_Nhanvien " + where;
+            string mk = "SELECT ma_nv, password, RTRIM(ten_nhanvien) AS ten_nhanvien, gioitinh = case gioitinh when 'True' then 'Male' else 'Female' end, ma_kv, is_admin FROM T_Nhanvien " + where;
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -134,7 +134,14 @@ namespace DCafe
                 clsNhanvien.Ma_Nv = row.Cells[0].Value.ToString();
                 clsNhanvien.Password = row.Cells[1].Value.ToString();
                 clsNhanvien.Ten_Nv = row.Cells[2].Value.ToString();
-                clsNhanvien.Gioitinh = Convert.ToBoolean(row.Cells[3].Value);
+                if (row.Cells[3].Value.ToString() == "Male")
+                {
+                    clsNhanvien.Gioitinh = true;
+                }
+                else
+                {
+                    clsNhanvien.Gioitinh = false;
+                }                
                 clsNhanvien.Ma_Kv = row.Cells[4].Value.ToString();
                 clsNhanvien.Is_Admin = Convert.ToBoolean(row.Cells[5].Value);
             }
@@ -142,6 +149,7 @@ namespace DCafe
             txtMa_nv.Text = clsNhanvien.Ma_Nv;
             txtTen_nv.Text = clsNhanvien.Ten_Nv;
             rbNam.Checked = clsNhanvien.Gioitinh;
+            rbNu.Checked = !clsNhanvien.Gioitinh;            
             cbMa_kv.SelectedValue = clsNhanvien.Ma_Kv;
             ckAdmin.Checked = clsNhanvien.Is_Admin;
 
@@ -154,7 +162,8 @@ namespace DCafe
         private void btnNguyenlieu_Click(object sender, EventArgs e)
         {
             tabPages.SelectedTab = tabNguyenlieu;
-            Load_Nguyenlieu("");            
+            Load_Nguyenlieu("");
+            Load_Donvi();   
         }
 
         public void Load_Nguyenlieu(string where)
@@ -171,7 +180,7 @@ namespace DCafe
 
         public void Load_Donvi()
         {
-            string mk = "SELECT ma_donvi, RTRIM(ten_donvi) AS ten_donvi FROM T_Donvi";
+            string mk = "SELECT ma_donvi, RTRIM(ten_donvi) AS ten_donvi FROM T_Donvi WHERE loai_donvi = 'NL'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -229,6 +238,24 @@ namespace DCafe
             dr.Close();
             return isExist;
         }
+
+        private void grdDsNguyenlieu_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in grdDsNguyenlieu.SelectedRows)
+            {
+                clsNguyenlieu.Ma_Nguyenlieu = row.Cells[0].Value.ToString();
+                clsNguyenlieu.Ten_Nguyenlieu = row.Cells[1].Value.ToString();
+                clsNguyenlieu.Dongia = Convert.ToInt32(row.Cells[2].Value);
+                clsNguyenlieu.Donvi = row.Cells[3].Value.ToString();
+                clsNguyenlieu.Thoidiem = Convert.ToDateTime(row.Cells[4].Value);
+            }
+
+            txtMaNl.Text = clsNguyenlieu.Ma_Nguyenlieu;
+            txtTenNl.Text = clsNguyenlieu.Ten_Nguyenlieu;
+            txtDongia.Text = clsNguyenlieu.Dongia.ToString();
+            cbDonvi.SelectedValue = clsNguyenlieu.Donvi;
+        }
+
         #endregion
 
         #region Thanh pham
@@ -237,6 +264,7 @@ namespace DCafe
         {
             tabPages.SelectedTab = tabSanpham;
             Load_Thanhpham("");
+            Load_DonviSP();
         }
 
         public void Load_Thanhpham(string where)
@@ -251,9 +279,9 @@ namespace DCafe
             sqlCon.Close();
         }
 
-        public void Load_DonviIP()
+        public void Load_DonviSP()
         {
-            string mk = "SELECT ma_donvi, RTRIM(ten_donvi) AS ten_donvi FROM T_DonviTP";
+            string mk = "SELECT ma_donvi, RTRIM(ten_donvi) AS ten_donvi FROM T_Donvi WHERE loai_donvi = 'TP'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -312,13 +340,33 @@ namespace DCafe
             dr.Close();
             return isExist;
         }
+
+        private void grdDsSanpham_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in grdDsSanpham.SelectedRows)
+            {
+                clsThanhpham.Ma_Thanhpham = row.Cells[0].Value.ToString();
+                clsThanhpham.Ten_Thanhpham = row.Cells[1].Value.ToString();
+                clsThanhpham.Dongia = Convert.ToInt16(row.Cells[2].Value);
+                clsThanhpham.Giaban = Convert.ToInt16(row.Cells[3].Value);
+                clsThanhpham.Donvi = row.Cells[4].Value.ToString();
+                clsThanhpham.Thoidiem = Convert.ToDateTime(row.Cells[5].Value);
+            }
+
+            txtMa_Sanpham.Text = clsThanhpham.Ma_Thanhpham;
+            txtTen_Sanpham.Text = clsThanhpham.Ten_Thanhpham;
+            txtDongiaSP.Text = clsThanhpham.Dongia.ToString();
+            txtGiaban.Text = clsThanhpham.Giaban.ToString();
+            cbDonviSP.SelectedValue = clsThanhpham.Donvi;
+            dtThoidiemSP.Value = clsThanhpham.Thoidiem;
+        }
+
         #endregion
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             Load_Nhanvien("");            
-            Load_Khuvuc();
-            Load_Donvi();                    
+            Load_Khuvuc();                             
             rbNam.Checked = true;
         }
 
@@ -365,45 +413,7 @@ namespace DCafe
             sqlCon.Close();
 
             Load_Nhanvien("");
-        }
-
-        private void grdDsNguyenlieu_SelectionChanged(object sender, EventArgs e)
-        {
-            //foreach (DataGridViewRow row in grdDsNguyenlieu.SelectedRows)
-            //{
-            //    clsNguyenlieu.Ma_Nguyenlieu = row.Cells[0].Value.ToString();
-            //    clsNguyenlieu.Ten_Nguyenlieu = row.Cells[1].Value.ToString();
-            //    clsNguyenlieu.Dongia = Convert.ToInt16(row.Cells[2].Value);
-            //    clsNguyenlieu.Donvi = row.Cells[3].Value.ToString();
-            //    clsNguyenlieu.Thoidiem = Convert.ToDateTime(row.Cells[4].Value);
-            //}
-
-            //txtMaNl.Text = clsNguyenlieu.Ma_Nguyenlieu;
-            //txtTenNl.Text = clsNguyenlieu.Ten_Nguyenlieu;
-            //txtDongia.Text = clsNguyenlieu.Dongia.ToString();
-            //cbDonvi.SelectedValue = clsNguyenlieu.Donvi;
-        }
-
-        private void grdDsSanpham_SelectionChanged(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in grdDsSanpham.SelectedRows)
-            {
-                clsThanhpham.Ma_Thanhpham = row.Cells[0].Value.ToString();
-                clsThanhpham.Ten_Thanhpham = row.Cells[1].Value.ToString();
-                clsThanhpham.Dongia = Convert.ToInt16(row.Cells[2].Value);
-                clsThanhpham.Giaban = Convert.ToInt16(row.Cells[3].Value);
-                clsThanhpham.Donvi = row.Cells[4].Value.ToString();
-                clsThanhpham.Thoidiem = Convert.ToDateTime(row.Cells[5].Value);
-            }
-
-            txtMa_Sanpham.Text = clsThanhpham.Ma_Thanhpham;
-            txtTen_Sanpham.Text = clsThanhpham.Ten_Thanhpham;
-            txtDongiaSP.Text = clsThanhpham.Dongia.ToString();
-            txtGiaban.Text = clsThanhpham.Giaban.ToString();
-            cbDonviSP.SelectedValue = clsThanhpham.Donvi;
-            dtThoidiemSP.Value = clsThanhpham.Thoidiem;
-        }
-
-
+        }     
+        
     }
 }
