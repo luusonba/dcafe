@@ -89,6 +89,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.grdDsSanpham = new System.Windows.Forms.DataGridView();
+            this.cMasanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cTensanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cDongiaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cGiaban = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cDonviSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cThoidiemSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtGiaban = new System.Windows.Forms.TextBox();
             this.txtDongiaSP = new System.Windows.Forms.TextBox();
             this.txtTen_Sanpham = new System.Windows.Forms.TextBox();
@@ -138,12 +144,24 @@
             this.btnNguyenlieu = new System.Windows.Forms.Button();
             this.btnChebien = new System.Windows.Forms.Button();
             this.btnNhanvien = new System.Windows.Forms.Button();
-            this.cMasanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cTensanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cDongiaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cGiaban = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cDonviSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cThoidiemSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCommitSPCB = new System.Windows.Forms.Button();
+            this.btnDeleteSPCB = new System.Windows.Forms.Button();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtSoluongSPCB = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.cbNguyenlieuSPCB = new System.Windows.Forms.ComboBox();
+            this.dtThoidiemSPCB = new System.Windows.Forms.DateTimePicker();
+            this.cbDonviSPCB = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtGiabanSPCB = new System.Windows.Forms.TextBox();
+            this.txtDongiaSPCB = new System.Windows.Forms.TextBox();
+            this.txtTenSPCB = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.cbMaSPCB = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.tabPages.SuspendLayout();
             this.tabNhanvien.SuspendLayout();
@@ -274,7 +292,7 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Location = new System.Drawing.Point(233, 206);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(35, 24);
+            this.label17.Size = new System.Drawing.Size(29, 20);
             this.label17.TabIndex = 29;
             this.label17.Text = "Nữ";
             // 
@@ -284,7 +302,7 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Location = new System.Drawing.Point(164, 206);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(50, 24);
+            this.label15.Size = new System.Drawing.Size(42, 20);
             this.label15.TabIndex = 28;
             this.label15.Text = "Nam";
             // 
@@ -408,7 +426,7 @@
             this.cbMa_kv.FormattingEnabled = true;
             this.cbMa_kv.Location = new System.Drawing.Point(146, 246);
             this.cbMa_kv.Name = "cbMa_kv";
-            this.cbMa_kv.Size = new System.Drawing.Size(166, 32);
+            this.cbMa_kv.Size = new System.Drawing.Size(166, 28);
             this.cbMa_kv.TabIndex = 24;
             // 
             // rbNu
@@ -443,7 +461,7 @@
             this.txtMk.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtMk.Location = new System.Drawing.Point(145, 165);
             this.txtMk.Name = "txtMk";
-            this.txtMk.Size = new System.Drawing.Size(166, 22);
+            this.txtMk.Size = new System.Drawing.Size(166, 19);
             this.txtMk.TabIndex = 21;
             this.txtMk.UseSystemPasswordChar = true;
             // 
@@ -453,7 +471,7 @@
             this.txtTen_nv.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtTen_nv.Location = new System.Drawing.Point(144, 120);
             this.txtTen_nv.Name = "txtTen_nv";
-            this.txtTen_nv.Size = new System.Drawing.Size(167, 22);
+            this.txtTen_nv.Size = new System.Drawing.Size(167, 19);
             this.txtTen_nv.TabIndex = 20;
             // 
             // txtMa_nv
@@ -462,7 +480,7 @@
             this.txtMa_nv.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtMa_nv.Location = new System.Drawing.Point(144, 75);
             this.txtMa_nv.Name = "txtMa_nv";
-            this.txtMa_nv.Size = new System.Drawing.Size(167, 22);
+            this.txtMa_nv.Size = new System.Drawing.Size(167, 19);
             this.txtMa_nv.TabIndex = 19;
             // 
             // lblMakv
@@ -471,7 +489,7 @@
             this.lblMakv.BackColor = System.Drawing.Color.Transparent;
             this.lblMakv.Location = new System.Drawing.Point(33, 247);
             this.lblMakv.Name = "lblMakv";
-            this.lblMakv.Size = new System.Drawing.Size(107, 24);
+            this.lblMakv.Size = new System.Drawing.Size(89, 20);
             this.lblMakv.TabIndex = 18;
             this.lblMakv.Text = "Mã khu vực";
             // 
@@ -481,7 +499,7 @@
             this.lblAdmin.BackColor = System.Drawing.Color.Transparent;
             this.lblAdmin.Location = new System.Drawing.Point(48, 291);
             this.lblAdmin.Name = "lblAdmin";
-            this.lblAdmin.Size = new System.Drawing.Size(92, 24);
+            this.lblAdmin.Size = new System.Drawing.Size(78, 20);
             this.lblAdmin.TabIndex = 17;
             this.lblAdmin.Text = "Là admin:";
             // 
@@ -491,7 +509,7 @@
             this.lblGioitinh.BackColor = System.Drawing.Color.Transparent;
             this.lblGioitinh.Location = new System.Drawing.Point(62, 204);
             this.lblGioitinh.Name = "lblGioitinh";
-            this.lblGioitinh.Size = new System.Drawing.Size(78, 24);
+            this.lblGioitinh.Size = new System.Drawing.Size(67, 20);
             this.lblGioitinh.TabIndex = 16;
             this.lblGioitinh.Text = "Giới tính";
             // 
@@ -501,7 +519,7 @@
             this.lblMk.BackColor = System.Drawing.Color.Transparent;
             this.lblMk.Location = new System.Drawing.Point(54, 164);
             this.lblMk.Name = "lblMk";
-            this.lblMk.Size = new System.Drawing.Size(86, 24);
+            this.lblMk.Size = new System.Drawing.Size(75, 20);
             this.lblMk.TabIndex = 15;
             this.lblMk.Text = "Mật khẩu";
             // 
@@ -511,7 +529,7 @@
             this.lblTen_nv.BackColor = System.Drawing.Color.Transparent;
             this.lblTen_nv.Location = new System.Drawing.Point(8, 116);
             this.lblTen_nv.Name = "lblTen_nv";
-            this.lblTen_nv.Size = new System.Drawing.Size(132, 24);
+            this.lblTen_nv.Size = new System.Drawing.Size(108, 20);
             this.lblTen_nv.TabIndex = 14;
             this.lblTen_nv.Text = "Tên nhân viên";
             // 
@@ -521,7 +539,7 @@
             this.lblManv.BackColor = System.Drawing.Color.Transparent;
             this.lblManv.Location = new System.Drawing.Point(16, 71);
             this.lblManv.Name = "lblManv";
-            this.lblManv.Size = new System.Drawing.Size(124, 24);
+            this.lblManv.Size = new System.Drawing.Size(103, 20);
             this.lblManv.TabIndex = 13;
             this.lblManv.Text = "Mã nhân viên";
             // 
@@ -577,7 +595,7 @@
             this.cbDonvi.FormattingEnabled = true;
             this.cbDonvi.Location = new System.Drawing.Point(144, 197);
             this.cbDonvi.Name = "cbDonvi";
-            this.cbDonvi.Size = new System.Drawing.Size(166, 32);
+            this.cbDonvi.Size = new System.Drawing.Size(166, 28);
             this.cbDonvi.TabIndex = 29;
             // 
             // label5
@@ -586,7 +604,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Location = new System.Drawing.Point(75, 200);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 24);
+            this.label5.Size = new System.Drawing.Size(53, 20);
             this.label5.TabIndex = 28;
             this.label5.Text = "Đơn vị";
             // 
@@ -679,7 +697,7 @@
             this.txtDongia.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtDongia.Location = new System.Drawing.Point(145, 163);
             this.txtDongia.Name = "txtDongia";
-            this.txtDongia.Size = new System.Drawing.Size(166, 22);
+            this.txtDongia.Size = new System.Drawing.Size(166, 19);
             this.txtDongia.TabIndex = 21;
             // 
             // txtTenNl
@@ -688,7 +706,7 @@
             this.txtTenNl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtTenNl.Location = new System.Drawing.Point(144, 120);
             this.txtTenNl.Name = "txtTenNl";
-            this.txtTenNl.Size = new System.Drawing.Size(167, 22);
+            this.txtTenNl.Size = new System.Drawing.Size(167, 19);
             this.txtTenNl.TabIndex = 20;
             // 
             // txtMaNl
@@ -697,7 +715,7 @@
             this.txtMaNl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtMaNl.Location = new System.Drawing.Point(144, 75);
             this.txtMaNl.Name = "txtMaNl";
-            this.txtMaNl.Size = new System.Drawing.Size(167, 22);
+            this.txtMaNl.Size = new System.Drawing.Size(167, 19);
             this.txtMaNl.TabIndex = 19;
             // 
             // label3
@@ -706,7 +724,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(42, 246);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 24);
+            this.label3.Size = new System.Drawing.Size(77, 20);
             this.label3.TabIndex = 18;
             this.label3.Text = "Thời điểm";
             // 
@@ -716,7 +734,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Location = new System.Drawing.Point(63, 161);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 24);
+            this.label6.Size = new System.Drawing.Size(64, 20);
             this.label6.TabIndex = 15;
             this.label6.Text = "Đơn giá";
             // 
@@ -726,7 +744,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Location = new System.Drawing.Point(65, 118);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 24);
+            this.label7.Size = new System.Drawing.Size(60, 20);
             this.label7.TabIndex = 14;
             this.label7.Text = "Tên NL";
             // 
@@ -736,7 +754,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Location = new System.Drawing.Point(73, 75);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 24);
+            this.label8.Size = new System.Drawing.Size(55, 20);
             this.label8.TabIndex = 13;
             this.label8.Text = "Mã NL";
             // 
@@ -793,7 +811,7 @@
             this.cbDonviSP.FormattingEnabled = true;
             this.cbDonviSP.Location = new System.Drawing.Point(144, 230);
             this.cbDonviSP.Name = "cbDonviSP";
-            this.cbDonviSP.Size = new System.Drawing.Size(166, 32);
+            this.cbDonviSP.Size = new System.Drawing.Size(166, 28);
             this.cbDonviSP.TabIndex = 29;
             // 
             // label4
@@ -802,7 +820,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Location = new System.Drawing.Point(75, 233);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 24);
+            this.label4.Size = new System.Drawing.Size(53, 20);
             this.label4.TabIndex = 28;
             this.label4.Text = "Đơn vị";
             // 
@@ -851,13 +869,61 @@
             this.grdDsSanpham.TabIndex = 26;
             this.grdDsSanpham.SelectionChanged += new System.EventHandler(this.grdDsSanpham_SelectionChanged);
             // 
+            // cMasanpham
+            // 
+            this.cMasanpham.DataPropertyName = "ma_thanhpham";
+            this.cMasanpham.HeaderText = "Mã sản phẩm";
+            this.cMasanpham.Name = "cMasanpham";
+            this.cMasanpham.ReadOnly = true;
+            this.cMasanpham.Width = 140;
+            // 
+            // cTensanpham
+            // 
+            this.cTensanpham.DataPropertyName = "ten_thanhpham";
+            this.cTensanpham.HeaderText = "Tên sản phẩm";
+            this.cTensanpham.Name = "cTensanpham";
+            this.cTensanpham.ReadOnly = true;
+            this.cTensanpham.Width = 150;
+            // 
+            // cDongiaSP
+            // 
+            this.cDongiaSP.DataPropertyName = "dongia";
+            this.cDongiaSP.HeaderText = "Đơn giá";
+            this.cDongiaSP.Name = "cDongiaSP";
+            this.cDongiaSP.ReadOnly = true;
+            this.cDongiaSP.Width = 90;
+            // 
+            // cGiaban
+            // 
+            this.cGiaban.DataPropertyName = "giaban";
+            this.cGiaban.HeaderText = "Giá bán";
+            this.cGiaban.Name = "cGiaban";
+            this.cGiaban.ReadOnly = true;
+            this.cGiaban.Width = 90;
+            // 
+            // cDonviSP
+            // 
+            this.cDonviSP.DataPropertyName = "donvi";
+            this.cDonviSP.HeaderText = "Đơn vị";
+            this.cDonviSP.Name = "cDonviSP";
+            this.cDonviSP.ReadOnly = true;
+            this.cDonviSP.Width = 80;
+            // 
+            // cThoidiemSP
+            // 
+            this.cThoidiemSP.DataPropertyName = "thoidiem";
+            this.cThoidiemSP.HeaderText = "Thời điểm";
+            this.cThoidiemSP.Name = "cThoidiemSP";
+            this.cThoidiemSP.ReadOnly = true;
+            this.cThoidiemSP.Width = 110;
+            // 
             // txtGiaban
             // 
             this.txtGiaban.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtGiaban.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtGiaban.Location = new System.Drawing.Point(145, 196);
             this.txtGiaban.Name = "txtGiaban";
-            this.txtGiaban.Size = new System.Drawing.Size(166, 22);
+            this.txtGiaban.Size = new System.Drawing.Size(166, 19);
             this.txtGiaban.TabIndex = 21;
             // 
             // txtDongiaSP
@@ -866,7 +932,7 @@
             this.txtDongiaSP.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtDongiaSP.Location = new System.Drawing.Point(144, 158);
             this.txtDongiaSP.Name = "txtDongiaSP";
-            this.txtDongiaSP.Size = new System.Drawing.Size(167, 22);
+            this.txtDongiaSP.Size = new System.Drawing.Size(167, 19);
             this.txtDongiaSP.TabIndex = 20;
             // 
             // txtTen_Sanpham
@@ -875,7 +941,7 @@
             this.txtTen_Sanpham.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtTen_Sanpham.Location = new System.Drawing.Point(144, 120);
             this.txtTen_Sanpham.Name = "txtTen_Sanpham";
-            this.txtTen_Sanpham.Size = new System.Drawing.Size(167, 22);
+            this.txtTen_Sanpham.Size = new System.Drawing.Size(167, 19);
             this.txtTen_Sanpham.TabIndex = 20;
             // 
             // txtMa_Sanpham
@@ -884,7 +950,7 @@
             this.txtMa_Sanpham.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtMa_Sanpham.Location = new System.Drawing.Point(144, 75);
             this.txtMa_Sanpham.Name = "txtMa_Sanpham";
-            this.txtMa_Sanpham.Size = new System.Drawing.Size(167, 22);
+            this.txtMa_Sanpham.Size = new System.Drawing.Size(167, 19);
             this.txtMa_Sanpham.TabIndex = 19;
             // 
             // label10
@@ -893,7 +959,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Location = new System.Drawing.Point(42, 279);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(96, 24);
+            this.label10.Size = new System.Drawing.Size(77, 20);
             this.label10.TabIndex = 18;
             this.label10.Text = "Thời điểm";
             // 
@@ -903,7 +969,7 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Location = new System.Drawing.Point(63, 158);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(75, 24);
+            this.label14.Size = new System.Drawing.Size(64, 20);
             this.label14.TabIndex = 14;
             this.label14.Text = "Đơn giá";
             // 
@@ -913,7 +979,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Location = new System.Drawing.Point(63, 194);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(75, 24);
+            this.label11.Size = new System.Drawing.Size(65, 20);
             this.label11.TabIndex = 15;
             this.label11.Text = "Giá bán";
             // 
@@ -923,7 +989,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Location = new System.Drawing.Point(6, 119);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(132, 24);
+            this.label12.Size = new System.Drawing.Size(110, 20);
             this.label12.TabIndex = 14;
             this.label12.Text = "Tên sản phẩm";
             // 
@@ -933,7 +999,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Location = new System.Drawing.Point(14, 73);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(124, 24);
+            this.label13.Size = new System.Drawing.Size(105, 20);
             this.label13.TabIndex = 13;
             this.label13.Text = "Mã sản phẩm";
             // 
@@ -951,6 +1017,24 @@
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBox4.Controls.Add(this.cbMaSPCB);
+            this.groupBox4.Controls.Add(this.dtThoidiemSPCB);
+            this.groupBox4.Controls.Add(this.cbDonviSPCB);
+            this.groupBox4.Controls.Add(this.label27);
+            this.groupBox4.Controls.Add(this.txtGiabanSPCB);
+            this.groupBox4.Controls.Add(this.txtDongiaSPCB);
+            this.groupBox4.Controls.Add(this.txtTenSPCB);
+            this.groupBox4.Controls.Add(this.label29);
+            this.groupBox4.Controls.Add(this.label30);
+            this.groupBox4.Controls.Add(this.label31);
+            this.groupBox4.Controls.Add(this.label32);
+            this.groupBox4.Controls.Add(this.label33);
+            this.groupBox4.Controls.Add(this.cbNguyenlieuSPCB);
+            this.groupBox4.Controls.Add(this.btnCommitSPCB);
+            this.groupBox4.Controls.Add(this.btnDeleteSPCB);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.txtSoluongSPCB);
+            this.groupBox4.Controls.Add(this.label28);
             this.groupBox4.Controls.Add(this.listView1);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.dataGridView1);
@@ -1103,7 +1187,7 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(144, 347);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(166, 32);
+            this.comboBox1.Size = new System.Drawing.Size(166, 28);
             this.comboBox1.TabIndex = 29;
             // 
             // label18
@@ -1112,7 +1196,7 @@
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Location = new System.Drawing.Point(42, 351);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(96, 24);
+            this.label18.Size = new System.Drawing.Size(82, 20);
             this.label18.TabIndex = 28;
             this.label18.Text = "Sản phẩm";
             // 
@@ -1200,7 +1284,7 @@
             this.textBox5.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox5.Location = new System.Drawing.Point(144, 394);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(166, 22);
+            this.textBox5.Size = new System.Drawing.Size(166, 19);
             this.textBox5.TabIndex = 21;
             // 
             // textBox1
@@ -1209,7 +1293,7 @@
             this.textBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox1.Location = new System.Drawing.Point(145, 198);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(166, 22);
+            this.textBox1.Size = new System.Drawing.Size(166, 19);
             this.textBox1.TabIndex = 21;
             // 
             // textBox2
@@ -1218,7 +1302,7 @@
             this.textBox2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox2.Location = new System.Drawing.Point(144, 160);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(167, 22);
+            this.textBox2.Size = new System.Drawing.Size(167, 19);
             this.textBox2.TabIndex = 20;
             // 
             // textBox3
@@ -1227,7 +1311,7 @@
             this.textBox3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox3.Location = new System.Drawing.Point(144, 120);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(167, 22);
+            this.textBox3.Size = new System.Drawing.Size(167, 19);
             this.textBox3.TabIndex = 20;
             // 
             // textBox4
@@ -1236,7 +1320,7 @@
             this.textBox4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox4.Location = new System.Drawing.Point(144, 75);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(167, 22);
+            this.textBox4.Size = new System.Drawing.Size(167, 19);
             this.textBox4.TabIndex = 19;
             // 
             // label20
@@ -1245,7 +1329,7 @@
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Location = new System.Drawing.Point(42, 242);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(96, 24);
+            this.label20.Size = new System.Drawing.Size(77, 20);
             this.label20.TabIndex = 18;
             this.label20.Text = "Thời điểm";
             // 
@@ -1255,7 +1339,7 @@
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.Location = new System.Drawing.Point(52, 392);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(86, 24);
+            this.label25.Size = new System.Drawing.Size(72, 20);
             this.label25.TabIndex = 15;
             this.label25.Text = "Số lượng";
             // 
@@ -1265,7 +1349,7 @@
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Location = new System.Drawing.Point(59, 158);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(79, 24);
+            this.label21.Size = new System.Drawing.Size(65, 20);
             this.label21.TabIndex = 14;
             this.label21.Text = "Khu vực";
             // 
@@ -1275,7 +1359,7 @@
             this.label22.BackColor = System.Drawing.Color.Transparent;
             this.label22.Location = new System.Drawing.Point(68, 196);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(70, 24);
+            this.label22.Size = new System.Drawing.Size(60, 20);
             this.label22.TabIndex = 15;
             this.label22.Text = "Số bàn";
             // 
@@ -1285,7 +1369,7 @@
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.Location = new System.Drawing.Point(42, 118);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(96, 24);
+            this.label23.Size = new System.Drawing.Size(79, 20);
             this.label23.TabIndex = 14;
             this.label23.Text = "Nhân viên";
             // 
@@ -1295,7 +1379,7 @@
             this.label24.BackColor = System.Drawing.Color.Transparent;
             this.label24.Location = new System.Drawing.Point(26, 73);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(112, 24);
+            this.label24.Size = new System.Drawing.Size(93, 20);
             this.label24.TabIndex = 13;
             this.label24.Text = "Mã hóa đơn";
             // 
@@ -1403,53 +1487,187 @@
             this.btnNhanvien.UseVisualStyleBackColor = false;
             this.btnNhanvien.Click += new System.EventHandler(this.btnNhanvien_Click);
             // 
-            // cMasanpham
+            // btnCommitSPCB
             // 
-            this.cMasanpham.DataPropertyName = "ma_thanhpham";
-            this.cMasanpham.HeaderText = "Mã sản phẩm";
-            this.cMasanpham.Name = "cMasanpham";
-            this.cMasanpham.ReadOnly = true;
-            this.cMasanpham.Width = 140;
+            this.btnCommitSPCB.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCommitSPCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCommitSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnCommitSPCB.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCommitSPCB.Location = new System.Drawing.Point(542, 441);
+            this.btnCommitSPCB.Name = "btnCommitSPCB";
+            this.btnCommitSPCB.Size = new System.Drawing.Size(75, 27);
+            this.btnCommitSPCB.TabIndex = 51;
+            this.btnCommitSPCB.Text = "Commit";
+            this.btnCommitSPCB.UseVisualStyleBackColor = false;
             // 
-            // cTensanpham
+            // btnDeleteSPCB
             // 
-            this.cTensanpham.DataPropertyName = "ten_thanhpham";
-            this.cTensanpham.HeaderText = "Tên sản phẩm";
-            this.cTensanpham.Name = "cTensanpham";
-            this.cTensanpham.ReadOnly = true;
-            this.cTensanpham.Width = 150;
+            this.btnDeleteSPCB.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnDeleteSPCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnDeleteSPCB.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnDeleteSPCB.Location = new System.Drawing.Point(451, 441);
+            this.btnDeleteSPCB.Name = "btnDeleteSPCB";
+            this.btnDeleteSPCB.Size = new System.Drawing.Size(75, 27);
+            this.btnDeleteSPCB.TabIndex = 50;
+            this.btnDeleteSPCB.Text = "Delete";
+            this.btnDeleteSPCB.UseVisualStyleBackColor = false;
             // 
-            // cDongiaSP
+            // label26
             // 
-            this.cDongiaSP.DataPropertyName = "dongia";
-            this.cDongiaSP.HeaderText = "Đơn giá";
-            this.cDongiaSP.Name = "cDongiaSP";
-            this.cDongiaSP.ReadOnly = true;
-            this.cDongiaSP.Width = 90;
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.Transparent;
+            this.label26.Location = new System.Drawing.Point(349, 364);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(91, 20);
+            this.label26.TabIndex = 47;
+            this.label26.Text = "Nguyên liệu";
             // 
-            // cGiaban
+            // txtSoluongSPCB
             // 
-            this.cGiaban.DataPropertyName = "giaban";
-            this.cGiaban.HeaderText = "Giá bán";
-            this.cGiaban.Name = "cGiaban";
-            this.cGiaban.ReadOnly = true;
-            this.cGiaban.Width = 90;
+            this.txtSoluongSPCB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSoluongSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtSoluongSPCB.Location = new System.Drawing.Point(451, 407);
+            this.txtSoluongSPCB.Name = "txtSoluongSPCB";
+            this.txtSoluongSPCB.Size = new System.Drawing.Size(166, 19);
+            this.txtSoluongSPCB.TabIndex = 45;
             // 
-            // cDonviSP
+            // label28
             // 
-            this.cDonviSP.DataPropertyName = "donvi";
-            this.cDonviSP.HeaderText = "Đơn vị";
-            this.cDonviSP.Name = "cDonviSP";
-            this.cDonviSP.ReadOnly = true;
-            this.cDonviSP.Width = 80;
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.Color.Transparent;
+            this.label28.Location = new System.Drawing.Point(359, 405);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(72, 20);
+            this.label28.TabIndex = 39;
+            this.label28.Text = "Số lượng";
             // 
-            // cThoidiemSP
+            // cbNguyenlieuSPCB
             // 
-            this.cThoidiemSP.DataPropertyName = "thoidiem";
-            this.cThoidiemSP.HeaderText = "Thời điểm";
-            this.cThoidiemSP.Name = "cThoidiemSP";
-            this.cThoidiemSP.ReadOnly = true;
-            this.cThoidiemSP.Width = 110;
+            this.cbNguyenlieuSPCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbNguyenlieuSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbNguyenlieuSPCB.FormattingEnabled = true;
+            this.cbNguyenlieuSPCB.Location = new System.Drawing.Point(452, 361);
+            this.cbNguyenlieuSPCB.Name = "cbNguyenlieuSPCB";
+            this.cbNguyenlieuSPCB.Size = new System.Drawing.Size(166, 28);
+            this.cbNguyenlieuSPCB.TabIndex = 52;
+            // 
+            // dtThoidiemSPCB
+            // 
+            this.dtThoidiemSPCB.CustomFormat = "dd/MM/yyyy";
+            this.dtThoidiemSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.dtThoidiemSPCB.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtThoidiemSPCB.Location = new System.Drawing.Point(456, 303);
+            this.dtThoidiemSPCB.Name = "dtThoidiemSPCB";
+            this.dtThoidiemSPCB.Size = new System.Drawing.Size(166, 27);
+            this.dtThoidiemSPCB.TabIndex = 64;
+            // 
+            // cbDonviSPCB
+            // 
+            this.cbDonviSPCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbDonviSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbDonviSPCB.FormattingEnabled = true;
+            this.cbDonviSPCB.Location = new System.Drawing.Point(456, 255);
+            this.cbDonviSPCB.Name = "cbDonviSPCB";
+            this.cbDonviSPCB.Size = new System.Drawing.Size(166, 28);
+            this.cbDonviSPCB.TabIndex = 63;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.Location = new System.Drawing.Point(387, 258);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(53, 20);
+            this.label27.TabIndex = 62;
+            this.label27.Text = "Đơn vị";
+            // 
+            // txtGiabanSPCB
+            // 
+            this.txtGiabanSPCB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtGiabanSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtGiabanSPCB.Location = new System.Drawing.Point(457, 221);
+            this.txtGiabanSPCB.Name = "txtGiabanSPCB";
+            this.txtGiabanSPCB.Size = new System.Drawing.Size(166, 19);
+            this.txtGiabanSPCB.TabIndex = 61;
+            // 
+            // txtDongiaSPCB
+            // 
+            this.txtDongiaSPCB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDongiaSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtDongiaSPCB.Location = new System.Drawing.Point(456, 183);
+            this.txtDongiaSPCB.Name = "txtDongiaSPCB";
+            this.txtDongiaSPCB.Size = new System.Drawing.Size(167, 19);
+            this.txtDongiaSPCB.TabIndex = 59;
+            // 
+            // txtTenSPCB
+            // 
+            this.txtTenSPCB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTenSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtTenSPCB.Location = new System.Drawing.Point(456, 145);
+            this.txtTenSPCB.Name = "txtTenSPCB";
+            this.txtTenSPCB.Size = new System.Drawing.Size(167, 19);
+            this.txtTenSPCB.TabIndex = 60;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Location = new System.Drawing.Point(354, 304);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(77, 20);
+            this.label29.TabIndex = 57;
+            this.label29.Text = "Thời điểm";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Location = new System.Drawing.Point(375, 183);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(64, 20);
+            this.label30.TabIndex = 54;
+            this.label30.Text = "Đơn giá";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Location = new System.Drawing.Point(375, 219);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(65, 20);
+            this.label31.TabIndex = 56;
+            this.label31.Text = "Giá bán";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.Location = new System.Drawing.Point(318, 144);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(110, 20);
+            this.label32.TabIndex = 55;
+            this.label32.Text = "Tên sản phẩm";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Location = new System.Drawing.Point(326, 98);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(105, 20);
+            this.label33.TabIndex = 53;
+            this.label33.Text = "Mã sản phẩm";
+            // 
+            // cbMaSPCB
+            // 
+            this.cbMaSPCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbMaSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbMaSPCB.FormattingEnabled = true;
+            this.cbMaSPCB.Location = new System.Drawing.Point(457, 95);
+            this.cbMaSPCB.Name = "cbMaSPCB";
+            this.cbMaSPCB.Size = new System.Drawing.Size(166, 28);
+            this.cbMaSPCB.TabIndex = 65;
             // 
             // frmMain
             // 
@@ -1606,5 +1824,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cGiaban;
         private System.Windows.Forms.DataGridViewTextBoxColumn cDonviSP;
         private System.Windows.Forms.DataGridViewTextBoxColumn cThoidiemSP;
+        private System.Windows.Forms.ComboBox cbNguyenlieuSPCB;
+        private System.Windows.Forms.Button btnCommitSPCB;
+        private System.Windows.Forms.Button btnDeleteSPCB;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txtSoluongSPCB;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox cbMaSPCB;
+        private System.Windows.Forms.DateTimePicker dtThoidiemSPCB;
+        private System.Windows.Forms.ComboBox cbDonviSPCB;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox txtGiabanSPCB;
+        private System.Windows.Forms.TextBox txtDongiaSPCB;
+        private System.Windows.Forms.TextBox txtTenSPCB;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
     }
 }

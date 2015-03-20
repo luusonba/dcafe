@@ -33,10 +33,7 @@ namespace DCafe
 
        
 
-        private void btnChebien_Click(object sender, EventArgs e)
-        {
-            tabPages.SelectedTab = tabChebien;
-        }
+       
 
         private void btnHoadon_Click(object sender, EventArgs e)
         {
@@ -361,6 +358,28 @@ namespace DCafe
             dtThoidiemSP.Value = clsThanhpham.Thoidiem;
         }
 
+        #endregion
+
+        #region Che bien
+        
+        public void Load_SanphamCB()
+        {
+            string mk = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) AS ten_thanhpham FROM T_Thanhpham";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+
+            cbMaSPCB.DataSource = dt;
+            cbMaSPCB.DisplayMember = "ten_thanhpham";
+            cbMaSPCB.ValueMember = "ma_thanhpham";
+            sqlCon.Close();
+        }
+        private void btnChebien_Click(object sender, EventArgs e)
+        {
+            tabPages.SelectedTab = tabChebien;
+            Load_SanphamCB();
+        }
         #endregion
 
         private void frmMain_Load(object sender, EventArgs e)
