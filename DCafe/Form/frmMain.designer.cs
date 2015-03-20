@@ -106,7 +106,24 @@
             this.label13 = new System.Windows.Forms.Label();
             this.tabChebien = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.cbMaSPCB = new System.Windows.Forms.ComboBox();
+            this.dtThoidiemSPCB = new System.Windows.Forms.DateTimePicker();
+            this.cbDonviSPCB = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtGiabanSPCB = new System.Windows.Forms.TextBox();
+            this.txtDongiaSPCB = new System.Windows.Forms.TextBox();
+            this.txtTenSPCB = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.cbNguyenlieuSPCB = new System.Windows.Forms.ComboBox();
+            this.btnCommitSPCB = new System.Windows.Forms.Button();
+            this.btnDeleteSPCB = new System.Windows.Forms.Button();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtSoluongSPCB = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cManguyenlieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -144,24 +161,6 @@
             this.btnNguyenlieu = new System.Windows.Forms.Button();
             this.btnChebien = new System.Windows.Forms.Button();
             this.btnNhanvien = new System.Windows.Forms.Button();
-            this.btnCommitSPCB = new System.Windows.Forms.Button();
-            this.btnDeleteSPCB = new System.Windows.Forms.Button();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtSoluongSPCB = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.cbNguyenlieuSPCB = new System.Windows.Forms.ComboBox();
-            this.dtThoidiemSPCB = new System.Windows.Forms.DateTimePicker();
-            this.cbDonviSPCB = new System.Windows.Forms.ComboBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txtGiabanSPCB = new System.Windows.Forms.TextBox();
-            this.txtDongiaSPCB = new System.Windows.Forms.TextBox();
-            this.txtTenSPCB = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.cbMaSPCB = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.tabPages.SuspendLayout();
             this.tabNhanvien.SuspendLayout();
@@ -205,7 +204,6 @@
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnSave.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnSave.Location = new System.Drawing.Point(1064, 670);
@@ -219,7 +217,6 @@
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDelete.Location = new System.Drawing.Point(969, 670);
@@ -325,7 +322,7 @@
             this.grdDsnhanvien.AllowUserToResizeColumns = false;
             this.grdDsnhanvien.AllowUserToResizeRows = false;
             this.grdDsnhanvien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdDsnhanvien.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grdDsnhanvien.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -411,17 +408,15 @@
             // 
             this.ckAdmin.AutoSize = true;
             this.ckAdmin.BackColor = System.Drawing.Color.Transparent;
-            this.ckAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ckAdmin.ForeColor = System.Drawing.SystemColors.ControlText;
             this.ckAdmin.Location = new System.Drawing.Point(147, 298);
             this.ckAdmin.Name = "ckAdmin";
-            this.ckAdmin.Size = new System.Drawing.Size(12, 11);
+            this.ckAdmin.Size = new System.Drawing.Size(15, 14);
             this.ckAdmin.TabIndex = 25;
             this.ckAdmin.UseVisualStyleBackColor = false;
             // 
             // cbMa_kv
             // 
-            this.cbMa_kv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbMa_kv.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cbMa_kv.FormattingEnabled = true;
             this.cbMa_kv.Location = new System.Drawing.Point(146, 246);
@@ -433,11 +428,10 @@
             // 
             this.rbNu.AutoSize = true;
             this.rbNu.BackColor = System.Drawing.Color.Transparent;
-            this.rbNu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbNu.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rbNu.Location = new System.Drawing.Point(214, 212);
             this.rbNu.Name = "rbNu";
-            this.rbNu.Size = new System.Drawing.Size(13, 12);
+            this.rbNu.Size = new System.Drawing.Size(14, 13);
             this.rbNu.TabIndex = 23;
             this.rbNu.TabStop = true;
             this.rbNu.UseVisualStyleBackColor = false;
@@ -446,41 +440,37 @@
             // 
             this.rbNam.AutoSize = true;
             this.rbNam.BackColor = System.Drawing.Color.Transparent;
-            this.rbNam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbNam.ForeColor = System.Drawing.SystemColors.ControlText;
             this.rbNam.Location = new System.Drawing.Point(145, 212);
             this.rbNam.Name = "rbNam";
-            this.rbNam.Size = new System.Drawing.Size(13, 12);
+            this.rbNam.Size = new System.Drawing.Size(14, 13);
             this.rbNam.TabIndex = 22;
             this.rbNam.TabStop = true;
             this.rbNam.UseVisualStyleBackColor = false;
             // 
             // txtMk
             // 
-            this.txtMk.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMk.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtMk.Location = new System.Drawing.Point(145, 165);
             this.txtMk.Name = "txtMk";
-            this.txtMk.Size = new System.Drawing.Size(166, 19);
+            this.txtMk.Size = new System.Drawing.Size(166, 26);
             this.txtMk.TabIndex = 21;
             this.txtMk.UseSystemPasswordChar = true;
             // 
             // txtTen_nv
             // 
-            this.txtTen_nv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTen_nv.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtTen_nv.Location = new System.Drawing.Point(144, 120);
             this.txtTen_nv.Name = "txtTen_nv";
-            this.txtTen_nv.Size = new System.Drawing.Size(167, 19);
+            this.txtTen_nv.Size = new System.Drawing.Size(167, 26);
             this.txtTen_nv.TabIndex = 20;
             // 
             // txtMa_nv
             // 
-            this.txtMa_nv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMa_nv.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtMa_nv.Location = new System.Drawing.Point(144, 75);
             this.txtMa_nv.Name = "txtMa_nv";
-            this.txtMa_nv.Size = new System.Drawing.Size(167, 19);
+            this.txtMa_nv.Size = new System.Drawing.Size(167, 26);
             this.txtMa_nv.TabIndex = 19;
             // 
             // lblMakv
@@ -590,7 +580,6 @@
             // 
             // cbDonvi
             // 
-            this.cbDonvi.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbDonvi.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cbDonvi.FormattingEnabled = true;
             this.cbDonvi.Location = new System.Drawing.Point(144, 197);
@@ -626,7 +615,7 @@
             this.grdDsNguyenlieu.AllowUserToResizeColumns = false;
             this.grdDsNguyenlieu.AllowUserToResizeRows = false;
             this.grdDsNguyenlieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdDsNguyenlieu.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grdDsNguyenlieu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -693,29 +682,26 @@
             // 
             // txtDongia
             // 
-            this.txtDongia.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDongia.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtDongia.Location = new System.Drawing.Point(145, 163);
             this.txtDongia.Name = "txtDongia";
-            this.txtDongia.Size = new System.Drawing.Size(166, 19);
+            this.txtDongia.Size = new System.Drawing.Size(166, 26);
             this.txtDongia.TabIndex = 21;
             // 
             // txtTenNl
             // 
-            this.txtTenNl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTenNl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtTenNl.Location = new System.Drawing.Point(144, 120);
             this.txtTenNl.Name = "txtTenNl";
-            this.txtTenNl.Size = new System.Drawing.Size(167, 19);
+            this.txtTenNl.Size = new System.Drawing.Size(167, 26);
             this.txtTenNl.TabIndex = 20;
             // 
             // txtMaNl
             // 
-            this.txtMaNl.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMaNl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtMaNl.Location = new System.Drawing.Point(144, 75);
             this.txtMaNl.Name = "txtMaNl";
-            this.txtMaNl.Size = new System.Drawing.Size(167, 19);
+            this.txtMaNl.Size = new System.Drawing.Size(167, 26);
             this.txtMaNl.TabIndex = 19;
             // 
             // label3
@@ -806,7 +792,6 @@
             // 
             // cbDonviSP
             // 
-            this.cbDonviSP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbDonviSP.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cbDonviSP.FormattingEnabled = true;
             this.cbDonviSP.Location = new System.Drawing.Point(144, 230);
@@ -842,7 +827,7 @@
             this.grdDsSanpham.AllowUserToResizeColumns = false;
             this.grdDsSanpham.AllowUserToResizeRows = false;
             this.grdDsSanpham.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.grdDsSanpham.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.grdDsSanpham.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -919,38 +904,34 @@
             // 
             // txtGiaban
             // 
-            this.txtGiaban.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtGiaban.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtGiaban.Location = new System.Drawing.Point(145, 196);
             this.txtGiaban.Name = "txtGiaban";
-            this.txtGiaban.Size = new System.Drawing.Size(166, 19);
+            this.txtGiaban.Size = new System.Drawing.Size(166, 26);
             this.txtGiaban.TabIndex = 21;
             // 
             // txtDongiaSP
             // 
-            this.txtDongiaSP.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDongiaSP.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtDongiaSP.Location = new System.Drawing.Point(144, 158);
             this.txtDongiaSP.Name = "txtDongiaSP";
-            this.txtDongiaSP.Size = new System.Drawing.Size(167, 19);
+            this.txtDongiaSP.Size = new System.Drawing.Size(167, 26);
             this.txtDongiaSP.TabIndex = 20;
             // 
             // txtTen_Sanpham
             // 
-            this.txtTen_Sanpham.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTen_Sanpham.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtTen_Sanpham.Location = new System.Drawing.Point(144, 120);
             this.txtTen_Sanpham.Name = "txtTen_Sanpham";
-            this.txtTen_Sanpham.Size = new System.Drawing.Size(167, 19);
+            this.txtTen_Sanpham.Size = new System.Drawing.Size(167, 26);
             this.txtTen_Sanpham.TabIndex = 20;
             // 
             // txtMa_Sanpham
             // 
-            this.txtMa_Sanpham.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMa_Sanpham.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtMa_Sanpham.Location = new System.Drawing.Point(144, 75);
             this.txtMa_Sanpham.Name = "txtMa_Sanpham";
-            this.txtMa_Sanpham.Size = new System.Drawing.Size(167, 19);
+            this.txtMa_Sanpham.Size = new System.Drawing.Size(167, 26);
             this.txtMa_Sanpham.TabIndex = 19;
             // 
             // label10
@@ -1035,7 +1016,6 @@
             this.groupBox4.Controls.Add(this.label26);
             this.groupBox4.Controls.Add(this.txtSoluongSPCB);
             this.groupBox4.Controls.Add(this.label28);
-            this.groupBox4.Controls.Add(this.listView1);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.dataGridView1);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -1046,13 +1026,178 @@
             this.groupBox4.TabIndex = 23;
             this.groupBox4.TabStop = false;
             // 
-            // listView1
+            // cbMaSPCB
             // 
-            this.listView1.Location = new System.Drawing.Point(14, 73);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(298, 588);
-            this.listView1.TabIndex = 28;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.cbMaSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbMaSPCB.FormattingEnabled = true;
+            this.cbMaSPCB.Location = new System.Drawing.Point(135, 94);
+            this.cbMaSPCB.Name = "cbMaSPCB";
+            this.cbMaSPCB.Size = new System.Drawing.Size(166, 28);
+            this.cbMaSPCB.TabIndex = 65;
+            // 
+            // dtThoidiemSPCB
+            // 
+            this.dtThoidiemSPCB.CustomFormat = "dd/MM/yyyy";
+            this.dtThoidiemSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.dtThoidiemSPCB.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtThoidiemSPCB.Location = new System.Drawing.Point(134, 302);
+            this.dtThoidiemSPCB.Name = "dtThoidiemSPCB";
+            this.dtThoidiemSPCB.Size = new System.Drawing.Size(166, 27);
+            this.dtThoidiemSPCB.TabIndex = 64;
+            // 
+            // cbDonviSPCB
+            // 
+            this.cbDonviSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbDonviSPCB.FormattingEnabled = true;
+            this.cbDonviSPCB.Location = new System.Drawing.Point(134, 254);
+            this.cbDonviSPCB.Name = "cbDonviSPCB";
+            this.cbDonviSPCB.Size = new System.Drawing.Size(166, 28);
+            this.cbDonviSPCB.TabIndex = 63;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.Color.Transparent;
+            this.label27.Location = new System.Drawing.Point(65, 257);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(53, 20);
+            this.label27.TabIndex = 62;
+            this.label27.Text = "Đơn vị";
+            // 
+            // txtGiabanSPCB
+            // 
+            this.txtGiabanSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtGiabanSPCB.Location = new System.Drawing.Point(135, 220);
+            this.txtGiabanSPCB.Name = "txtGiabanSPCB";
+            this.txtGiabanSPCB.Size = new System.Drawing.Size(166, 26);
+            this.txtGiabanSPCB.TabIndex = 61;
+            // 
+            // txtDongiaSPCB
+            // 
+            this.txtDongiaSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtDongiaSPCB.Location = new System.Drawing.Point(134, 182);
+            this.txtDongiaSPCB.Name = "txtDongiaSPCB";
+            this.txtDongiaSPCB.Size = new System.Drawing.Size(167, 26);
+            this.txtDongiaSPCB.TabIndex = 59;
+            // 
+            // txtTenSPCB
+            // 
+            this.txtTenSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtTenSPCB.Location = new System.Drawing.Point(134, 144);
+            this.txtTenSPCB.Name = "txtTenSPCB";
+            this.txtTenSPCB.Size = new System.Drawing.Size(167, 26);
+            this.txtTenSPCB.TabIndex = 60;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.BackColor = System.Drawing.Color.Transparent;
+            this.label29.Location = new System.Drawing.Point(32, 303);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(77, 20);
+            this.label29.TabIndex = 57;
+            this.label29.Text = "Thời điểm";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.BackColor = System.Drawing.Color.Transparent;
+            this.label30.Location = new System.Drawing.Point(53, 182);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(64, 20);
+            this.label30.TabIndex = 54;
+            this.label30.Text = "Đơn giá";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Location = new System.Drawing.Point(53, 218);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(65, 20);
+            this.label31.TabIndex = 56;
+            this.label31.Text = "Giá bán";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.Location = new System.Drawing.Point(-4, 143);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(110, 20);
+            this.label32.TabIndex = 55;
+            this.label32.Text = "Tên sản phẩm";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Location = new System.Drawing.Point(4, 97);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(105, 20);
+            this.label33.TabIndex = 53;
+            this.label33.Text = "Mã sản phẩm";
+            // 
+            // cbNguyenlieuSPCB
+            // 
+            this.cbNguyenlieuSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbNguyenlieuSPCB.FormattingEnabled = true;
+            this.cbNguyenlieuSPCB.Location = new System.Drawing.Point(130, 360);
+            this.cbNguyenlieuSPCB.Name = "cbNguyenlieuSPCB";
+            this.cbNguyenlieuSPCB.Size = new System.Drawing.Size(166, 28);
+            this.cbNguyenlieuSPCB.TabIndex = 52;
+            // 
+            // btnCommitSPCB
+            // 
+            this.btnCommitSPCB.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCommitSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnCommitSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCommitSPCB.Location = new System.Drawing.Point(220, 440);
+            this.btnCommitSPCB.Name = "btnCommitSPCB";
+            this.btnCommitSPCB.Size = new System.Drawing.Size(75, 27);
+            this.btnCommitSPCB.TabIndex = 51;
+            this.btnCommitSPCB.Text = "Commit";
+            this.btnCommitSPCB.UseVisualStyleBackColor = false;
+            // 
+            // btnDeleteSPCB
+            // 
+            this.btnDeleteSPCB.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnDeleteSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnDeleteSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDeleteSPCB.Location = new System.Drawing.Point(129, 440);
+            this.btnDeleteSPCB.Name = "btnDeleteSPCB";
+            this.btnDeleteSPCB.Size = new System.Drawing.Size(75, 27);
+            this.btnDeleteSPCB.TabIndex = 50;
+            this.btnDeleteSPCB.Text = "Delete";
+            this.btnDeleteSPCB.UseVisualStyleBackColor = false;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.BackColor = System.Drawing.Color.Transparent;
+            this.label26.Location = new System.Drawing.Point(27, 363);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(91, 20);
+            this.label26.TabIndex = 47;
+            this.label26.Text = "Nguyên liệu";
+            // 
+            // txtSoluongSPCB
+            // 
+            this.txtSoluongSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtSoluongSPCB.Location = new System.Drawing.Point(129, 406);
+            this.txtSoluongSPCB.Name = "txtSoluongSPCB";
+            this.txtSoluongSPCB.Size = new System.Drawing.Size(166, 26);
+            this.txtSoluongSPCB.TabIndex = 45;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.BackColor = System.Drawing.Color.Transparent;
+            this.label28.Location = new System.Drawing.Point(37, 404);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(72, 20);
+            this.label28.TabIndex = 39;
+            this.label28.Text = "Số lượng";
             // 
             // label16
             // 
@@ -1072,7 +1217,7 @@
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -1147,7 +1292,6 @@
             // btnCommitHD
             // 
             this.btnCommitHD.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCommitHD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCommitHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnCommitHD.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCommitHD.Location = new System.Drawing.Point(235, 428);
@@ -1160,7 +1304,6 @@
             // btnDeleteHD
             // 
             this.btnDeleteHD.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDeleteHD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnDeleteHD.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnDeleteHD.Location = new System.Drawing.Point(144, 428);
@@ -1182,7 +1325,6 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(144, 347);
@@ -1218,7 +1360,7 @@
             this.dataGridView2.AllowUserToResizeColumns = false;
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -1280,47 +1422,42 @@
             // 
             // textBox5
             // 
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox5.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox5.Location = new System.Drawing.Point(144, 394);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(166, 19);
+            this.textBox5.Size = new System.Drawing.Size(166, 26);
             this.textBox5.TabIndex = 21;
             // 
             // textBox1
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox1.Location = new System.Drawing.Point(145, 198);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(166, 19);
+            this.textBox1.Size = new System.Drawing.Size(166, 26);
             this.textBox1.TabIndex = 21;
             // 
             // textBox2
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox2.Location = new System.Drawing.Point(144, 160);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(167, 19);
+            this.textBox2.Size = new System.Drawing.Size(167, 26);
             this.textBox2.TabIndex = 20;
             // 
             // textBox3
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox3.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox3.Location = new System.Drawing.Point(144, 120);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(167, 19);
+            this.textBox3.Size = new System.Drawing.Size(167, 26);
             this.textBox3.TabIndex = 20;
             // 
             // textBox4
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.textBox4.Location = new System.Drawing.Point(144, 75);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(167, 19);
+            this.textBox4.Size = new System.Drawing.Size(167, 26);
             this.textBox4.TabIndex = 19;
             // 
             // label20
@@ -1487,188 +1624,6 @@
             this.btnNhanvien.UseVisualStyleBackColor = false;
             this.btnNhanvien.Click += new System.EventHandler(this.btnNhanvien_Click);
             // 
-            // btnCommitSPCB
-            // 
-            this.btnCommitSPCB.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCommitSPCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCommitSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnCommitSPCB.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCommitSPCB.Location = new System.Drawing.Point(542, 441);
-            this.btnCommitSPCB.Name = "btnCommitSPCB";
-            this.btnCommitSPCB.Size = new System.Drawing.Size(75, 27);
-            this.btnCommitSPCB.TabIndex = 51;
-            this.btnCommitSPCB.Text = "Commit";
-            this.btnCommitSPCB.UseVisualStyleBackColor = false;
-            // 
-            // btnDeleteSPCB
-            // 
-            this.btnDeleteSPCB.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDeleteSPCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnDeleteSPCB.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnDeleteSPCB.Location = new System.Drawing.Point(451, 441);
-            this.btnDeleteSPCB.Name = "btnDeleteSPCB";
-            this.btnDeleteSPCB.Size = new System.Drawing.Size(75, 27);
-            this.btnDeleteSPCB.TabIndex = 50;
-            this.btnDeleteSPCB.Text = "Delete";
-            this.btnDeleteSPCB.UseVisualStyleBackColor = false;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.BackColor = System.Drawing.Color.Transparent;
-            this.label26.Location = new System.Drawing.Point(349, 364);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(91, 20);
-            this.label26.TabIndex = 47;
-            this.label26.Text = "Nguyên liệu";
-            // 
-            // txtSoluongSPCB
-            // 
-            this.txtSoluongSPCB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSoluongSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtSoluongSPCB.Location = new System.Drawing.Point(451, 407);
-            this.txtSoluongSPCB.Name = "txtSoluongSPCB";
-            this.txtSoluongSPCB.Size = new System.Drawing.Size(166, 19);
-            this.txtSoluongSPCB.TabIndex = 45;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.BackColor = System.Drawing.Color.Transparent;
-            this.label28.Location = new System.Drawing.Point(359, 405);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(72, 20);
-            this.label28.TabIndex = 39;
-            this.label28.Text = "Số lượng";
-            // 
-            // cbNguyenlieuSPCB
-            // 
-            this.cbNguyenlieuSPCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbNguyenlieuSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbNguyenlieuSPCB.FormattingEnabled = true;
-            this.cbNguyenlieuSPCB.Location = new System.Drawing.Point(452, 361);
-            this.cbNguyenlieuSPCB.Name = "cbNguyenlieuSPCB";
-            this.cbNguyenlieuSPCB.Size = new System.Drawing.Size(166, 28);
-            this.cbNguyenlieuSPCB.TabIndex = 52;
-            // 
-            // dtThoidiemSPCB
-            // 
-            this.dtThoidiemSPCB.CustomFormat = "dd/MM/yyyy";
-            this.dtThoidiemSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.dtThoidiemSPCB.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtThoidiemSPCB.Location = new System.Drawing.Point(456, 303);
-            this.dtThoidiemSPCB.Name = "dtThoidiemSPCB";
-            this.dtThoidiemSPCB.Size = new System.Drawing.Size(166, 27);
-            this.dtThoidiemSPCB.TabIndex = 64;
-            // 
-            // cbDonviSPCB
-            // 
-            this.cbDonviSPCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbDonviSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbDonviSPCB.FormattingEnabled = true;
-            this.cbDonviSPCB.Location = new System.Drawing.Point(456, 255);
-            this.cbDonviSPCB.Name = "cbDonviSPCB";
-            this.cbDonviSPCB.Size = new System.Drawing.Size(166, 28);
-            this.cbDonviSPCB.TabIndex = 63;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.Color.Transparent;
-            this.label27.Location = new System.Drawing.Point(387, 258);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(53, 20);
-            this.label27.TabIndex = 62;
-            this.label27.Text = "Đơn vị";
-            // 
-            // txtGiabanSPCB
-            // 
-            this.txtGiabanSPCB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtGiabanSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtGiabanSPCB.Location = new System.Drawing.Point(457, 221);
-            this.txtGiabanSPCB.Name = "txtGiabanSPCB";
-            this.txtGiabanSPCB.Size = new System.Drawing.Size(166, 19);
-            this.txtGiabanSPCB.TabIndex = 61;
-            // 
-            // txtDongiaSPCB
-            // 
-            this.txtDongiaSPCB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDongiaSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtDongiaSPCB.Location = new System.Drawing.Point(456, 183);
-            this.txtDongiaSPCB.Name = "txtDongiaSPCB";
-            this.txtDongiaSPCB.Size = new System.Drawing.Size(167, 19);
-            this.txtDongiaSPCB.TabIndex = 59;
-            // 
-            // txtTenSPCB
-            // 
-            this.txtTenSPCB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTenSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtTenSPCB.Location = new System.Drawing.Point(456, 145);
-            this.txtTenSPCB.Name = "txtTenSPCB";
-            this.txtTenSPCB.Size = new System.Drawing.Size(167, 19);
-            this.txtTenSPCB.TabIndex = 60;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.Transparent;
-            this.label29.Location = new System.Drawing.Point(354, 304);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(77, 20);
-            this.label29.TabIndex = 57;
-            this.label29.Text = "Thời điểm";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.BackColor = System.Drawing.Color.Transparent;
-            this.label30.Location = new System.Drawing.Point(375, 183);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(64, 20);
-            this.label30.TabIndex = 54;
-            this.label30.Text = "Đơn giá";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.BackColor = System.Drawing.Color.Transparent;
-            this.label31.Location = new System.Drawing.Point(375, 219);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(65, 20);
-            this.label31.TabIndex = 56;
-            this.label31.Text = "Giá bán";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Location = new System.Drawing.Point(318, 144);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(110, 20);
-            this.label32.TabIndex = 55;
-            this.label32.Text = "Tên sản phẩm";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.Location = new System.Drawing.Point(326, 98);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(105, 20);
-            this.label33.TabIndex = 53;
-            this.label33.Text = "Mã sản phẩm";
-            // 
-            // cbMaSPCB
-            // 
-            this.cbMaSPCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbMaSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbMaSPCB.FormattingEnabled = true;
-            this.cbMaSPCB.Location = new System.Drawing.Point(457, 95);
-            this.cbMaSPCB.Name = "cbMaSPCB";
-            this.cbMaSPCB.Size = new System.Drawing.Size(166, 28);
-            this.cbMaSPCB.TabIndex = 65;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1772,7 +1727,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TabPage tabChebien;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn cManguyenlieu;
