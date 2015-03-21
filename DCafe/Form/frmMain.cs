@@ -474,6 +474,7 @@ namespace DCafe
             cbNhanvien.SelectedIndexChanged += new System.EventHandler(this.cbNhanvien_SelectedIndexChanged);
             cbKhuvuc.SelectedIndexChanged += new System.EventHandler(this.cbKhuvuc_SelectedIndexChanged);
             cbSoban.SelectedIndexChanged += new System.EventHandler(this.cbSoban_SelectedIndexChanged);
+            cbMahoadon.SelectedIndexChanged += new System.EventHandler(this.cbMahoadon_SelectedIndexChanged);
         }
 
         private void RemoveEventTabHD()
@@ -481,6 +482,7 @@ namespace DCafe
             cbNhanvien.SelectedIndexChanged -= new System.EventHandler(this.cbNhanvien_SelectedIndexChanged);
             cbKhuvuc.SelectedIndexChanged -= new System.EventHandler(this.cbKhuvuc_SelectedIndexChanged);
             cbSoban.SelectedIndexChanged -= new System.EventHandler(this.cbSoban_SelectedIndexChanged);
+            cbMahoadon.SelectedIndexChanged -= new System.EventHandler(this.cbMahoadon_SelectedIndexChanged);
         }
 
         private void Load_Nhanvien()
@@ -531,7 +533,6 @@ namespace DCafe
 
         private void Load_Soban()
         {
-            string i = cbMahoadon.Text;
             string mk = "SELECT maban, tenban FROM T_Ban WHERE ma_kv = '" + cbKhuvuc.SelectedValue.ToString() + "'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
@@ -548,7 +549,7 @@ namespace DCafe
 
         public bool checkExistHoadon(string ma_hd)
         {
-            string sql = "SELECT ma_hd FROM T_Hoadon WHERE (ma_hd = @ma_hd)";
+            string sql = "SELECT ma_hd FROM T_CTHoadon WHERE (ma_hd = @ma_hd)";
             bool isExist = false;
             SqlCommand cmd = new SqlCommand(sql, sqlCon);
             cmd.Parameters.AddWithValue("ma_hd", ma_hd);
@@ -587,14 +588,17 @@ namespace DCafe
             sqlCon.Open();
             if (!checkExistHoadon(cbMahoadon.Text))
             {
+                cmd.Parameters.Add(new SqlParameter("@ma_hd", SqlDbType.NChar));
+                cmd.Parameters.Add(new SqlParameter("@ma_thanhpham", SqlDbType.NChar));
+                cmd.Parameters.Add(new SqlParameter("@soluong", SqlDbType.Float));
                 foreach (DataGridViewRow row in grdHoadon.Rows)
                 {
                     //Add
                     cmd.CommandText = "INSERT INTO T_CTHoadon (ma_hd, ma_thanhpham, soluong) VALUES (@ma_hd, @ma_thanhpham, @soluong)";
 
-                    cmd.Parameters.AddWithValue("@ma_hd", cbMahoadon.Text);
-                    cmd.Parameters.AddWithValue("@ma_thanhpham", grdHoadon.Rows[row.Index].Cells[1].Value.ToString());
-                    cmd.Parameters.AddWithValue("@soluong", grdHoadon.Rows[row.Index].Cells[3].Value.ToString());
+                    cmd.Parameters["@ma_hd"].Value = cbMahoadon.Text;
+                    cmd.Parameters["@ma_thanhpham"].Value = grdHoadon.Rows[row.Index].Cells[1].Value.ToString();
+                    cmd.Parameters["@soluong"].Value = Convert.ToDouble(grdHoadon.Rows[row.Index].Cells[3].Value.ToString());
                     
                     cmd.ExecuteNonQuery();
                 }
@@ -655,7 +659,7 @@ namespace DCafe
             bool found = false;
             foreach (DataGridViewRow row in grdHoadon.Rows)
             {
-                if (row.Cells[0].Value.ToString() == cbSanpham.SelectedValue.ToString())
+                if (row.Cells[1].Value.ToString() == cbSanpham.SelectedValue.ToString())
                 {
                     // row exists
                     found = true;
@@ -666,7 +670,7 @@ namespace DCafe
 
             if (!found)
             {
-                grdHoadon.Rows.Add(cbSanpham.SelectedValue.ToString(), cbMahoadon.Text, cbSanpham.Text, txtSoluong.Text);   
+                grdHoadon.Rows.Add(cbMahoadon.Text, cbSanpham.SelectedValue.ToString(), cbSanpham.Text, txtSoluong.Text);   
             }
 
             txtSoluong.Text = "";
@@ -706,8 +710,29 @@ namespace DCafe
         
         private void cbMahoadon_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            string sql = "SELECT ma_nv, ma_kv, ma_ban, thoidiem, ma_hd FROM T_Hoadon WHERE ma_hd = @ma_hd";
+            sqlCon.Open();
+            SqlCommand cmd = new SqlCommand(sql, sqlCon);
+            cmd.Parameters.AddWithValue("ma_hd", cbMahoadon.SelectedValue.ToString());
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                cbNhanvien.SelectedValue = dr[0];
+                cbKhuvuc.SelectedValue = dr[1];
+                cbSoban.SelectedValue = dr[2];
+                dtThoidiem.Value = Convert.ToDateTime(dr[3].ToString());
+            }
+            dr.Close();
+
+            string sql2 = "SELECT t1.ma_hd, t1.ma_thanhpham, t2.ten_thanhpham, t1.soluong FROM T_CTHoadon t1 LEFT OUTER JOIN T_Thanhpham t2 ON t1.ma_thanhpham = t2.ma_thanhpham WHERE ma_hd = @ma_hd";
+            SqlDataAdapter ada = new SqlDataAdapter(sql2, sqlCon);
+            ada.SelectCommand.Parameters.Add("@ma_hd", SqlDbType.NChar).Value = cbMahoadon.SelectedValue.ToString();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+            grdHoadon.DataSource = dt;
+            sqlCon.Close();    
         }
+
         #endregion
 
         private void frmMain_Load(object sender, EventArgs e)

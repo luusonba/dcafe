@@ -132,6 +132,7 @@
             this.cSoluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHoadon = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cbMahoadon = new System.Windows.Forms.ComboBox();
             this.cbNhanvien = new System.Windows.Forms.ComboBox();
             this.cbKhuvuc = new System.Windows.Forms.ComboBox();
             this.cbSoban = new System.Windows.Forms.ComboBox();
@@ -156,11 +157,10 @@
             this.btnNguyenlieu = new System.Windows.Forms.Button();
             this.btnChebien = new System.Windows.Forms.Button();
             this.btnNhanvien = new System.Windows.Forms.Button();
-            this.cMasanphamHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cMaHoadon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cMasanphamHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cSanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cSoluongHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cbMahoadon = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.tabPages.SuspendLayout();
             this.tabNhanvien.SuspendLayout();
@@ -1307,6 +1307,15 @@
             this.groupBox5.TabIndex = 23;
             this.groupBox5.TabStop = false;
             // 
+            // cbMahoadon
+            // 
+            this.cbMahoadon.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbMahoadon.FormattingEnabled = true;
+            this.cbMahoadon.Location = new System.Drawing.Point(144, 70);
+            this.cbMahoadon.Name = "cbMahoadon";
+            this.cbMahoadon.Size = new System.Drawing.Size(166, 28);
+            this.cbMahoadon.TabIndex = 39;
+            // 
             // cbNhanvien
             // 
             this.cbNhanvien.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -1418,8 +1427,8 @@
             this.grdHoadon.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.grdHoadon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdHoadon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cMasanphamHD,
             this.cMaHoadon,
+            this.cMasanphamHD,
             this.cSanpham,
             this.cSoluongHD});
             this.grdHoadon.Location = new System.Drawing.Point(318, 25);
@@ -1603,19 +1612,19 @@
             this.btnNhanvien.UseVisualStyleBackColor = false;
             this.btnNhanvien.Click += new System.EventHandler(this.btnNhanvien_Click);
             // 
-            // cMasanphamHD
-            // 
-            this.cMasanphamHD.DataPropertyName = "ma_thanhpham";
-            this.cMasanphamHD.HeaderText = "Mã sản phẩm";
-            this.cMasanphamHD.Name = "cMasanphamHD";
-            this.cMasanphamHD.Visible = false;
-            // 
             // cMaHoadon
             // 
             this.cMaHoadon.DataPropertyName = "ma_hd";
             this.cMaHoadon.HeaderText = "Mã hóa đơn";
             this.cMaHoadon.Name = "cMaHoadon";
             this.cMaHoadon.Visible = false;
+            // 
+            // cMasanphamHD
+            // 
+            this.cMasanphamHD.DataPropertyName = "ma_thanhpham";
+            this.cMasanphamHD.HeaderText = "Mã sản phẩm";
+            this.cMasanphamHD.Name = "cMasanphamHD";
+            this.cMasanphamHD.Visible = false;
             // 
             // cSanpham
             // 
@@ -1630,16 +1639,6 @@
             this.cSoluongHD.HeaderText = "Số lượng";
             this.cSoluongHD.Name = "cSoluongHD";
             this.cSoluongHD.Width = 300;
-            // 
-            // cbMahoadon
-            // 
-            this.cbMahoadon.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbMahoadon.FormattingEnabled = true;
-            this.cbMahoadon.Location = new System.Drawing.Point(144, 70);
-            this.cbMahoadon.Name = "cbMahoadon";
-            this.cbMahoadon.Size = new System.Drawing.Size(166, 28);
-            this.cbMahoadon.TabIndex = 39;
-            this.cbMahoadon.SelectedIndexChanged += new System.EventHandler(this.cbMahoadon_SelectedIndexChanged);
             // 
             // frmMain
             // 
@@ -1808,10 +1807,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cManguyenlieu;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenNguyenLieu;
         private System.Windows.Forms.DataGridViewTextBoxColumn cSoluong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cMasanphamHD;
+        private System.Windows.Forms.ComboBox cbMahoadon;
         private System.Windows.Forms.DataGridViewTextBoxColumn cMaHoadon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cMasanphamHD;
         private System.Windows.Forms.DataGridViewTextBoxColumn cSanpham;
         private System.Windows.Forms.DataGridViewTextBoxColumn cSoluongHD;
-        private System.Windows.Forms.ComboBox cbMahoadon;
     }
 }
