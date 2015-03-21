@@ -31,15 +31,6 @@ namespace DCafe
             Application.Exit();
         }
 
-       
-
-       
-
-        private void btnHoadon_Click(object sender, EventArgs e)
-        {
-            tabPages.SelectedTab = tabHoadon;
-        }
-
         #region Nhan vien
 
         private void btnNhanvien_Click(object sender, EventArgs e)
@@ -377,7 +368,7 @@ namespace DCafe
         }
         public void fillAllTheRest(String ma_thanhpham)
         {
-            string mk = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) AS ten_thanhpham, dongia, giaban, thoidiem, ten_donvi  FROM T_Thanhpham, T_DonviTP  WHERE T_Thanhpham.donvi = T_DonviTP.ma_donvi AND ma_thanhpham='" + ma_thanhpham + "'";
+            string mk = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) AS ten_thanhpham, dongia, giaban, thoidiem, ten_donvi  FROM T_Thanhpham, T_Donvi WHERE T_Thanhpham.donvi = T_Donvi.ma_donvi AND ma_thanhpham='" + ma_thanhpham + "'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -410,6 +401,51 @@ namespace DCafe
             Load_NguyenlieuSPCB();
 
         }
+        #endregion
+
+        #region Hoa don
+
+        private void btnHoadon_Click(object sender, EventArgs e)
+        {
+            tabPages.SelectedTab = tabHoadon;
+        }
+
+        private void Save_Hoadon() 
+        {
+            SqlCommand cmd = sqlCon.CreateCommand();
+            sqlCon.Open();
+            if (checkExistNhanvien(txtMa_nv.Text))
+            {
+                //Edit
+                cmd.CommandText = "UPDATE T_Hoadon SET id_hd = @Id_Hd, ma_nv=@Ma_Nv, ma_kv = @Ma_Kv, maban = @Maban, thoidiem = @Thoidiem WHERE ma_hd  = @Ma_Hd";
+
+                cmd.Parameters.AddWithValue("@Id_Hd", txtTen_nv.Text);
+                cmd.Parameters.AddWithValue("@Ma_Nv", txtMk.Text);
+                cmd.Parameters.AddWithValue("@Ma_Kv", rbNam.Checked);
+                cmd.Parameters.AddWithValue("@Maban", cbMa_kv.SelectedValue);
+                cmd.Parameters.AddWithValue("@Thoidiem", ckAdmin.Checked);
+                cmd.Parameters.AddWithValue("@Ma_Hd", txtMa.Text);
+
+                cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                //Add
+                cmd.CommandText = "INSERT INTO T_Nhanvien (ma_nv, ten_nhanvien, password, gioitinh, ma_kv, is_admin) VALUES (@ma_nv, @ten_nhanvien, @password, @gioitinh, @ma_kv, @is_admin)";
+
+                cmd.Parameters.AddWithValue("@ma_nv", txtMa_nv.Text);
+                cmd.Parameters.AddWithValue("@ten_nhanvien", txtTen_nv.Text);
+                cmd.Parameters.AddWithValue("@password", txtMk.Text);
+                cmd.Parameters.AddWithValue("@gioitinh", rbNam.Checked);               
+
+                cmd.Parameters.AddWithValue("@ma_kv", cbMa_kv.SelectedValue);
+                cmd.Parameters.AddWithValue("@is_admin", ckAdmin.Checked);
+
+                cmd.ExecuteNonQuery();
+            }
+            sqlCon.Close();   
+        }
+
         #endregion
 
         private void frmMain_Load(object sender, EventArgs e)
