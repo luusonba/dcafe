@@ -31,6 +31,15 @@ namespace DCafe
             Application.Exit();
         }
 
+       
+
+       
+
+        private void btnHoadon_Click(object sender, EventArgs e)
+        {
+            tabPages.SelectedTab = tabHoadon;
+        }
+
         #region Nhan vien
 
         private void btnNhanvien_Click(object sender, EventArgs e)
@@ -366,9 +375,22 @@ namespace DCafe
             cbMaSPCB.ValueMember = "ma_thanhpham";
             sqlCon.Close();
         }
+        public void Load_DonviSPCB()
+        {
+            string mk = "SELECT ma_donvi, RTRIM(ten_donvi) AS ten_donvi FROM T_DonviTP";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+
+            cbDonviSPCB.DataSource = dt;
+            cbDonviSPCB.DisplayMember = "ten_donvi";
+            cbDonviSPCB.ValueMember = "ma_donvi";
+            sqlCon.Close();
+        }
         public void fillAllTheRest(String ma_thanhpham)
         {
-            string mk = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) AS ten_thanhpham, dongia, giaban, thoidiem, ten_donvi  FROM T_Thanhpham, T_Donvi WHERE T_Thanhpham.donvi = T_Donvi.ma_donvi AND ma_thanhpham='" + ma_thanhpham + "'";
+            string mk = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) AS ten_thanhpham, dongia, giaban, thoidiem, RTRIM(ten_donvi) AS ten_donvi   FROM T_Thanhpham, T_DonviTP  WHERE T_Thanhpham.donvi = T_DonviTP.ma_donvi AND ma_thanhpham='" + ma_thanhpham + "'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -397,55 +419,44 @@ namespace DCafe
         {
             tabPages.SelectedTab = tabChebien;
             Load_SanphamCB();
+            Load_DonviSPCB();
             fillAllTheRest(cbMaSPCB.SelectedValue.ToString());
             Load_NguyenlieuSPCB();
 
         }
-        #endregion
-
-        #region Hoa don
-
-        private void btnHoadon_Click(object sender, EventArgs e)
+        
+        private void cbMaSPCB_DropDownClosed(object sender, EventArgs e)
         {
-            tabPages.SelectedTab = tabHoadon;
+            fillAllTheRest(cbMaSPCB.SelectedValue.ToString());
         }
-
-        private void Save_Hoadon() 
+        private void btnSaveSPCB_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = sqlCon.CreateCommand();
+            grdNguyenlieuSPCB.Columns[0].Visible = false;
+            grdNguyenlieuSPCB.Columns[1].Visible = false;
+            grdNguyenlieuSPCB.Rows.Add(cbMaSPCB.SelectedValue.ToString(), cbNguyenlieuSPCB.SelectedValue.ToString(), cbNguyenlieuSPCB.Text, Convert.ToInt32(txtSoluongSPCB.Text));
+
+        }
+        private void btnCommitSPCB_Click(object sender, EventArgs e)
+        {
             sqlCon.Open();
-            if (checkExistNhanvien(txtMa_nv.Text))
+            foreach (DataGridViewRow row in grdNguyenlieuSPCB.Rows)
             {
-                //Edit
-                cmd.CommandText = "UPDATE T_Hoadon SET id_hd = @Id_Hd, ma_nv=@Ma_Nv, ma_kv = @Ma_Kv, maban = @Maban, thoidiem = @Thoidiem WHERE ma_hd  = @Ma_Hd";
 
-                cmd.Parameters.AddWithValue("@Id_Hd", txtTen_nv.Text);
-                cmd.Parameters.AddWithValue("@Ma_Nv", txtMk.Text);
-                cmd.Parameters.AddWithValue("@Ma_Kv", rbNam.Checked);
-                cmd.Parameters.AddWithValue("@Maban", cbMa_kv.SelectedValue);
-                cmd.Parameters.AddWithValue("@Thoidiem", ckAdmin.Checked);
-                cmd.Parameters.AddWithValue("@Ma_Hd", txtMa.Text);
+                if (!row.IsNewRow)
+                {
+                    using (SqlCommand cmd = new SqlCommand("INSERT INTO T_Chebien (ma_thanhpham, ma_nguyenlieu, soluong) VALUES(@c1,@c2,@c3)", sqlCon))
+                    {
 
-                cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@C1", row.Cells[0].Value);
+                        cmd.Parameters.AddWithValue("@C2", row.Cells[1].Value);
+                        cmd.Parameters.AddWithValue("@C3", row.Cells[3].Value);
+                        cmd.ExecuteNonQuery();
+
+                    }
+                }
             }
-            else
-            {
-                //Add
-                cmd.CommandText = "INSERT INTO T_Nhanvien (ma_nv, ten_nhanvien, password, gioitinh, ma_kv, is_admin) VALUES (@ma_nv, @ten_nhanvien, @password, @gioitinh, @ma_kv, @is_admin)";
-
-                cmd.Parameters.AddWithValue("@ma_nv", txtMa_nv.Text);
-                cmd.Parameters.AddWithValue("@ten_nhanvien", txtTen_nv.Text);
-                cmd.Parameters.AddWithValue("@password", txtMk.Text);
-                cmd.Parameters.AddWithValue("@gioitinh", rbNam.Checked);               
-
-                cmd.Parameters.AddWithValue("@ma_kv", cbMa_kv.SelectedValue);
-                cmd.Parameters.AddWithValue("@is_admin", ckAdmin.Checked);
-
-                cmd.ExecuteNonQuery();
-            }
-            sqlCon.Close();   
+            sqlCon.Close();
         }
-
         #endregion
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -498,7 +509,15 @@ namespace DCafe
             sqlCon.Close();
 
             Load_Nhanvien("");
-        }     
+        }
+
+       
+
+        
+
+       
+
+            
         
     }
 }

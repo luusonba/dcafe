@@ -126,14 +126,12 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.grdNguyenlieuSPCB = new System.Windows.Forms.DataGridView();
-            this.cManguyenlieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSoluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHoadon = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnCommitHD = new System.Windows.Forms.Button();
             this.btnDeleteHD = new System.Windows.Forms.Button();
-            this.dtThoidiemHD = new System.Windows.Forms.DateTimePicker();
-            this.cbSanpham = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -143,8 +141,11 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtSoluongHD = new System.Windows.Forms.TextBox();
-            this.txtMa_Hd = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -158,9 +159,10 @@
             this.btnNguyenlieu = new System.Windows.Forms.Button();
             this.btnChebien = new System.Windows.Forms.Button();
             this.btnNhanvien = new System.Windows.Forms.Button();
-            this.cbSoban = new System.Windows.Forms.ComboBox();
-            this.cbKhuvuc = new System.Windows.Forms.ComboBox();
-            this.cbNhanvien = new System.Windows.Forms.ComboBox();
+            this.TenTP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cManguyenlieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNguyenLieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSoluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tabPages.SuspendLayout();
             this.tabNhanvien.SuspendLayout();
@@ -1034,6 +1036,7 @@
             this.cbMaSPCB.Name = "cbMaSPCB";
             this.cbMaSPCB.Size = new System.Drawing.Size(166, 28);
             this.cbMaSPCB.TabIndex = 65;
+            this.cbMaSPCB.DropDownClosed += new System.EventHandler(this.cbMaSPCB_DropDownClosed);
             // 
             // dtThoidiemSPCB
             // 
@@ -1158,6 +1161,7 @@
             this.btnCommitSPCB.TabIndex = 51;
             this.btnCommitSPCB.Text = "Commit";
             this.btnCommitSPCB.UseVisualStyleBackColor = false;
+            this.btnCommitSPCB.Click += new System.EventHandler(this.btnCommitSPCB_Click);
             // 
             // btnSaveSPCB
             // 
@@ -1170,6 +1174,7 @@
             this.btnSaveSPCB.TabIndex = 50;
             this.btnSaveSPCB.Text = "Save";
             this.btnSaveSPCB.UseVisualStyleBackColor = false;
+            this.btnSaveSPCB.Click += new System.EventHandler(this.btnSaveSPCB_Click);
             // 
             // label26
             // 
@@ -1228,7 +1233,9 @@
             this.grdNguyenlieuSPCB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.grdNguyenlieuSPCB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdNguyenlieuSPCB.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TenTP,
             this.cManguyenlieu,
+            this.TenNguyenLieu,
             this.cSoluong});
             this.grdNguyenlieuSPCB.Location = new System.Drawing.Point(318, 25);
             this.grdNguyenlieuSPCB.Name = "grdNguyenlieuSPCB";
@@ -1236,18 +1243,6 @@
             this.grdNguyenlieuSPCB.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdNguyenlieuSPCB.Size = new System.Drawing.Size(636, 636);
             this.grdNguyenlieuSPCB.TabIndex = 26;
-            // 
-            // cManguyenlieu
-            // 
-            this.cManguyenlieu.HeaderText = "Nguyên liệu";
-            this.cManguyenlieu.Name = "cManguyenlieu";
-            this.cManguyenlieu.Width = 321;
-            // 
-            // cSoluong
-            // 
-            this.cSoluong.HeaderText = "Số lượng";
-            this.cSoluong.Name = "cSoluong";
-            this.cSoluong.Width = 315;
             // 
             // tabHoadon
             // 
@@ -1263,18 +1258,18 @@
             // 
             this.groupBox5.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.groupBox5.Controls.Add(this.cbNhanvien);
-            this.groupBox5.Controls.Add(this.cbKhuvuc);
-            this.groupBox5.Controls.Add(this.cbSoban);
             this.groupBox5.Controls.Add(this.btnCommitHD);
             this.groupBox5.Controls.Add(this.btnDeleteHD);
-            this.groupBox5.Controls.Add(this.dtThoidiemHD);
-            this.groupBox5.Controls.Add(this.cbSanpham);
+            this.groupBox5.Controls.Add(this.dateTimePicker1);
+            this.groupBox5.Controls.Add(this.comboBox1);
             this.groupBox5.Controls.Add(this.label18);
             this.groupBox5.Controls.Add(this.label19);
             this.groupBox5.Controls.Add(this.dataGridView2);
-            this.groupBox5.Controls.Add(this.txtSoluongHD);
-            this.groupBox5.Controls.Add(this.txtMa_Hd);
+            this.groupBox5.Controls.Add(this.textBox5);
+            this.groupBox5.Controls.Add(this.textBox1);
+            this.groupBox5.Controls.Add(this.textBox2);
+            this.groupBox5.Controls.Add(this.textBox3);
+            this.groupBox5.Controls.Add(this.textBox4);
             this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Controls.Add(this.label25);
             this.groupBox5.Controls.Add(this.label21);
@@ -1293,7 +1288,7 @@
             // 
             this.btnCommitHD.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnCommitHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnCommitHD.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCommitHD.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCommitHD.Location = new System.Drawing.Point(235, 428);
             this.btnCommitHD.Name = "btnCommitHD";
             this.btnCommitHD.Size = new System.Drawing.Size(75, 27);
@@ -1305,7 +1300,7 @@
             // 
             this.btnDeleteHD.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDeleteHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnDeleteHD.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDeleteHD.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnDeleteHD.Location = new System.Drawing.Point(144, 428);
             this.btnDeleteHD.Name = "btnDeleteHD";
             this.btnDeleteHD.Size = new System.Drawing.Size(75, 27);
@@ -1313,24 +1308,24 @@
             this.btnDeleteHD.Text = "Delete";
             this.btnDeleteHD.UseVisualStyleBackColor = false;
             // 
-            // dtThoidiemHD
+            // dateTimePicker1
             // 
-            this.dtThoidiemHD.CustomFormat = "dd/MM/yyyy";
-            this.dtThoidiemHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.dtThoidiemHD.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtThoidiemHD.Location = new System.Drawing.Point(144, 241);
-            this.dtThoidiemHD.Name = "dtThoidiemHD";
-            this.dtThoidiemHD.Size = new System.Drawing.Size(166, 27);
-            this.dtThoidiemHD.TabIndex = 30;
+            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(144, 241);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(166, 27);
+            this.dateTimePicker1.TabIndex = 30;
             // 
-            // cbSanpham
+            // comboBox1
             // 
-            this.cbSanpham.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbSanpham.FormattingEnabled = true;
-            this.cbSanpham.Location = new System.Drawing.Point(144, 347);
-            this.cbSanpham.Name = "cbSanpham";
-            this.cbSanpham.Size = new System.Drawing.Size(166, 28);
-            this.cbSanpham.TabIndex = 29;
+            this.comboBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(144, 347);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(166, 28);
+            this.comboBox1.TabIndex = 29;
             // 
             // label18
             // 
@@ -1420,27 +1415,51 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.Width = 110;
             // 
-            // txtSoluongHD
+            // textBox5
             // 
-            this.txtSoluongHD.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtSoluongHD.Location = new System.Drawing.Point(144, 394);
-            this.txtSoluongHD.Name = "txtSoluongHD";
-            this.txtSoluongHD.Size = new System.Drawing.Size(166, 26);
-            this.txtSoluongHD.TabIndex = 21;
+            this.textBox5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.textBox5.Location = new System.Drawing.Point(144, 394);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(166, 26);
+            this.textBox5.TabIndex = 21;
             // 
-            // txtMa_Hd
+            // textBox1
             // 
-            this.txtMa_Hd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtMa_Hd.Location = new System.Drawing.Point(144, 75);
-            this.txtMa_Hd.Name = "txtMa_Hd";
-            this.txtMa_Hd.Size = new System.Drawing.Size(167, 26);
-            this.txtMa_Hd.TabIndex = 19;
+            this.textBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.textBox1.Location = new System.Drawing.Point(145, 198);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(166, 26);
+            this.textBox1.TabIndex = 21;
+            // 
+            // textBox2
+            // 
+            this.textBox2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.textBox2.Location = new System.Drawing.Point(144, 160);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(167, 26);
+            this.textBox2.TabIndex = 20;
+            // 
+            // textBox3
+            // 
+            this.textBox3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.textBox3.Location = new System.Drawing.Point(144, 120);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(167, 26);
+            this.textBox3.TabIndex = 20;
+            // 
+            // textBox4
+            // 
+            this.textBox4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.textBox4.Location = new System.Drawing.Point(144, 75);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(167, 26);
+            this.textBox4.TabIndex = 19;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.BackColor = System.Drawing.Color.Transparent;
-            this.label20.Location = new System.Drawing.Point(42, 244);
+            this.label20.Location = new System.Drawing.Point(42, 242);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(77, 20);
             this.label20.TabIndex = 18;
@@ -1460,7 +1479,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Location = new System.Drawing.Point(54, 158);
+            this.label21.Location = new System.Drawing.Point(59, 158);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(65, 20);
             this.label21.TabIndex = 14;
@@ -1470,7 +1489,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.Location = new System.Drawing.Point(59, 196);
+            this.label22.Location = new System.Drawing.Point(68, 196);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(60, 20);
             this.label22.TabIndex = 15;
@@ -1600,32 +1619,27 @@
             this.btnNhanvien.UseVisualStyleBackColor = false;
             this.btnNhanvien.Click += new System.EventHandler(this.btnNhanvien_Click);
             // 
-            // cbSoban
+            // TenTP
             // 
-            this.cbSoban.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbSoban.FormattingEnabled = true;
-            this.cbSoban.Location = new System.Drawing.Point(144, 193);
-            this.cbSoban.Name = "cbSoban";
-            this.cbSoban.Size = new System.Drawing.Size(166, 28);
-            this.cbSoban.TabIndex = 36;
+            this.TenTP.HeaderText = "MaTP";
+            this.TenTP.Name = "TenTP";
             // 
-            // cbKhuvuc
+            // cManguyenlieu
             // 
-            this.cbKhuvuc.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbKhuvuc.FormattingEnabled = true;
-            this.cbKhuvuc.Location = new System.Drawing.Point(144, 155);
-            this.cbKhuvuc.Name = "cbKhuvuc";
-            this.cbKhuvuc.Size = new System.Drawing.Size(166, 28);
-            this.cbKhuvuc.TabIndex = 37;
+            this.cManguyenlieu.HeaderText = "Ma Nguyên liệu";
+            this.cManguyenlieu.Name = "cManguyenlieu";
+            this.cManguyenlieu.Width = 321;
             // 
-            // cbNhanvien
+            // TenNguyenLieu
             // 
-            this.cbNhanvien.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbNhanvien.FormattingEnabled = true;
-            this.cbNhanvien.Location = new System.Drawing.Point(144, 115);
-            this.cbNhanvien.Name = "cbNhanvien";
-            this.cbNhanvien.Size = new System.Drawing.Size(166, 28);
-            this.cbNhanvien.TabIndex = 38;
+            this.TenNguyenLieu.HeaderText = "Nguyên liệu";
+            this.TenNguyenLieu.Name = "TenNguyenLieu";
+            // 
+            // cSoluong
+            // 
+            this.cSoluong.HeaderText = "Số lượng";
+            this.cSoluong.Name = "cSoluong";
+            this.cSoluong.Width = 315;
             // 
             // frmMain
             // 
@@ -1732,14 +1746,12 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DataGridView grdNguyenlieuSPCB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cManguyenlieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSoluong;
         private System.Windows.Forms.TabPage tabHoadon;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.DateTimePicker dtThoidiemHD;
-        private System.Windows.Forms.ComboBox cbSanpham;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.DataGridView dataGridView2;
@@ -1749,7 +1761,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.TextBox txtMa_Hd;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
@@ -1759,7 +1774,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnCommitHD;
         private System.Windows.Forms.Button btnDeleteHD;
-        private System.Windows.Forms.TextBox txtSoluongHD;
+        private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.DataGridViewTextBoxColumn cManv;
         private System.Windows.Forms.DataGridViewTextBoxColumn cPassword;
@@ -1796,8 +1811,9 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.ComboBox cbNhanvien;
-        private System.Windows.Forms.ComboBox cbKhuvuc;
-        private System.Windows.Forms.ComboBox cbSoban;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenTP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cManguyenlieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNguyenLieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSoluong;
     }
 }
