@@ -456,18 +456,31 @@ namespace DCafe
         private void btnHoadon_Click(object sender, EventArgs e)
         {
             tabPages.SelectedTab = tabHoadon;
-            txtMaHd.Text = "AD01TT01" + GetLastIdHD();
+            RemoveEventTabHD();
+            Load_Mahoadon();
+            cbMahoadon.Text = "AD01TT01" + GetLastIdHD();
             
             Load_Nhanvien();
-            cbNhanvien.SelectedIndexChanged += new System.EventHandler(this.cbNhanvien_SelectedIndexChanged);
-                        
             Load_KhuvucHD();
-            this.cbKhuvuc.SelectedIndexChanged += new System.EventHandler(this.cbKhuvuc_SelectedIndexChanged);
-            
             Load_Soban();
-            this.cbSoban.SelectedIndexChanged += new System.EventHandler(this.cbSoban_SelectedIndexChanged);
+
+            AddEventTabHD();
 
             Load_SanphamHD();
+        }
+
+        private void AddEventTabHD()
+        {
+            cbNhanvien.SelectedIndexChanged += new System.EventHandler(this.cbNhanvien_SelectedIndexChanged);
+            cbKhuvuc.SelectedIndexChanged += new System.EventHandler(this.cbKhuvuc_SelectedIndexChanged);
+            cbSoban.SelectedIndexChanged += new System.EventHandler(this.cbSoban_SelectedIndexChanged);
+        }
+
+        private void RemoveEventTabHD()
+        {
+            cbNhanvien.SelectedIndexChanged -= new System.EventHandler(this.cbNhanvien_SelectedIndexChanged);
+            cbKhuvuc.SelectedIndexChanged -= new System.EventHandler(this.cbKhuvuc_SelectedIndexChanged);
+            cbSoban.SelectedIndexChanged -= new System.EventHandler(this.cbSoban_SelectedIndexChanged);
         }
 
         private void Load_Nhanvien()
@@ -483,7 +496,7 @@ namespace DCafe
             cbNhanvien.ValueMember = "ma_nv";
             sqlCon.Close();
 
-            txtMaHd.Text = cbNhanvien.SelectedValue.ToString() + txtMaHd.Text.Substring(4, 2) + txtMaHd.Text.Substring(6, 2) + txtMaHd.Text.Substring(8, 4);
+            cbMahoadon.Text = cbNhanvien.SelectedValue.ToString() + cbMahoadon.Text.Substring(4, 2) + cbMahoadon.Text.Substring(6, 2) + cbMahoadon.Text.Substring(8, 4);
         }
 
         private void Load_SanphamHD()
@@ -513,11 +526,12 @@ namespace DCafe
             cbKhuvuc.ValueMember = "ma_kv";
             sqlCon.Close();
 
-            txtMaHd.Text = txtMaHd.Text.Substring(0, 4) + cbKhuvuc.SelectedValue.ToString() + txtMaHd.Text.Substring(6, 2) + txtMaHd.Text.Substring(8, 4);
+            cbMahoadon.Text = cbMahoadon.Text.Substring(0, 4) + cbKhuvuc.SelectedValue.ToString() + cbMahoadon.Text.Substring(6, 2) + cbMahoadon.Text.Substring(8, 4);
         }
 
         private void Load_Soban()
         {
+            string i = cbMahoadon.Text;
             string mk = "SELECT maban, tenban FROM T_Ban WHERE ma_kv = '" + cbKhuvuc.SelectedValue.ToString() + "'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
@@ -529,12 +543,12 @@ namespace DCafe
             cbSoban.ValueMember = "maban";
             sqlCon.Close();
 
-            txtMaHd.Text = txtMaHd.Text.Substring(0, 4) + txtMaHd.Text.Substring(4, 2) + cbSoban.SelectedValue.ToString() + txtMaHd.Text.Substring(8, 4);
+            cbMahoadon.Text = cbMahoadon.Text.Substring(0, 4) + cbMahoadon.Text.Substring(4, 2) + cbSoban.SelectedValue.ToString() + cbMahoadon.Text.Substring(8, 4);
         }
 
         public bool checkExistHoadon(string ma_hd)
         {
-            string sql = "SELECT ma_hd FROM T_Hoadon WHERE (ma_hd =@ma_hd)";
+            string sql = "SELECT ma_hd FROM T_Hoadon WHERE (ma_hd = @ma_hd)";
             bool isExist = false;
             SqlCommand cmd = new SqlCommand(sql, sqlCon);
             cmd.Parameters.AddWithValue("ma_hd", ma_hd);
@@ -556,7 +570,7 @@ namespace DCafe
             string lastID = "0001";
             if (dr.Read())
             {
-                lastID = dr[0].ToString();
+                lastID = (Convert.ToInt32(dr[0].ToString()) + 1).ToString();
                 
                 while(lastID.Length < 4)
                 {
@@ -566,12 +580,33 @@ namespace DCafe
             sqlCon.Close();
             return lastID;
         }
+
+        private void Save_CTHoadon()
+        {
+            SqlCommand cmd = sqlCon.CreateCommand();
+            sqlCon.Open();
+            if (!checkExistHoadon(cbMahoadon.Text))
+            {
+                foreach (DataGridViewRow row in grdHoadon.Rows)
+                {
+                    //Add
+                    cmd.CommandText = "INSERT INTO T_CTHoadon (ma_hd, ma_thanhpham, soluong) VALUES (@ma_hd, @ma_thanhpham, @soluong)";
+
+                    cmd.Parameters.AddWithValue("@ma_hd", cbMahoadon.Text);
+                    cmd.Parameters.AddWithValue("@ma_thanhpham", grdHoadon.Rows[row.Index].Cells[1].Value.ToString());
+                    cmd.Parameters.AddWithValue("@soluong", grdHoadon.Rows[row.Index].Cells[3].Value.ToString());
+                    
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            sqlCon.Close();
+        }
         
         private void Save_Hoadon()
         {
             SqlCommand cmd = sqlCon.CreateCommand();
             sqlCon.Open();
-            if (checkExistHoadon(txtMaHd.Text))
+            if (checkExistHoadon(cbMahoadon.Text))
             {
                 //Edit
                 cmd.CommandText = "UPDATE T_Hoadon SET ma_nv  = @ma_nv, ma_kv=@ma_kv, ma_ban = @ma_ban, thoidiem = @thoidiem WHERE ma_hd = @ma_hd";
@@ -580,7 +615,7 @@ namespace DCafe
                 cmd.Parameters.AddWithValue("@ma_kv", cbKhuvuc.SelectedValue);
                 cmd.Parameters.AddWithValue("@ma_ban", cbSoban.SelectedValue);
                 cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemHD.Value);
-                cmd.Parameters.AddWithValue("@ma_hd", txtMaHd.Text);
+                cmd.Parameters.AddWithValue("@ma_hd", cbMahoadon.Text);
 
                 cmd.ExecuteNonQuery();
             }
@@ -593,7 +628,7 @@ namespace DCafe
                 cmd.Parameters.AddWithValue("@ma_kv", cbKhuvuc.SelectedValue);
                 cmd.Parameters.AddWithValue("@ma_ban", cbSoban.SelectedValue);
                 cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemHD.Value);
-                cmd.Parameters.AddWithValue("@ma_hd", txtMaHd.Text);
+                cmd.Parameters.AddWithValue("@ma_hd", cbMahoadon.Text);
 
                 cmd.ExecuteNonQuery();
             }
@@ -602,24 +637,77 @@ namespace DCafe
 
         private void cbNhanvien_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtMaHd.Text = cbNhanvien.SelectedValue.ToString() + txtMaHd.Text.Substring(4, 2) + txtMaHd.Text.Substring(6, 2) + txtMaHd.Text.Substring(8, 4);
+            cbMahoadon.Text = cbNhanvien.SelectedValue.ToString() + cbMahoadon.Text.Substring(4, 2) + cbMahoadon.Text.Substring(6, 2) + cbMahoadon.Text.Substring(8, 4);
         }
 
         private void cbKhuvuc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtMaHd.Text = txtMaHd.Text.Substring(0, 4) + cbKhuvuc.SelectedValue.ToString() + txtMaHd.Text.Substring(6, 2) + txtMaHd.Text.Substring(8, 4);
+            cbMahoadon.Text = cbMahoadon.Text.Substring(0, 4) + cbKhuvuc.SelectedValue.ToString() + cbMahoadon.Text.Substring(6, 2) + cbMahoadon.Text.Substring(8, 4);
         }
 
         private void cbSoban_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtMaHd.Text = txtMaHd.Text.Substring(0, 4) + txtMaHd.Text.Substring(4, 2) + cbSoban.SelectedValue.ToString() + txtMaHd.Text.Substring(8, 4);
+            cbMahoadon.Text = cbMahoadon.Text.Substring(0, 4) + cbMahoadon.Text.Substring(4, 2) + cbSoban.SelectedValue.ToString() + cbMahoadon.Text.Substring(8, 4);
         }
 
         private void btnCommitHD_Click(object sender, EventArgs e)
         {
-            this.grdHoadon.Rows.Add(cbSanpham.SelectedValue, txtMaHd.Text, txtSoluong.Text);
+            bool found = false;
+            foreach (DataGridViewRow row in grdHoadon.Rows)
+            {
+                if (row.Cells[0].Value.ToString() == cbSanpham.SelectedValue.ToString())
+                {
+                    // row exists
+                    found = true;
+                    grdHoadon.Rows[row.Index].Cells[3].Value = txtSoluong.Text;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                grdHoadon.Rows.Add(cbSanpham.SelectedValue.ToString(), cbMahoadon.Text, cbSanpham.Text, txtSoluong.Text);   
+            }
+
+            txtSoluong.Text = "";
         }
 
+        private int indexHoadon = 0;
+
+        private void btnDeleteHD_Click(object sender, EventArgs e)
+        {
+            grdHoadon.Rows.RemoveAt(indexHoadon);
+        }
+        
+        private void grdHoadon_SelectionChanged(object sender, EventArgs e)
+        {
+            if (grdHoadon.CurrentRow != null)
+            {
+                indexHoadon = grdHoadon.CurrentRow.Index;
+
+                cbSanpham.SelectedValue = grdHoadon.CurrentRow.Cells[0].Value;
+                txtSoluong.Text = grdHoadon.CurrentRow.Cells[3].Value.ToString();
+            }
+        }
+
+        private void Load_Mahoadon()
+        {
+            string mk = "SELECT TOP 5 ma_hd FROM T_Hoadon";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+
+            cbMahoadon.DataSource = dt;
+            cbMahoadon.DisplayMember = "ma_hd";
+            cbMahoadon.ValueMember = "ma_hd";
+            sqlCon.Close();
+        }
+        
+        private void cbMahoadon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -640,6 +728,16 @@ namespace DCafe
             {
                 Save_Nguyenlieu();
                 Load_Nguyenlieu("");
+            }
+            else if (tabPages.SelectedTab == tabSanpham)
+            {
+                Save_Thanhpham();
+                Load_Thanhpham("");
+            }
+            else if (tabPages.SelectedTab == tabHoadon)
+            {
+                Save_Hoadon();
+                Save_CTHoadon();
             }
         }
 

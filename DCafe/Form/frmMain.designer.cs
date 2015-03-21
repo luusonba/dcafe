@@ -142,11 +142,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.grdHoadon = new System.Windows.Forms.DataGridView();
-            this.cSanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cMaHoadon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSoluongHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSoluong = new System.Windows.Forms.TextBox();
-            this.txtMaHd = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -160,6 +156,11 @@
             this.btnNguyenlieu = new System.Windows.Forms.Button();
             this.btnChebien = new System.Windows.Forms.Button();
             this.btnNhanvien = new System.Windows.Forms.Button();
+            this.cMasanphamHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cMaHoadon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSoluongHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbMahoadon = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.tabPages.SuspendLayout();
             this.tabNhanvien.SuspendLayout();
@@ -1280,6 +1281,7 @@
             // 
             this.groupBox5.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.groupBox5.Controls.Add(this.cbMahoadon);
             this.groupBox5.Controls.Add(this.cbNhanvien);
             this.groupBox5.Controls.Add(this.cbKhuvuc);
             this.groupBox5.Controls.Add(this.cbSoban);
@@ -1291,7 +1293,6 @@
             this.groupBox5.Controls.Add(this.label19);
             this.groupBox5.Controls.Add(this.grdHoadon);
             this.groupBox5.Controls.Add(this.txtSoluong);
-            this.groupBox5.Controls.Add(this.txtMaHd);
             this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Controls.Add(this.label25);
             this.groupBox5.Controls.Add(this.label21);
@@ -1357,6 +1358,7 @@
             this.btnDeleteHD.TabIndex = 34;
             this.btnDeleteHD.Text = "Delete";
             this.btnDeleteHD.UseVisualStyleBackColor = false;
+            this.btnDeleteHD.Click += new System.EventHandler(this.btnDeleteHD_Click);
             // 
             // dtThoidiemHD
             // 
@@ -1416,36 +1418,18 @@
             this.grdHoadon.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.grdHoadon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdHoadon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.cSanpham,
+            this.cMasanphamHD,
             this.cMaHoadon,
+            this.cSanpham,
             this.cSoluongHD});
             this.grdHoadon.Location = new System.Drawing.Point(318, 25);
             this.grdHoadon.Name = "grdHoadon";
             this.grdHoadon.RowHeadersVisible = false;
             this.grdHoadon.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.grdHoadon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdHoadon.Size = new System.Drawing.Size(636, 636);
             this.grdHoadon.TabIndex = 26;
-            // 
-            // cSanpham
-            // 
-            this.cSanpham.DataPropertyName = "ma_thanhpham";
-            this.cSanpham.HeaderText = "Sản phẩm";
-            this.cSanpham.Name = "cSanpham";
-            this.cSanpham.Width = 336;
-            // 
-            // cMaHoadon
-            // 
-            this.cMaHoadon.DataPropertyName = "ma_hd";
-            this.cMaHoadon.HeaderText = "Mã hóa đơn";
-            this.cMaHoadon.Name = "cMaHoadon";
-            this.cMaHoadon.Visible = false;
-            // 
-            // cSoluongHD
-            // 
-            this.cSoluongHD.DataPropertyName = "soluong";
-            this.cSoluongHD.HeaderText = "Số lượng";
-            this.cSoluongHD.Name = "cSoluongHD";
-            this.cSoluongHD.Width = 300;
+            this.grdHoadon.SelectionChanged += new System.EventHandler(this.grdHoadon_SelectionChanged);
             // 
             // txtSoluong
             // 
@@ -1454,15 +1438,6 @@
             this.txtSoluong.Name = "txtSoluong";
             this.txtSoluong.Size = new System.Drawing.Size(166, 26);
             this.txtSoluong.TabIndex = 21;
-            // 
-            // txtMaHd
-            // 
-            this.txtMaHd.Enabled = false;
-            this.txtMaHd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtMaHd.Location = new System.Drawing.Point(144, 75);
-            this.txtMaHd.Name = "txtMaHd";
-            this.txtMaHd.Size = new System.Drawing.Size(167, 26);
-            this.txtMaHd.TabIndex = 19;
             // 
             // label20
             // 
@@ -1628,6 +1603,44 @@
             this.btnNhanvien.UseVisualStyleBackColor = false;
             this.btnNhanvien.Click += new System.EventHandler(this.btnNhanvien_Click);
             // 
+            // cMasanphamHD
+            // 
+            this.cMasanphamHD.DataPropertyName = "ma_thanhpham";
+            this.cMasanphamHD.HeaderText = "Mã sản phẩm";
+            this.cMasanphamHD.Name = "cMasanphamHD";
+            this.cMasanphamHD.Visible = false;
+            // 
+            // cMaHoadon
+            // 
+            this.cMaHoadon.DataPropertyName = "ma_hd";
+            this.cMaHoadon.HeaderText = "Mã hóa đơn";
+            this.cMaHoadon.Name = "cMaHoadon";
+            this.cMaHoadon.Visible = false;
+            // 
+            // cSanpham
+            // 
+            this.cSanpham.DataPropertyName = "ten_thanhpham";
+            this.cSanpham.HeaderText = "Sản phẩm";
+            this.cSanpham.Name = "cSanpham";
+            this.cSanpham.Width = 336;
+            // 
+            // cSoluongHD
+            // 
+            this.cSoluongHD.DataPropertyName = "soluong";
+            this.cSoluongHD.HeaderText = "Số lượng";
+            this.cSoluongHD.Name = "cSoluongHD";
+            this.cSoluongHD.Width = 300;
+            // 
+            // cbMahoadon
+            // 
+            this.cbMahoadon.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.cbMahoadon.FormattingEnabled = true;
+            this.cbMahoadon.Location = new System.Drawing.Point(144, 70);
+            this.cbMahoadon.Name = "cbMahoadon";
+            this.cbMahoadon.Size = new System.Drawing.Size(166, 28);
+            this.cbMahoadon.TabIndex = 39;
+            this.cbMahoadon.SelectedIndexChanged += new System.EventHandler(this.cbMahoadon_SelectedIndexChanged);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1742,7 +1755,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.DataGridView grdHoadon;
-        private System.Windows.Forms.TextBox txtMaHd;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
@@ -1796,8 +1808,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cManguyenlieu;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenNguyenLieu;
         private System.Windows.Forms.DataGridViewTextBoxColumn cSoluong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSanpham;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cMasanphamHD;
         private System.Windows.Forms.DataGridViewTextBoxColumn cMaHoadon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSanpham;
         private System.Windows.Forms.DataGridViewTextBoxColumn cSoluongHD;
+        private System.Windows.Forms.ComboBox cbMahoadon;
     }
 }
