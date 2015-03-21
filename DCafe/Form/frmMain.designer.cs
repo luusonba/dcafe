@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
@@ -120,12 +120,12 @@
             this.label33 = new System.Windows.Forms.Label();
             this.cbNguyenlieuSPCB = new System.Windows.Forms.ComboBox();
             this.btnCommitSPCB = new System.Windows.Forms.Button();
-            this.btnDeleteSPCB = new System.Windows.Forms.Button();
+            this.btnSaveSPCB = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
             this.txtSoluongSPCB = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grdNguyenlieuSPCB = new System.Windows.Forms.DataGridView();
             this.cManguyenlieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cSoluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHoadon = new System.Windows.Forms.TabPage();
@@ -174,7 +174,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.grdDsSanpham)).BeginInit();
             this.tabChebien.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdNguyenlieuSPCB)).BeginInit();
             this.tabHoadon.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -323,14 +323,14 @@
             this.grdDsnhanvien.AllowUserToResizeRows = false;
             this.grdDsnhanvien.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.grdDsnhanvien.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDsnhanvien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdDsnhanvien.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.grdDsnhanvien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDsnhanvien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cManv,
@@ -616,14 +616,14 @@
             this.grdDsNguyenlieu.AllowUserToResizeRows = false;
             this.grdDsNguyenlieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.grdDsNguyenlieu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDsNguyenlieu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdDsNguyenlieu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.grdDsNguyenlieu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDsNguyenlieu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cMa_nl,
@@ -828,14 +828,14 @@
             this.grdDsSanpham.AllowUserToResizeRows = false;
             this.grdDsSanpham.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.grdDsSanpham.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.grdDsSanpham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdDsSanpham.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.grdDsSanpham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdDsSanpham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cMasanpham,
@@ -1012,12 +1012,12 @@
             this.groupBox4.Controls.Add(this.label33);
             this.groupBox4.Controls.Add(this.cbNguyenlieuSPCB);
             this.groupBox4.Controls.Add(this.btnCommitSPCB);
-            this.groupBox4.Controls.Add(this.btnDeleteSPCB);
+            this.groupBox4.Controls.Add(this.btnSaveSPCB);
             this.groupBox4.Controls.Add(this.label26);
             this.groupBox4.Controls.Add(this.txtSoluongSPCB);
             this.groupBox4.Controls.Add(this.label28);
             this.groupBox4.Controls.Add(this.label16);
-            this.groupBox4.Controls.Add(this.dataGridView1);
+            this.groupBox4.Controls.Add(this.grdNguyenlieuSPCB);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.groupBox4.ForeColor = System.Drawing.SystemColors.ControlText;
             this.groupBox4.Location = new System.Drawing.Point(-2, -21);
@@ -1030,7 +1030,7 @@
             // 
             this.cbMaSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.cbMaSPCB.FormattingEnabled = true;
-            this.cbMaSPCB.Location = new System.Drawing.Point(135, 94);
+            this.cbMaSPCB.Location = new System.Drawing.Point(134, 135);
             this.cbMaSPCB.Name = "cbMaSPCB";
             this.cbMaSPCB.Size = new System.Drawing.Size(166, 28);
             this.cbMaSPCB.TabIndex = 65;
@@ -1083,7 +1083,7 @@
             // txtTenSPCB
             // 
             this.txtTenSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtTenSPCB.Location = new System.Drawing.Point(134, 144);
+            this.txtTenSPCB.Location = new System.Drawing.Point(135, 94);
             this.txtTenSPCB.Name = "txtTenSPCB";
             this.txtTenSPCB.Size = new System.Drawing.Size(167, 26);
             this.txtTenSPCB.TabIndex = 60;
@@ -1159,17 +1159,17 @@
             this.btnCommitSPCB.Text = "Commit";
             this.btnCommitSPCB.UseVisualStyleBackColor = false;
             // 
-            // btnDeleteSPCB
+            // btnSaveSPCB
             // 
-            this.btnDeleteSPCB.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnDeleteSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnDeleteSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDeleteSPCB.Location = new System.Drawing.Point(129, 440);
-            this.btnDeleteSPCB.Name = "btnDeleteSPCB";
-            this.btnDeleteSPCB.Size = new System.Drawing.Size(75, 27);
-            this.btnDeleteSPCB.TabIndex = 50;
-            this.btnDeleteSPCB.Text = "Delete";
-            this.btnDeleteSPCB.UseVisualStyleBackColor = false;
+            this.btnSaveSPCB.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnSaveSPCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnSaveSPCB.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnSaveSPCB.Location = new System.Drawing.Point(129, 440);
+            this.btnSaveSPCB.Name = "btnSaveSPCB";
+            this.btnSaveSPCB.Size = new System.Drawing.Size(75, 27);
+            this.btnSaveSPCB.TabIndex = 50;
+            this.btnSaveSPCB.Text = "Save";
+            this.btnSaveSPCB.UseVisualStyleBackColor = false;
             // 
             // label26
             // 
@@ -1210,32 +1210,32 @@
             this.label16.TabIndex = 27;
             this.label16.Text = "Pha Chế";
             // 
-            // dataGridView1
+            // grdNguyenlieuSPCB
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.grdNguyenlieuSPCB.AllowUserToAddRows = false;
+            this.grdNguyenlieuSPCB.AllowUserToDeleteRows = false;
+            this.grdNguyenlieuSPCB.AllowUserToResizeColumns = false;
+            this.grdNguyenlieuSPCB.AllowUserToResizeRows = false;
+            this.grdNguyenlieuSPCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdNguyenlieuSPCB.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.grdNguyenlieuSPCB.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.grdNguyenlieuSPCB.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdNguyenlieuSPCB.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cManguyenlieu,
             this.cSoluong});
-            this.dataGridView1.Location = new System.Drawing.Point(318, 25);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(636, 636);
-            this.dataGridView1.TabIndex = 26;
+            this.grdNguyenlieuSPCB.Location = new System.Drawing.Point(318, 25);
+            this.grdNguyenlieuSPCB.Name = "grdNguyenlieuSPCB";
+            this.grdNguyenlieuSPCB.RowHeadersVisible = false;
+            this.grdNguyenlieuSPCB.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.grdNguyenlieuSPCB.Size = new System.Drawing.Size(636, 636);
+            this.grdNguyenlieuSPCB.TabIndex = 26;
             // 
             // cManguyenlieu
             // 
@@ -1361,14 +1361,14 @@
             this.dataGridView2.AllowUserToResizeRows = false;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -1657,7 +1657,7 @@
             this.tabChebien.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdNguyenlieuSPCB)).EndInit();
             this.tabHoadon.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -1728,7 +1728,7 @@
         private System.Windows.Forms.TabPage tabChebien;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView grdNguyenlieuSPCB;
         private System.Windows.Forms.DataGridViewTextBoxColumn cManguyenlieu;
         private System.Windows.Forms.DataGridViewTextBoxColumn cSoluong;
         private System.Windows.Forms.TabPage tabHoadon;
@@ -1780,7 +1780,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cThoidiemSP;
         private System.Windows.Forms.ComboBox cbNguyenlieuSPCB;
         private System.Windows.Forms.Button btnCommitSPCB;
-        private System.Windows.Forms.Button btnDeleteSPCB;
+        private System.Windows.Forms.Button btnSaveSPCB;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TextBox txtSoluongSPCB;
         private System.Windows.Forms.Label label28;

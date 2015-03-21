@@ -24,3 +24,17 @@ D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.exe.manifest
 D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.application
 D:\Study\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.exe.manifest
 D:\Study\DCafe\trunk\DCafe\obj\x86\Debug\DCafe.application
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.exe
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.pdb
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\bin\Debug\DCafe.exe.manifest
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\bin\Debug\DCafe.application
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\bin\Debug\DCafe.exe
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\bin\Debug\DCafe.pdb
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.frmLogin.resources
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.frmMain.resources
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.Properties.Resources.resources
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.exe.manifest
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.application

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DCafe.exe" size="330240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DCafe.exe" size="330752">
       <assemblyIdentity name="DCafe" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>srfuG4pL+hSI4C7Ptq0b+sW4PfM=</dsig:DigestValue>
+        <dsig:DigestValue>pEcQXtYuAC9k0FGdFuYWpSFXTCk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

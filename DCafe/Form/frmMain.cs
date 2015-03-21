@@ -375,10 +375,40 @@ namespace DCafe
             cbMaSPCB.ValueMember = "ma_thanhpham";
             sqlCon.Close();
         }
+        public void fillAllTheRest(String ma_thanhpham)
+        {
+            string mk = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) AS ten_thanhpham, dongia, giaban, thoidiem, ten_donvi  FROM T_Thanhpham, T_DonviTP  WHERE T_Thanhpham.donvi = T_DonviTP.ma_donvi AND ma_thanhpham='" + ma_thanhpham + "'";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+            txtTenSPCB.Text = (dt.Rows[0]["ten_thanhpham"].ToString());
+            txtDongiaSPCB.Text = (dt.Rows[0]["dongia"].ToString());
+            txtGiabanSPCB.Text = (dt.Rows[0]["giaban"].ToString());
+            cbDonviSPCB.SelectedValue = (dt.Rows[0]["ten_donvi"].ToString());
+            dtThoidiemSPCB.Value = Convert.ToDateTime((dt.Rows[0]["thoidiem"].ToString()));
+            sqlCon.Close();
+        }
+        public void Load_NguyenlieuSPCB()
+        {
+            string mk = "SELECT ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu FROM T_Nguyenlieu";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+
+            cbNguyenlieuSPCB.DataSource = dt;
+            cbNguyenlieuSPCB.DisplayMember = "ten_nguyenlieu";
+            cbNguyenlieuSPCB.ValueMember = "ma_nguyenlieu";
+            sqlCon.Close();
+        }
         private void btnChebien_Click(object sender, EventArgs e)
         {
             tabPages.SelectedTab = tabChebien;
             Load_SanphamCB();
+            fillAllTheRest(cbMaSPCB.SelectedValue.ToString());
+            Load_NguyenlieuSPCB();
+
         }
         #endregion
 
