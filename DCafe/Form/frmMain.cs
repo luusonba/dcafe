@@ -31,15 +31,6 @@ namespace DCafe
             Application.Exit();
         }
 
-       
-
-       
-
-        private void btnHoadon_Click(object sender, EventArgs e)
-        {
-            tabPages.SelectedTab = tabHoadon;
-        }
-
         #region Nhan vien
 
         private void btnNhanvien_Click(object sender, EventArgs e)
@@ -47,7 +38,7 @@ namespace DCafe
             tabPages.SelectedTab = tabNhanvien;
         }
 
-        public void Load_Nhanvien(string where)
+        private void Load_Nhanvien(string where)
         {
             string mk = "SELECT ma_nv, password, RTRIM(ten_nhanvien) AS ten_nhanvien, gioitinh = case gioitinh when 'True' then 'Male' else 'Female' end, ma_kv, is_admin FROM T_Nhanvien " + where;
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
@@ -59,7 +50,7 @@ namespace DCafe
             sqlCon.Close();
         }
 
-        public void Load_Khuvuc()
+        private void Load_Khuvuc()
         {
             string mk = "SELECT ma_kv, RTRIM(ten_kv) AS ten_kv FROM T_Khuvuc";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
@@ -73,7 +64,7 @@ namespace DCafe
             sqlCon.Close();
         }
 
-        public void Save_Nhanvien()
+        private void Save_Nhanvien()
         {
             SqlCommand cmd = sqlCon.CreateCommand();
             sqlCon.Open();
@@ -163,7 +154,7 @@ namespace DCafe
             Load_Donvi();   
         }
 
-        public void Load_Nguyenlieu(string where)
+        private void Load_Nguyenlieu(string where)
         {		
             string sql = "SELECT ma_nguyenlieu, RTRIM(ten_nguyenlieu) as ten_nguyenlieu, dongia, t2.ten_donvi as donvi, thoidiem FROM T_Nguyenlieu t1 LEFT OUTER JOIN T_Donvi t2 ON t1.donvi = t2.ma_donvi " + where;
             SqlDataAdapter ada = new SqlDataAdapter(sql, sqlCon);
@@ -175,7 +166,7 @@ namespace DCafe
             sqlCon.Close();
         }
 
-        public void Load_Donvi()
+        private void Load_Donvi()
         {
             string mk = "SELECT ma_donvi, RTRIM(ten_donvi) AS ten_donvi FROM T_Donvi WHERE loai_donvi = 'NL'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
@@ -189,7 +180,7 @@ namespace DCafe
             sqlCon.Close();
         }
 
-        public void Save_Nguyenlieu()
+        private void Save_Nguyenlieu()
         {
             SqlCommand cmd = sqlCon.CreateCommand();
             sqlCon.Open();
@@ -264,7 +255,7 @@ namespace DCafe
             Load_DonviSP();
         }
 
-        public void Load_Thanhpham(string where)
+        private void Load_Thanhpham(string where)
         {
             string sql = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) as ten_thanhpham, dongia, giaban, t2.ten_donvi as donvi, thoidiem FROM T_Thanhpham t1 LEFT OUTER JOIN T_Donvi t2 ON t1.donvi = t2.ma_donvi " + where;
             SqlDataAdapter ada = new SqlDataAdapter(sql, sqlCon);
@@ -276,7 +267,7 @@ namespace DCafe
             sqlCon.Close();
         }
 
-        public void Load_DonviSP()
+        private void Load_DonviSP()
         {
             string mk = "SELECT ma_donvi, RTRIM(ten_donvi) AS ten_donvi FROM T_Donvi WHERE loai_donvi = 'TP'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
@@ -290,7 +281,7 @@ namespace DCafe
             sqlCon.Close();
         }
 
-        public void Save_Thanhpham()
+        private void Save_Thanhpham()
         {
             SqlCommand cmd = sqlCon.CreateCommand();
             sqlCon.Open();
@@ -361,8 +352,8 @@ namespace DCafe
         #endregion
 
         #region Che bien
-        
-        public void Load_SanphamCB()
+
+        private void Load_SanphamCB()
         {
             string mk = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) AS ten_thanhpham FROM T_Thanhpham";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
@@ -375,9 +366,10 @@ namespace DCafe
             cbMaSPCB.ValueMember = "ma_thanhpham";
             sqlCon.Close();
         }
-        public void Load_DonviSPCB()
+
+        private void Load_DonviSPCB()
         {
-            string mk = "SELECT ma_donvi, RTRIM(ten_donvi) AS ten_donvi FROM T_DonviTP";
+            string mk = "SELECT ma_donvi, RTRIM(ten_donvi) AS ten_donvi FROM T_Donvi where loai_donvi = 'TP'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -388,9 +380,9 @@ namespace DCafe
             cbDonviSPCB.ValueMember = "ma_donvi";
             sqlCon.Close();
         }
-        public void fillAllTheRest(String ma_thanhpham)
+        private void fillAllTheRest(String ma_thanhpham)
         {
-            string mk = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) AS ten_thanhpham, dongia, giaban, thoidiem, RTRIM(ten_donvi) AS ten_donvi   FROM T_Thanhpham, T_DonviTP  WHERE T_Thanhpham.donvi = T_DonviTP.ma_donvi AND ma_thanhpham='" + ma_thanhpham + "'";
+            string mk = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) AS ten_thanhpham, dongia, giaban, thoidiem, RTRIM(ten_donvi) AS ten_donvi   FROM T_Thanhpham, T_Donvi  WHERE T_Thanhpham.donvi = T_Donvi.ma_donvi AND T_Donvi.loai_donvi = 'TP' AND ma_thanhpham='" + ma_thanhpham + "'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -402,7 +394,7 @@ namespace DCafe
             dtThoidiemSPCB.Value = Convert.ToDateTime((dt.Rows[0]["thoidiem"].ToString()));
             sqlCon.Close();
         }
-        public void Load_NguyenlieuSPCB()
+        private void Load_NguyenlieuSPCB()
         {
             string mk = "SELECT ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu FROM T_Nguyenlieu";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
@@ -459,6 +451,177 @@ namespace DCafe
         }
         #endregion
 
+        #region Hoa don
+
+        private void btnHoadon_Click(object sender, EventArgs e)
+        {
+            tabPages.SelectedTab = tabHoadon;
+            txtMaHd.Text = "AD01TT01" + GetLastIdHD();
+            
+            Load_Nhanvien();
+            cbNhanvien.SelectedIndexChanged += new System.EventHandler(this.cbNhanvien_SelectedIndexChanged);
+                        
+            Load_KhuvucHD();
+            this.cbKhuvuc.SelectedIndexChanged += new System.EventHandler(this.cbKhuvuc_SelectedIndexChanged);
+            
+            Load_Soban();
+            this.cbSoban.SelectedIndexChanged += new System.EventHandler(this.cbSoban_SelectedIndexChanged);
+
+            Load_SanphamHD();
+        }
+
+        private void Load_Nhanvien()
+        {
+            string mk = "SELECT ma_nv, ten_nhanvien FROM T_Nhanvien";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+
+            cbNhanvien.DataSource = dt;
+            cbNhanvien.DisplayMember = "ten_nhanvien";
+            cbNhanvien.ValueMember = "ma_nv";
+            sqlCon.Close();
+
+            txtMaHd.Text = cbNhanvien.SelectedValue.ToString() + txtMaHd.Text.Substring(4, 2) + txtMaHd.Text.Substring(6, 2) + txtMaHd.Text.Substring(8, 4);
+        }
+
+        private void Load_SanphamHD()
+        {
+            string mk = "SELECT ma_thanhpham, ten_thanhpham FROM T_Thanhpham";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+
+            cbSanpham.DataSource = dt;
+            cbSanpham.DisplayMember = "ten_thanhpham";
+            cbSanpham.ValueMember = "ma_thanhpham";
+            sqlCon.Close();
+        }
+
+        private void Load_KhuvucHD()
+        {
+            string mk = "SELECT ma_kv, ten_kv FROM T_Khuvuc";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+
+            cbKhuvuc.DataSource = dt;
+            cbKhuvuc.DisplayMember = "ten_kv";
+            cbKhuvuc.ValueMember = "ma_kv";
+            sqlCon.Close();
+
+            txtMaHd.Text = txtMaHd.Text.Substring(0, 4) + cbKhuvuc.SelectedValue.ToString() + txtMaHd.Text.Substring(6, 2) + txtMaHd.Text.Substring(8, 4);
+        }
+
+        private void Load_Soban()
+        {
+            string mk = "SELECT maban, tenban FROM T_Ban WHERE ma_kv = '" + cbKhuvuc.SelectedValue.ToString() + "'";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+
+            cbSoban.DataSource = dt;
+            cbSoban.DisplayMember = "tenban";
+            cbSoban.ValueMember = "maban";
+            sqlCon.Close();
+
+            txtMaHd.Text = txtMaHd.Text.Substring(0, 4) + txtMaHd.Text.Substring(4, 2) + cbSoban.SelectedValue.ToString() + txtMaHd.Text.Substring(8, 4);
+        }
+
+        public bool checkExistHoadon(string ma_hd)
+        {
+            string sql = "SELECT ma_hd FROM T_Hoadon WHERE (ma_hd =@ma_hd)";
+            bool isExist = false;
+            SqlCommand cmd = new SqlCommand(sql, sqlCon);
+            cmd.Parameters.AddWithValue("ma_hd", ma_hd);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                isExist = true;
+            }
+            dr.Close();
+            return isExist;
+        }
+
+        private string GetLastIdHD() 
+        {
+            string sql = "SELECT TOP 1 id_hd FROM T_Hoadon ORDER BY id_hd DESC";            
+            SqlCommand cmd = new SqlCommand(sql, sqlCon);
+            sqlCon.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            string lastID = "0001";
+            if (dr.Read())
+            {
+                lastID = dr[0].ToString();
+                
+                while(lastID.Length < 4)
+                {
+                    lastID = "0" + lastID;
+                }
+            }
+            sqlCon.Close();
+            return lastID;
+        }
+        
+        private void Save_Hoadon()
+        {
+            SqlCommand cmd = sqlCon.CreateCommand();
+            sqlCon.Open();
+            if (checkExistHoadon(txtMaHd.Text))
+            {
+                //Edit
+                cmd.CommandText = "UPDATE T_Hoadon SET ma_nv  = @ma_nv, ma_kv=@ma_kv, ma_ban = @ma_ban, thoidiem = @thoidiem WHERE ma_hd = @ma_hd";
+
+                cmd.Parameters.AddWithValue("@ma_nv", cbNhanvien.SelectedValue);
+                cmd.Parameters.AddWithValue("@ma_kv", cbKhuvuc.SelectedValue);
+                cmd.Parameters.AddWithValue("@ma_ban", cbSoban.SelectedValue);
+                cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemHD.Value);
+                cmd.Parameters.AddWithValue("@ma_hd", txtMaHd.Text);
+
+                cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                //Add
+                cmd.CommandText = "INSERT INTO T_Hoadon (ma_nv, ma_kv, ma_ban, thoidiem, ma_hd) VALUES (@ma_nv, @ma_kv, @ma_ban, @thoidiem, @ma_hd)";
+
+                cmd.Parameters.AddWithValue("@ma_nv", cbNhanvien.SelectedValue);
+                cmd.Parameters.AddWithValue("@ma_kv", cbKhuvuc.SelectedValue);
+                cmd.Parameters.AddWithValue("@ma_ban", cbSoban.SelectedValue);
+                cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemHD.Value);
+                cmd.Parameters.AddWithValue("@ma_hd", txtMaHd.Text);
+
+                cmd.ExecuteNonQuery();
+            }
+            sqlCon.Close();
+        }
+
+        private void cbNhanvien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtMaHd.Text = cbNhanvien.SelectedValue.ToString() + txtMaHd.Text.Substring(4, 2) + txtMaHd.Text.Substring(6, 2) + txtMaHd.Text.Substring(8, 4);
+        }
+
+        private void cbKhuvuc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtMaHd.Text = txtMaHd.Text.Substring(0, 4) + cbKhuvuc.SelectedValue.ToString() + txtMaHd.Text.Substring(6, 2) + txtMaHd.Text.Substring(8, 4);
+        }
+
+        private void cbSoban_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtMaHd.Text = txtMaHd.Text.Substring(0, 4) + txtMaHd.Text.Substring(4, 2) + cbSoban.SelectedValue.ToString() + txtMaHd.Text.Substring(8, 4);
+        }
+
+        private void btnCommitHD_Click(object sender, EventArgs e)
+        {
+            this.grdHoadon.Rows.Add(cbSanpham.SelectedValue, txtMaHd.Text, txtSoluong.Text);
+        }
+
+        #endregion
+
         private void frmMain_Load(object sender, EventArgs e)
         {
             Load_Nhanvien("");            
@@ -510,14 +673,5 @@ namespace DCafe
 
             Load_Nhanvien("");
         }
-
-       
-
-        
-
-       
-
-            
-        
     }
 }
