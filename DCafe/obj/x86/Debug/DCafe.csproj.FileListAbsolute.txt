@@ -38,3 +38,5 @@ C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\GenerateResource.read.1.tl
 C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.exe.manifest
 C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.application
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.frmSupport.resources
+C:\Users\Quoc\Desktop\dcafe\trunk\DCafe\obj\x86\Debug\DCafe.frmAccounting.resources
