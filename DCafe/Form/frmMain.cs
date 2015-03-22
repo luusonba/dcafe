@@ -745,6 +745,7 @@ namespace DCafe
         private void btnCommitHD_Click(object sender, EventArgs e)
         {
             bool found = false;
+            this.grdHoadon.SelectionChanged -= new System.EventHandler(this.grdHoadon_SelectionChanged);
             foreach (DataGridViewRow row in grdHoadon.Rows)
             {
                 if (row.Cells[1].Value.ToString() == cbSanpham.SelectedValue.ToString())
@@ -760,8 +761,9 @@ namespace DCafe
             {
                 grdHoadon.Rows.Add(cbMahoadon.Text, cbSanpham.SelectedValue.ToString(), cbSanpham.Text, txtSoluong.Text);   
             }
-
+            
             txtSoluong.Text = "";
+            this.grdHoadon.SelectionChanged += new System.EventHandler(this.grdHoadon_SelectionChanged);
         }
 
         private int indexHoadon = 0;
@@ -777,7 +779,7 @@ namespace DCafe
             {
                 indexHoadon = grdHoadon.CurrentRow.Index;
 
-                cbSanpham.SelectedValue = grdHoadon.CurrentRow.Cells[0].Value;
+                cbSanpham.SelectedValue = grdHoadon.CurrentRow.Cells[1].Value;
                 txtSoluong.Text = grdHoadon.CurrentRow.Cells[3].Value.ToString();
             }
         }
