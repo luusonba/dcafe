@@ -548,10 +548,19 @@ namespace DCafe
         private void btnHoadon_Click(object sender, EventArgs e)
         {
             tabPages.SelectedTab = tabHoadon;
+            if (cbNhanvien.Items.Count == 0)
+            {
+                RefreshHD();
+            }
+            btnDelete.Visible = false;
+        }
+
+        private void RefreshHD()
+        {
             RemoveEventTabHD();
             Load_Mahoadon();
             cbMahoadon.Text = "AD01TT01" + GetLastIdHD();
-            
+
             Load_Nhanvien();
             Load_KhuvucHD();
             Load_Soban();
@@ -559,6 +568,11 @@ namespace DCafe
             AddEventTabHD();
 
             Load_SanphamHD();
+
+            grdHoadon.DataSource = null;
+
+            txtSoluong.Text = "";
+            dtThoidiem.Value = DateTime.Now;
         }
 
         private void AddEventTabHD()
@@ -802,20 +816,8 @@ namespace DCafe
             }
 
             if (!found)
-            {
-                //if (grdHoadon.RowCount > 0)
-                //{
-                //    DataGridViewRow row = (DataGridViewRow)grdHoadon.Rows[0].Clone();
-                //    row.Cells[""].Value = cbMahoadon.Text;
-                //    row.Cells[""].Value = cbSanpham.SelectedValue.ToString();
-                //    row.Cells[2].Value = cbSanpham.Text;
-                //    row.Cells[3].Value = txtSoluong.Text;
-                //    grdHoadon.Rows.Add(row);
-                //}
-                //else
-                //{
+            { 
                 grdHoadon.Rows.Add(cbMahoadon.Text, cbSanpham.SelectedValue.ToString(), cbSanpham.Text, txtSoluong.Text);
-                //}
             }
             
             txtSoluong.Text = "";
@@ -883,6 +885,11 @@ namespace DCafe
             DataTable dt = new DataTable();
             ada.Fill(dt);
             grdHoadon.DataSource = dt;
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshHD();
         }
 
         #endregion
@@ -958,6 +965,5 @@ namespace DCafe
 
             Load_Nhanvien("");
         }
-
     }
 }
