@@ -16,6 +16,8 @@ namespace DCafe
         public ClsNhanvien clsNhanvien;
         public ClsNguyenlieu clsNguyenlieu;
         public ClsThanhpham clsThanhpham;
+        public ClsHoadon clsHoadon;
+        public ClsCTHoadon clsCTHoadon;
         DataTable dtNLCB;
         public frmMain()
         {
@@ -25,6 +27,8 @@ namespace DCafe
             clsNhanvien = new ClsNhanvien();
             clsNguyenlieu = new ClsNguyenlieu();
             clsThanhpham = new ClsThanhpham();
+            clsHoadon = new ClsHoadon();
+            clsCTHoadon = new ClsCTHoadon();
             dtNLCB = new DataTable();
         }
 
@@ -657,9 +661,11 @@ namespace DCafe
             sqlCon.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             string lastID = "0001";
+            clsHoadon.Id_Hd = 1;
             if (dr.Read())
             {
-                lastID = (Convert.ToInt32(dr[0].ToString()) + 1).ToString();
+                clsHoadon.Id_Hd = Convert.ToInt32(dr[0].ToString()) + 1;
+                lastID = (clsHoadon.Id_Hd).ToString();
                 
                 while(lastID.Length < 4)
                 {
@@ -674,11 +680,11 @@ namespace DCafe
         {
             SqlCommand cmd = sqlCon.CreateCommand();
             sqlCon.Open();
+            cmd.Parameters.Add(new SqlParameter("@ma_hd", SqlDbType.NChar));
+            cmd.Parameters.Add(new SqlParameter("@ma_thanhpham", SqlDbType.NChar));
+            cmd.Parameters.Add(new SqlParameter("@soluong", SqlDbType.Float));
             if (!checkExistHoadon(cbMahoadon.Text))
-            {
-                cmd.Parameters.Add(new SqlParameter("@ma_hd", SqlDbType.NChar));
-                cmd.Parameters.Add(new SqlParameter("@ma_thanhpham", SqlDbType.NChar));
-                cmd.Parameters.Add(new SqlParameter("@soluong", SqlDbType.Float));
+            {                
                 foreach (DataGridViewRow row in grdHoadon.Rows)
                 {
                     //Add
@@ -687,8 +693,46 @@ namespace DCafe
                     cmd.Parameters["@ma_hd"].Value = cbMahoadon.Text;
                     cmd.Parameters["@ma_thanhpham"].Value = grdHoadon.Rows[row.Index].Cells[1].Value.ToString();
                     cmd.Parameters["@soluong"].Value = Convert.ToDouble(grdHoadon.Rows[row.Index].Cells[3].Value.ToString());
-                    
+
                     cmd.ExecuteNonQuery();
+                }
+            }
+            else
+            {
+                var dataTable = ((DataTable)grdHoadon.DataSource).GetChanges();
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        switch (row.RowState)
+                        {
+                            case DataRowState.Added:
+                                // DO INSERT QUERY
+                                cmd.CommandText = "INSERT INTO T_CTHoadon (ma_hd, ma_thanhpham, soluong) VALUES (@ma_hd, @ma_thanhpham, @soluong)";
+                                cmd.Parameters["@ma_hd"].Value = row["ma_hd"];
+                                cmd.Parameters["@ma_thanhpham"].Value = row["ma_thanhpham"];
+                                cmd.Parameters["@soluong"].Value = row["soluong"];
+                                cmd.ExecuteNonQuery();                                
+                                break;
+                            case DataRowState.Deleted:
+                                // DO DELETE QUERY
+                                cmd.CommandText = "DELETE FROM T_CTHoadon WHERE ma_hd = @ma_hd AND ma_thanhpham = @ma_thanhpham";
+                                cmd.Parameters.Remove(cmd.Parameters["@soluong"]);
+                                cmd.Parameters["@ma_hd"].Value = clsCTHoadon.Ma_Hd;
+                                cmd.Parameters["@ma_thanhpham"].Value = clsCTHoadon.Ma_Thanhpham;
+                                cmd.ExecuteNonQuery();
+                                cmd.Parameters.Add(new SqlParameter("@soluong", SqlDbType.Float));
+                                break;
+                            case DataRowState.Modified:
+                                cmd.CommandText = "UPDATE T_CTHoadon SET soluong = @soluong WHERE ma_hd = @ma_hd AND ma_thanhpham = @ma_thanhpham";
+                                cmd.Parameters["@soluong"].Value = row["soluong"];
+                                cmd.Parameters["@ma_hd"].Value = row["ma_hd"];
+                                cmd.Parameters["@ma_thanhpham"].Value = row["ma_thanhpham"];
+                                cmd.ExecuteNonQuery();
+                                break;
+                        }
+                    }
+                    Load_CTHoadon();
                 }
             }
             sqlCon.Close();
@@ -714,14 +758,14 @@ namespace DCafe
             else
             {
                 //Add
-                cmd.CommandText = "INSERT INTO T_Hoadon (ma_nv, ma_kv, ma_ban, thoidiem, ma_hd) VALUES (@ma_nv, @ma_kv, @ma_ban, @thoidiem, @ma_hd)";
+                cmd.CommandText = "INSERT INTO T_Hoadon (ma_nv, ma_kv, ma_ban, thoidiem, ma_hd, id_hd) VALUES (@ma_nv, @ma_kv, @ma_ban, @thoidiem, @ma_hd, @id_hd)";
 
                 cmd.Parameters.AddWithValue("@ma_nv", cbNhanvien.SelectedValue);
                 cmd.Parameters.AddWithValue("@ma_kv", cbKhuvuc.SelectedValue);
                 cmd.Parameters.AddWithValue("@ma_ban", cbSoban.SelectedValue);
                 cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemHD.Value);
                 cmd.Parameters.AddWithValue("@ma_hd", cbMahoadon.Text);
-
+                cmd.Parameters.AddWithValue("@id_hd", clsHoadon.Id_Hd);
                 cmd.ExecuteNonQuery();
             }
             sqlCon.Close();
@@ -759,7 +803,19 @@ namespace DCafe
 
             if (!found)
             {
-                grdHoadon.Rows.Add(cbMahoadon.Text, cbSanpham.SelectedValue.ToString(), cbSanpham.Text, txtSoluong.Text);   
+                //if (grdHoadon.RowCount > 0)
+                //{
+                //    DataGridViewRow row = (DataGridViewRow)grdHoadon.Rows[0].Clone();
+                //    row.Cells[""].Value = cbMahoadon.Text;
+                //    row.Cells[""].Value = cbSanpham.SelectedValue.ToString();
+                //    row.Cells[2].Value = cbSanpham.Text;
+                //    row.Cells[3].Value = txtSoluong.Text;
+                //    grdHoadon.Rows.Add(row);
+                //}
+                //else
+                //{
+                grdHoadon.Rows.Add(cbMahoadon.Text, cbSanpham.SelectedValue.ToString(), cbSanpham.Text, txtSoluong.Text);
+                //}
             }
             
             txtSoluong.Text = "";
@@ -770,6 +826,8 @@ namespace DCafe
 
         private void btnDeleteHD_Click(object sender, EventArgs e)
         {
+            clsCTHoadon.Ma_Hd = grdHoadon.CurrentRow.Cells[0].Value.ToString();
+            clsCTHoadon.Ma_Thanhpham = grdHoadon.CurrentRow.Cells[1].Value.ToString();
             grdHoadon.Rows.RemoveAt(indexHoadon);
         }
         
@@ -813,14 +871,18 @@ namespace DCafe
                 dtThoidiem.Value = Convert.ToDateTime(dr[3].ToString());
             }
             dr.Close();
+            Load_CTHoadon();
+            sqlCon.Close();    
+        }
 
+        private void Load_CTHoadon()
+        {
             string sql2 = "SELECT t1.ma_hd, t1.ma_thanhpham, t2.ten_thanhpham, t1.soluong FROM T_CTHoadon t1 LEFT OUTER JOIN T_Thanhpham t2 ON t1.ma_thanhpham = t2.ma_thanhpham WHERE ma_hd = @ma_hd";
             SqlDataAdapter ada = new SqlDataAdapter(sql2, sqlCon);
             ada.SelectCommand.Parameters.Add("@ma_hd", SqlDbType.NChar).Value = cbMahoadon.SelectedValue.ToString();
             DataTable dt = new DataTable();
             ada.Fill(dt);
             grdHoadon.DataSource = dt;
-            sqlCon.Close();    
         }
 
         #endregion
