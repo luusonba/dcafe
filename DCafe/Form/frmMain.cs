@@ -245,7 +245,7 @@ namespace DCafe
             btnDelete.Visible = true;
             tabPages.SelectedTab = tabNguyenlieu;
             Load_Nguyenlieu("");
-            Load_Donvi();   
+            Load_Donvi();
         }
 
         private void Load_Nguyenlieu(string where)
@@ -528,7 +528,6 @@ namespace DCafe
             fillAllTheRest(cbTenSPCB.SelectedValue.ToString());
             Load_DSNL(cbTenSPCB.SelectedValue.ToString());
             Load_NguyenlieuSPCB();
-
         }
 
         public void Save_SPCB() 

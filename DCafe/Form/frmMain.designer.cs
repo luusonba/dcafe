@@ -88,12 +88,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.grdDsSanpham = new System.Windows.Forms.DataGridView();
-            this.cMasanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cTensanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cDongiaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cGiaban = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cDonviSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cThoidiemSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtGiaban = new System.Windows.Forms.TextBox();
             this.txtDongiaSP = new System.Windows.Forms.TextBox();
             this.txtTen_Sanpham = new System.Windows.Forms.TextBox();
@@ -124,10 +118,6 @@
             this.label28 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.grdNguyenlieuSPCB = new System.Windows.Forms.DataGridView();
-            this.TenTP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cManguyenlieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenNguyenLieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSoluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabHoadon = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.cbMahoadon = new System.Windows.Forms.ComboBox();
@@ -141,10 +131,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.grdHoadon = new System.Windows.Forms.DataGridView();
-            this.cMaHoadon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cMasanphamHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSoluongHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtSoluong = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -159,6 +145,20 @@
             this.btnNguyenlieu = new System.Windows.Forms.Button();
             this.btnChebien = new System.Windows.Forms.Button();
             this.btnNhanvien = new System.Windows.Forms.Button();
+            this.cMaHoadon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cMasanphamHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSoluongHD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenTP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cManguyenlieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNguyenLieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSoluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cMasanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cTensanpham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cDongiaSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cGiaban = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cDonviSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cThoidiemSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tabPages.SuspendLayout();
             this.tabNhanvien.SuspendLayout();
@@ -202,10 +202,11 @@
             // 
             // btnClear
             // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClear.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnClear.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnClear.Location = new System.Drawing.Point(877, 666);
+            this.btnClear.Location = new System.Drawing.Point(972, 666);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 27);
             this.btnClear.TabIndex = 40;
@@ -233,7 +234,7 @@
             this.btnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDelete.Location = new System.Drawing.Point(972, 666);
+            this.btnDelete.Location = new System.Drawing.Point(877, 666);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 27);
             this.btnDelete.TabIndex = 32;
@@ -866,54 +867,6 @@
             this.grdDsSanpham.TabIndex = 26;
             this.grdDsSanpham.SelectionChanged += new System.EventHandler(this.grdDsSanpham_SelectionChanged);
             // 
-            // cMasanpham
-            // 
-            this.cMasanpham.DataPropertyName = "ma_thanhpham";
-            this.cMasanpham.HeaderText = "Mã sản phẩm";
-            this.cMasanpham.Name = "cMasanpham";
-            this.cMasanpham.ReadOnly = true;
-            this.cMasanpham.Width = 140;
-            // 
-            // cTensanpham
-            // 
-            this.cTensanpham.DataPropertyName = "ten_thanhpham";
-            this.cTensanpham.HeaderText = "Tên sản phẩm";
-            this.cTensanpham.Name = "cTensanpham";
-            this.cTensanpham.ReadOnly = true;
-            this.cTensanpham.Width = 150;
-            // 
-            // cDongiaSP
-            // 
-            this.cDongiaSP.DataPropertyName = "dongia";
-            this.cDongiaSP.HeaderText = "Đơn giá";
-            this.cDongiaSP.Name = "cDongiaSP";
-            this.cDongiaSP.ReadOnly = true;
-            this.cDongiaSP.Width = 90;
-            // 
-            // cGiaban
-            // 
-            this.cGiaban.DataPropertyName = "giaban";
-            this.cGiaban.HeaderText = "Giá bán";
-            this.cGiaban.Name = "cGiaban";
-            this.cGiaban.ReadOnly = true;
-            this.cGiaban.Width = 90;
-            // 
-            // cDonviSP
-            // 
-            this.cDonviSP.DataPropertyName = "donvi";
-            this.cDonviSP.HeaderText = "Đơn vị";
-            this.cDonviSP.Name = "cDonviSP";
-            this.cDonviSP.ReadOnly = true;
-            this.cDonviSP.Width = 80;
-            // 
-            // cThoidiemSP
-            // 
-            this.cThoidiemSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cThoidiemSP.DataPropertyName = "thoidiem";
-            this.cThoidiemSP.HeaderText = "Thời điểm";
-            this.cThoidiemSP.Name = "cThoidiemSP";
-            this.cThoidiemSP.ReadOnly = true;
-            // 
             // txtGiaban
             // 
             this.txtGiaban.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -1250,35 +1203,6 @@
             this.grdNguyenlieuSPCB.TabIndex = 26;
             this.grdNguyenlieuSPCB.SelectionChanged += new System.EventHandler(this.grdNguyenlieuSPCB_SelectionChanged);
             // 
-            // TenTP
-            // 
-            this.TenTP.DataPropertyName = "ma_thanhpham";
-            this.TenTP.HeaderText = "MaTP";
-            this.TenTP.Name = "TenTP";
-            this.TenTP.Visible = false;
-            // 
-            // cManguyenlieu
-            // 
-            this.cManguyenlieu.DataPropertyName = "ma_nguyenlieu";
-            this.cManguyenlieu.HeaderText = "Ma Nguyên liệu";
-            this.cManguyenlieu.Name = "cManguyenlieu";
-            this.cManguyenlieu.Visible = false;
-            this.cManguyenlieu.Width = 321;
-            // 
-            // TenNguyenLieu
-            // 
-            this.TenNguyenLieu.DataPropertyName = "ten_nguyenlieu";
-            this.TenNguyenLieu.HeaderText = "Nguyên liệu";
-            this.TenNguyenLieu.Name = "TenNguyenLieu";
-            this.TenNguyenLieu.Width = 336;
-            // 
-            // cSoluong
-            // 
-            this.cSoluong.DataPropertyName = "soluong";
-            this.cSoluong.HeaderText = "Số lượng";
-            this.cSoluong.Name = "cSoluong";
-            this.cSoluong.Width = 300;
-            // 
             // tabHoadon
             // 
             this.tabHoadon.Controls.Add(this.groupBox5);
@@ -1438,7 +1362,9 @@
             this.grdHoadon.AllowUserToDeleteRows = false;
             this.grdHoadon.AllowUserToResizeColumns = false;
             this.grdHoadon.AllowUserToResizeRows = false;
-            this.grdHoadon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdHoadon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.grdHoadon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
@@ -1462,34 +1388,6 @@
             this.grdHoadon.Size = new System.Drawing.Size(636, 622);
             this.grdHoadon.TabIndex = 26;
             this.grdHoadon.SelectionChanged += new System.EventHandler(this.grdHoadon_SelectionChanged);
-            // 
-            // cMaHoadon
-            // 
-            this.cMaHoadon.DataPropertyName = "ma_hd";
-            this.cMaHoadon.HeaderText = "Mã hóa đơn";
-            this.cMaHoadon.Name = "cMaHoadon";
-            this.cMaHoadon.Visible = false;
-            // 
-            // cMasanphamHD
-            // 
-            this.cMasanphamHD.DataPropertyName = "ma_thanhpham";
-            this.cMasanphamHD.HeaderText = "Mã sản phẩm";
-            this.cMasanphamHD.Name = "cMasanphamHD";
-            this.cMasanphamHD.Visible = false;
-            // 
-            // cSanpham
-            // 
-            this.cSanpham.DataPropertyName = "ten_thanhpham";
-            this.cSanpham.HeaderText = "Sản phẩm";
-            this.cSanpham.Name = "cSanpham";
-            this.cSanpham.Width = 336;
-            // 
-            // cSoluongHD
-            // 
-            this.cSoluongHD.DataPropertyName = "soluong";
-            this.cSoluongHD.HeaderText = "Số lượng";
-            this.cSoluongHD.Name = "cSoluongHD";
-            this.cSoluongHD.Width = 300;
             // 
             // txtSoluong
             // 
@@ -1663,6 +1561,111 @@
             this.btnNhanvien.UseVisualStyleBackColor = false;
             this.btnNhanvien.Click += new System.EventHandler(this.btnNhanvien_Click);
             // 
+            // cMaHoadon
+            // 
+            this.cMaHoadon.DataPropertyName = "ma_hd";
+            this.cMaHoadon.HeaderText = "Mã hóa đơn";
+            this.cMaHoadon.Name = "cMaHoadon";
+            this.cMaHoadon.Visible = false;
+            // 
+            // cMasanphamHD
+            // 
+            this.cMasanphamHD.DataPropertyName = "ma_thanhpham";
+            this.cMasanphamHD.HeaderText = "Mã sản phẩm";
+            this.cMasanphamHD.Name = "cMasanphamHD";
+            this.cMasanphamHD.Visible = false;
+            // 
+            // cSanpham
+            // 
+            this.cSanpham.DataPropertyName = "ten_thanhpham";
+            this.cSanpham.HeaderText = "Sản phẩm";
+            this.cSanpham.Name = "cSanpham";
+            this.cSanpham.Width = 336;
+            // 
+            // cSoluongHD
+            // 
+            this.cSoluongHD.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cSoluongHD.DataPropertyName = "soluong";
+            this.cSoluongHD.HeaderText = "Số lượng";
+            this.cSoluongHD.Name = "cSoluongHD";
+            // 
+            // TenTP
+            // 
+            this.TenTP.DataPropertyName = "ma_thanhpham";
+            this.TenTP.HeaderText = "MaTP";
+            this.TenTP.Name = "TenTP";
+            this.TenTP.Visible = false;
+            // 
+            // cManguyenlieu
+            // 
+            this.cManguyenlieu.DataPropertyName = "ma_nguyenlieu";
+            this.cManguyenlieu.HeaderText = "Ma Nguyên liệu";
+            this.cManguyenlieu.Name = "cManguyenlieu";
+            this.cManguyenlieu.Visible = false;
+            this.cManguyenlieu.Width = 321;
+            // 
+            // TenNguyenLieu
+            // 
+            this.TenNguyenLieu.DataPropertyName = "ten_nguyenlieu";
+            this.TenNguyenLieu.HeaderText = "Nguyên liệu";
+            this.TenNguyenLieu.Name = "TenNguyenLieu";
+            this.TenNguyenLieu.Width = 336;
+            // 
+            // cSoluong
+            // 
+            this.cSoluong.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cSoluong.DataPropertyName = "soluong";
+            this.cSoluong.HeaderText = "Số lượng";
+            this.cSoluong.Name = "cSoluong";
+            // 
+            // cMasanpham
+            // 
+            this.cMasanpham.DataPropertyName = "ma_thanhpham";
+            this.cMasanpham.HeaderText = "Mã sản phẩm";
+            this.cMasanpham.Name = "cMasanpham";
+            this.cMasanpham.ReadOnly = true;
+            this.cMasanpham.Width = 133;
+            // 
+            // cTensanpham
+            // 
+            this.cTensanpham.DataPropertyName = "ten_thanhpham";
+            this.cTensanpham.HeaderText = "Tên sản phẩm";
+            this.cTensanpham.Name = "cTensanpham";
+            this.cTensanpham.ReadOnly = true;
+            this.cTensanpham.Width = 135;
+            // 
+            // cDongiaSP
+            // 
+            this.cDongiaSP.DataPropertyName = "dongia";
+            this.cDongiaSP.HeaderText = "Đơn giá";
+            this.cDongiaSP.Name = "cDongiaSP";
+            this.cDongiaSP.ReadOnly = true;
+            this.cDongiaSP.Width = 90;
+            // 
+            // cGiaban
+            // 
+            this.cGiaban.DataPropertyName = "giaban";
+            this.cGiaban.HeaderText = "Giá bán";
+            this.cGiaban.Name = "cGiaban";
+            this.cGiaban.ReadOnly = true;
+            this.cGiaban.Width = 90;
+            // 
+            // cDonviSP
+            // 
+            this.cDonviSP.DataPropertyName = "donvi";
+            this.cDonviSP.HeaderText = "Đơn vị";
+            this.cDonviSP.Name = "cDonviSP";
+            this.cDonviSP.ReadOnly = true;
+            this.cDonviSP.Width = 85;
+            // 
+            // cThoidiemSP
+            // 
+            this.cThoidiemSP.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cThoidiemSP.DataPropertyName = "thoidiem";
+            this.cThoidiemSP.HeaderText = "Thời điểm";
+            this.cThoidiemSP.Name = "cThoidiemSP";
+            this.cThoidiemSP.ReadOnly = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1806,14 +1809,6 @@
         private System.Windows.Forms.ComboBox cbKhuvuc;
         private System.Windows.Forms.ComboBox cbSoban;
         private System.Windows.Forms.ComboBox cbMahoadon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cMaHoadon;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cMasanphamHD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSanpham;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSoluongHD;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenTP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cManguyenlieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenNguyenLieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSoluong;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.DataGridViewTextBoxColumn cManv;
         private System.Windows.Forms.DataGridViewTextBoxColumn cPassword;
@@ -1832,5 +1827,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cGiaban;
         private System.Windows.Forms.DataGridViewTextBoxColumn cDonviSP;
         private System.Windows.Forms.DataGridViewTextBoxColumn cThoidiemSP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenTP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cManguyenlieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNguyenLieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSoluong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cMaHoadon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cMasanphamHD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSanpham;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSoluongHD;
     }
 }
