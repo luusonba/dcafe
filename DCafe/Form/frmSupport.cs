@@ -98,6 +98,90 @@ namespace DCafe
             }
         }
 
+        private void Load_DSDonvi(string where)
+        {
+            string mk = "SELECT ma_donvi, RTRIM(ten_donvi) AS ten_donvi, loai_donvi FROM T_Donvi";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+
+            grdDsBan.DataSource = dt;
+            sqlCon.Close();
+        }
+
+        private void Save_DV()
+        {
+            SqlCommand cmd = sqlCon.CreateCommand();
+            sqlCon.Open();
+            if (checkExistDonvi(txtMaDV.Text))
+            {
+                //Edit
+                cmd.CommandText = "UPDATE T_Donvi SET ten_donvi = @ten_donvi, loai_donvi = @loai_donvi WHERE ma_donvi = @ma_donvi";
+                cmd.Parameters.AddWithValue("@ten_donvi", txtTenDV.Text);
+                cmd.Parameters.AddWithValue("@loai_donvi", txtLoaiDV.Text);
+                cmd.Parameters.AddWithValue("@ma_donvi", txtMaDV.Text);
+                cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                //Add
+                cmd.CommandText = "INSERT INTO T_Donvi (ma_donvi, ten_donvi, loai_donvi) VALUES (@ma_donvi, @ten_donvi, @loai_donvi)";
+                cmd.Parameters.AddWithValue("@ten_donvi", txtTenDV.Text);
+                cmd.Parameters.AddWithValue("@loai_donvi", txtLoaiDV.Text);
+                cmd.Parameters.AddWithValue("@ma_donvi", txtMaDV.Text);
+                cmd.ExecuteNonQuery();
+            }
+            sqlCon.Close();
+        }
+
+        public bool checkExistDonvi(string ma_dv)
+        {
+            string sql = "SELECT ma_dv FROM T_Donvi WHERE (ma_dv =@ma_dv)";
+            bool isExist = false;
+            SqlCommand cmd = new SqlCommand(sql, sqlCon);
+            cmd.Parameters.AddWithValue("ma_dv", ma_dv);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                isExist = true;
+            }
+            dr.Close();
+            return isExist;
+        }
+
+        public void Delete_DV()
+        {
+            SqlCommand cmd = sqlCon.CreateCommand();
+            sqlCon.Open();
+            cmd.CommandText = "DELETE T_Donvi WHERE (ma_dv = @ma_dv)";
+            cmd.Parameters.AddWithValue("@ma_dv", txtMaDV.Text);
+            cmd.ExecuteNonQuery();
+            sqlCon.Close();
+        }
+
+        private void grdDsDonvi_SelectionChanged(object sender, System.EventArgs e)
+        {
+            foreach (DataGridViewRow row in grdDsDonvi.SelectedRows)
+            {
+                txtMaDV.Text = row.Cells[0].Value.ToString();
+                txtTenDV.Text = row.Cells[1].Value.ToString();
+                txtLoaiDV.Text = row.Cells[2].Value.ToString();
+            }
+        }
+
+        private void button2_Click(object sender, System.EventArgs e)
+        {
+            Save_DV();
+        }
+
+        private void button1_Click(object sender, System.EventArgs e)
+        {
+            Delete_DV();
+        }
+
+
+
         private void Load_DSBan(string where)
         {
             string mk = "SELECT maban, RTRIM(tenban) AS tenban, T_Ban.ma_kv, ten_kv FROM T_Ban, T_Khuvuc WHERE T_Ban.ma_kv=T_Khuvuc.ma_kv";
@@ -174,27 +258,7 @@ namespace DCafe
             sqlCon.Close();
         }
 
-        private void grdDsBan_SelectionChanged(object sender, System.EventArgs e)
-        {
-            foreach (DataGridViewRow row in grdDsKhuvuc.SelectedRows)
-            {
-                txtMaban.Text = row.Cells[0].Value.ToString();
-                txtTenban.Text = row.Cells[1].Value.ToString();
-                cbKhuvuc.SelectedValue = row.Cells[2].Value.ToString();  
-            }
-        }
-
-        private void btnThemban_Click(object sender, System.EventArgs e)
-        {
-            Save_Ban();
-        }
-
-        private void btnXoaban_Click(object sender, System.EventArgs e)
-        {
-            Delete_Ban();
-        }
-
-
+      
 
         
 
