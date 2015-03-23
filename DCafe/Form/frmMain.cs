@@ -19,6 +19,9 @@ namespace DCafe
         public ClsHoadon clsHoadon;
         public ClsCTHoadon clsCTHoadon;
         DataTable dtNLCB;
+        
+        #region Common
+
         public frmMain()
         {
             InitializeComponent();
@@ -32,16 +35,99 @@ namespace DCafe
             dtNLCB = new DataTable();
         }
 
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            Load_TabHoadon();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (tabPages.SelectedTab == tabNhanvien)
+            {
+                Save_Nhanvien();
+                Load_Nhanvien("");
+            }
+            else if (tabPages.SelectedTab == tabNguyenlieu)
+            {
+                Save_Nguyenlieu();
+                Load_Nguyenlieu("");
+            }
+            else if (tabPages.SelectedTab == tabSanpham)
+            {
+                Save_Thanhpham();
+                Load_Thanhpham("");
+            }
+            else if (tabPages.SelectedTab == tabHoadon)
+            {
+                if (grdHoadon.Rows.Count > 0)
+                {
+                    Save_Hoadon();
+                    Save_CTHoadon();
+                    RefreshHD();
+                }
+                else
+                {
+                    MessageBox.Show("Chưa chọn sản phẩm.");
+                }
+            }
+            else if (tabPages.SelectedTab == tabChebien)
+            {
+                Save_SPCB();
+                Load_SanphamCB();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmd = sqlCon.CreateCommand();
+            sqlCon.Open();
+            if (tabPages.SelectedTab == tabNhanvien)
+            {
+                cmd.CommandText = "DELETE FROM T_Nhanvien WHERE ma_nv = @ma_nv";
+                cmd.Parameters.AddWithValue("@ma_nv", txtMa_nv.Text);
+                cmd.ExecuteNonQuery();
+                Load_Nhanvien("");
+            }
+            else if (tabPages.SelectedTab == tabNguyenlieu)
+            {
+                cmd.CommandText = "DELETE FROM T_Nguyenlieu WHERE ma_nguyenlieu = @ma_nguyenlieu";
+                cmd.Parameters.AddWithValue("@ma_nguyenlieu", txtMaNl.Text);
+                cmd.ExecuteNonQuery();
+                Load_Nguyenlieu("");
+            }
+            else if (tabPages.SelectedTab == tabSanpham)
+            {
+                cmd.CommandText = "DELETE FROM T_Thanhpham WHERE ma_thanhpham = @ma_thanhpham";
+                cmd.Parameters.AddWithValue("@ma_thanhpham", txtMa_Sanpham.Text);
+                cmd.ExecuteNonQuery();
+                Load_Thanhpham("");
+            }
+            else if (tabPages.SelectedTab == tabChebien)
+            {
+                Delete_SPCB();
+                Load_DSNL(cbTenSPCB.SelectedValue.ToString());
+            }
+
+            sqlCon.Close();
+
+            Load_Nhanvien("");
+        }
+
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
+
+        #endregion
 
         #region Nhan vien
 
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
             btnDelete.Visible = true;
+            Load_Nhanvien("");
+            Load_Khuvuc();
+            rbNam.Checked = true;
             tabPages.SelectedTab = tabNhanvien;
         }
 
@@ -551,6 +637,11 @@ namespace DCafe
 
         private void btnHoadon_Click(object sender, EventArgs e)
         {
+            Load_TabHoadon();
+        }
+
+        private void Load_TabHoadon()
+        {
             tabPages.SelectedTab = tabHoadon;
             if (cbNhanvien.Items.Count == 0)
             {
@@ -900,9 +991,12 @@ namespace DCafe
             grdHoadon.DataSource = dt;
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void btnClear_Click(object sender, EventArgs e)
         {
-            RefreshHD();
+            if (tabPages.SelectedTab == tabHoadon)
+            {
+                RefreshHD();
+            }
         }
 
         private void dtThoidiemHD_ValueChanged(object sender, EventArgs e)
@@ -931,85 +1025,5 @@ namespace DCafe
         }
 
         #endregion
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            Load_Nhanvien("");            
-            Load_Khuvuc();                             
-            rbNam.Checked = true;
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (tabPages.SelectedTab == tabNhanvien)
-            {
-                Save_Nhanvien();
-                Load_Nhanvien("");
-            }
-            else if (tabPages.SelectedTab == tabNguyenlieu)
-            {
-                Save_Nguyenlieu();
-                Load_Nguyenlieu("");
-            }
-            else if (tabPages.SelectedTab == tabSanpham)
-            {
-                Save_Thanhpham();
-                Load_Thanhpham("");
-            }
-            else if (tabPages.SelectedTab == tabHoadon)
-            {
-                if (grdHoadon.Rows.Count > 0)
-                {
-                    Save_Hoadon();
-                    Save_CTHoadon();
-                    RefreshHD();
-                }
-                else
-                {
-                    MessageBox.Show("Chưa chọn sản phẩm."); 
-                }
-            }
-            else if (tabPages.SelectedTab == tabChebien)
-            {
-                Save_SPCB();
-                Load_SanphamCB();
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            SqlCommand cmd = sqlCon.CreateCommand();
-            sqlCon.Open();
-            if (tabPages.SelectedTab == tabNhanvien)
-            {
-                cmd.CommandText = "DELETE FROM T_Nhanvien WHERE ma_nv = @ma_nv";
-                cmd.Parameters.AddWithValue("@ma_nv", txtMa_nv.Text);
-                cmd.ExecuteNonQuery();
-                Load_Nhanvien("");
-            }
-            else if (tabPages.SelectedTab == tabNguyenlieu)
-            {
-                cmd.CommandText = "DELETE FROM T_Nguyenlieu WHERE ma_nguyenlieu = @ma_nguyenlieu";
-                cmd.Parameters.AddWithValue("@ma_nguyenlieu", txtMaNl.Text);
-                cmd.ExecuteNonQuery();
-                Load_Nguyenlieu("");
-            }
-            else if (tabPages.SelectedTab == tabSanpham)
-            {
-                cmd.CommandText = "DELETE FROM T_Thanhpham WHERE ma_thanhpham = @ma_thanhpham";
-                cmd.Parameters.AddWithValue("@ma_thanhpham", txtMa_Sanpham.Text);
-                cmd.ExecuteNonQuery();
-                Load_Thanhpham("");
-            }
-            else if (tabPages.SelectedTab == tabChebien) 
-            {
-                Delete_SPCB();
-                Load_DSNL(cbTenSPCB.SelectedValue.ToString());
-            }
-            
-            sqlCon.Close();
-
-            Load_Nhanvien("");
-        }
     }
 }
