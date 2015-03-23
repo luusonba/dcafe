@@ -205,7 +205,7 @@
             this.btnSave.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnSave.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSave.Location = new System.Drawing.Point(1064, 670);
+            this.btnSave.Location = new System.Drawing.Point(1067, 666);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 27);
             this.btnSave.TabIndex = 33;
@@ -219,7 +219,7 @@
             this.btnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDelete.Location = new System.Drawing.Point(969, 670);
+            this.btnDelete.Location = new System.Drawing.Point(972, 666);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 27);
             this.btnDelete.TabIndex = 32;
@@ -331,7 +331,7 @@
             this.grdDsnhanvien.RowHeadersVisible = false;
             this.grdDsnhanvien.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdDsnhanvien.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDsnhanvien.Size = new System.Drawing.Size(636, 634);
+            this.grdDsnhanvien.Size = new System.Drawing.Size(636, 622);
             this.grdDsnhanvien.TabIndex = 26;
             this.grdDsnhanvien.SelectionChanged += new System.EventHandler(this.grdDsnhanvien_SelectionChanged);
             // 
@@ -630,7 +630,7 @@
             this.grdDsNguyenlieu.RowHeadersVisible = false;
             this.grdDsNguyenlieu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdDsNguyenlieu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDsNguyenlieu.Size = new System.Drawing.Size(636, 638);
+            this.grdDsNguyenlieu.Size = new System.Drawing.Size(636, 622);
             this.grdDsNguyenlieu.TabIndex = 26;
             this.grdDsNguyenlieu.SelectionChanged += new System.EventHandler(this.grdDsNguyenlieu_SelectionChanged);
             // 
@@ -848,7 +848,7 @@
             this.grdDsSanpham.RowHeadersVisible = false;
             this.grdDsSanpham.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdDsSanpham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDsSanpham.Size = new System.Drawing.Size(636, 634);
+            this.grdDsSanpham.Size = new System.Drawing.Size(636, 622);
             this.grdDsSanpham.TabIndex = 26;
             this.grdDsSanpham.SelectionChanged += new System.EventHandler(this.grdDsSanpham_SelectionChanged);
             // 
@@ -1232,7 +1232,7 @@
             this.grdNguyenlieuSPCB.RowHeadersVisible = false;
             this.grdNguyenlieuSPCB.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdNguyenlieuSPCB.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdNguyenlieuSPCB.Size = new System.Drawing.Size(636, 638);
+            this.grdNguyenlieuSPCB.Size = new System.Drawing.Size(636, 622);
             this.grdNguyenlieuSPCB.TabIndex = 26;
             this.grdNguyenlieuSPCB.SelectionChanged += new System.EventHandler(this.grdNguyenlieuSPCB_SelectionChanged);
             // 
@@ -1459,7 +1459,7 @@
             this.grdHoadon.RowHeadersVisible = false;
             this.grdHoadon.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.grdHoadon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdHoadon.Size = new System.Drawing.Size(636, 631);
+            this.grdHoadon.Size = new System.Drawing.Size(636, 622);
             this.grdHoadon.TabIndex = 26;
             this.grdHoadon.SelectionChanged += new System.EventHandler(this.grdHoadon_SelectionChanged);
             // 
