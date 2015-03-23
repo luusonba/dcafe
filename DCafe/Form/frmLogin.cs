@@ -38,7 +38,7 @@ namespace DCafe
                 }
                 else
                 {
-                    string mk = "Select ma_nv, ten_nhanvien, password from T_Nhanvien where (password =@password and ma_nv =@ma_nv)";
+                    string mk = "SELECT ma_nv, ten_nhanvien, password FROM T_Nhanvien WHERE (password =@password and ma_nv =@ma_nv)";
                     Conn conn = new Conn();
                     SqlConnection con = conn.createConn();
                     con.Open();
@@ -48,7 +48,8 @@ namespace DCafe
                     SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {                        
-                        frmMain f = new frmMain();                        
+                        frmMain f = new frmMain();
+                        f.lblUsername.Text = dr[1].ToString();
                         f.Show();
                         this.Visible = false;
                     }

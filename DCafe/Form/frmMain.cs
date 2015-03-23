@@ -41,6 +41,7 @@ namespace DCafe
 
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
+            btnDelete.Visible = true;
             tabPages.SelectedTab = tabNhanvien;
         }
 
@@ -155,6 +156,7 @@ namespace DCafe
 
         private void btnNguyenlieu_Click(object sender, EventArgs e)
         {
+            btnDelete.Visible = true;
             tabPages.SelectedTab = tabNguyenlieu;
             Load_Nguyenlieu("");
             Load_Donvi();   
@@ -256,6 +258,7 @@ namespace DCafe
 
         private void btnThanhpham_Click(object sender, EventArgs e)
         {
+            btnDelete.Visible = true;
             tabPages.SelectedTab = tabSanpham;
             Load_Thanhpham("");
             Load_DonviSP();
@@ -432,6 +435,7 @@ namespace DCafe
         }
         private void btnChebien_Click(object sender, EventArgs e)
         {
+            btnDelete.Visible = true;
             tabPages.SelectedTab = tabChebien;
             Load_SanphamCB();
             Load_DonviSPCB();
@@ -569,7 +573,7 @@ namespace DCafe
 
             Load_SanphamHD();
 
-            grdHoadon.DataSource = null;
+            Load_CTHoadon(cbMahoadon.Text);
 
             txtSoluong.Text = "";
             dtThoidiem.Value = DateTime.Now;
@@ -746,7 +750,7 @@ namespace DCafe
                                 break;
                         }
                     }
-                    Load_CTHoadon();
+                    Load_CTHoadon(cbMahoadon.SelectedValue.ToString());
                 }
             }
             sqlCon.Close();
@@ -756,6 +760,7 @@ namespace DCafe
         {
             SqlCommand cmd = sqlCon.CreateCommand();
             sqlCon.Open();
+            
             if (checkExistHoadon(cbMahoadon.Text))
             {
                 //Edit
@@ -781,7 +786,7 @@ namespace DCafe
                 cmd.Parameters.AddWithValue("@ma_hd", cbMahoadon.Text);
                 cmd.Parameters.AddWithValue("@id_hd", clsHoadon.Id_Hd);
                 cmd.ExecuteNonQuery();
-            }
+            }            
             sqlCon.Close();
         }
 
@@ -804,22 +809,30 @@ namespace DCafe
         {
             bool found = false;
             this.grdHoadon.SelectionChanged -= new System.EventHandler(this.grdHoadon_SelectionChanged);
-            foreach (DataGridViewRow row in grdHoadon.Rows)
+            if (txtSoluong.Text != "")
             {
-                if (row.Cells[1].Value.ToString() == cbSanpham.SelectedValue.ToString())
+                foreach (DataGridViewRow row in grdHoadon.Rows)
                 {
-                    // row exists
-                    found = true;
-                    grdHoadon.Rows[row.Index].Cells[3].Value = txtSoluong.Text;
-                    break;
+                    if (row.Cells[1].Value.ToString() == cbSanpham.SelectedValue.ToString())
+                    {
+                        // row exists
+                        found = true;
+                        grdHoadon.Rows[row.Index].Cells[3].Value = txtSoluong.Text;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    DataTable dt = (DataTable)(grdHoadon.DataSource);
+                    dt.Rows.Add(cbMahoadon.Text, cbSanpham.SelectedValue.ToString(), cbSanpham.Text, txtSoluong.Text);
+                    grdHoadon.DataSource = dt;
                 }
             }
-
-            if (!found)
-            { 
-                grdHoadon.Rows.Add(cbMahoadon.Text, cbSanpham.SelectedValue.ToString(), cbSanpham.Text, txtSoluong.Text);
+            else 
+            {
+                MessageBox.Show("Chưa nhập số lượng.");            
             }
-            
             txtSoluong.Text = "";
             this.grdHoadon.SelectionChanged += new System.EventHandler(this.grdHoadon_SelectionChanged);
         }
@@ -846,7 +859,7 @@ namespace DCafe
 
         private void Load_Mahoadon()
         {
-            string mk = "SELECT TOP 5 ma_hd FROM T_Hoadon";
+            string mk = "SELECT TOP 5 ma_hd FROM T_Hoadon ORDER BY id_hd DESC";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -873,15 +886,15 @@ namespace DCafe
                 dtThoidiem.Value = Convert.ToDateTime(dr[3].ToString());
             }
             dr.Close();
-            Load_CTHoadon();
+            Load_CTHoadon(cbMahoadon.SelectedValue.ToString());
             sqlCon.Close();    
         }
 
-        private void Load_CTHoadon()
+        private void Load_CTHoadon(string ma_hd)
         {
             string sql2 = "SELECT t1.ma_hd, t1.ma_thanhpham, t2.ten_thanhpham, t1.soluong FROM T_CTHoadon t1 LEFT OUTER JOIN T_Thanhpham t2 ON t1.ma_thanhpham = t2.ma_thanhpham WHERE ma_hd = @ma_hd";
             SqlDataAdapter ada = new SqlDataAdapter(sql2, sqlCon);
-            ada.SelectCommand.Parameters.Add("@ma_hd", SqlDbType.NChar).Value = cbMahoadon.SelectedValue.ToString();
+            ada.SelectCommand.Parameters.Add("@ma_hd", SqlDbType.NChar).Value = ma_hd;
             DataTable dt = new DataTable();
             ada.Fill(dt);
             grdHoadon.DataSource = dt;
@@ -890,6 +903,31 @@ namespace DCafe
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             RefreshHD();
+        }
+
+        private void dtThoidiemHD_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtThoidiemHD.Value.Date > DateTime.Now.Date)
+            {
+                dtThoidiemHD.Value = DateTime.Now;
+                MessageBox.Show("Thời điểm tạo hóa đơn không được lớn hơn ngày hiện tại."); 
+            }
+        }
+
+        private void cbMahoadon_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != (char)Keys.Home && e.KeyChar != (char)Keys.End && e.KeyChar != (char)Keys.Enter && e.KeyChar != (char)Keys.PageUp && e.KeyChar != (char)Keys.PageDown && e.KeyChar != (char)Keys.Up && e.KeyChar != (char)Keys.Down && e.KeyChar != (char)Keys.Left && e.KeyChar != (char)Keys.Right)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cbMahoadon_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                e.Handled = true;
+            }
         }
 
         #endregion
@@ -920,8 +958,16 @@ namespace DCafe
             }
             else if (tabPages.SelectedTab == tabHoadon)
             {
-                Save_Hoadon();
-                Save_CTHoadon();
+                if (grdHoadon.Rows.Count > 0)
+                {
+                    Save_Hoadon();
+                    Save_CTHoadon();
+                    RefreshHD();
+                }
+                else
+                {
+                    MessageBox.Show("Chưa chọn sản phẩm."); 
+                }
             }
             else if (tabPages.SelectedTab == tabChebien)
             {
