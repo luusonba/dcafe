@@ -55,6 +55,9 @@ namespace DCafe
                     }
                     else
                     {
+                        frmSupport f = new frmSupport();
+                        f.Show();
+                        this.Visible = false;
                         MessageBox.Show("Tên hoặc mật khẩu không đúng", "THÔNG BÁO", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                         txt_mk.Text = "";                        
                         txt_mk.Focus();
