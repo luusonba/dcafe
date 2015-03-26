@@ -1,1 +1,3 @@
 nhap bao nhieu nguyen lieu tinh ra bao nhieu san pham, doanh thu bao nhieu, loi nhuan bao nhieu, chi phi
+
+them cot chi phi,  gia thanh don gia vao san pham hoa don, chi tiet hoa don
