@@ -38,7 +38,7 @@ namespace DCafe
                 }
                 else
                 {
-                    string mk = "SELECT ma_nv, ten_nhanvien, password FROM T_Nhanvien WHERE (password =@password and ma_nv =@ma_nv)";
+                    string mk = "SELECT ma_nv, ten_nhanvien, password, is_admin FROM T_Nhanvien WHERE (password =@password and ma_nv =@ma_nv)";
                     Conn conn = new Conn();
                     SqlConnection con = conn.createConn();
                     con.Open();
@@ -50,14 +50,12 @@ namespace DCafe
                     {                        
                         frmMain f = new frmMain();
                         f.lblUsername.Text = dr[1].ToString();
+                        f.isAdmin = Convert.ToBoolean(dr[3].ToString());
                         f.Show();
                         this.Visible = false;
                     }
                     else
-                    {
-                        frmSupport f = new frmSupport();
-                        f.Show();
-                        this.Visible = false;
+                    {                        
                         MessageBox.Show("Tên hoặc mật khẩu không đúng", "THÔNG BÁO", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                         txt_mk.Text = "";                        
                         txt_mk.Focus();

@@ -20,7 +20,8 @@ namespace DCafe
         public ClsCTHoadon clsCTHoadon;
         DataTable dtNLCB;
         private bool add = false;
-        
+        public bool isAdmin = false;
+                
         #region Common
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -67,6 +68,13 @@ namespace DCafe
         private void frmMain_Load(object sender, EventArgs e)
         {
             Load_TabHoadon();
+            if (!isAdmin)
+            {
+                btnNguyenlieu.Visible = false;
+                btnNhanvien.Visible = false;
+                btnThanhpham.Visible = false;
+                btnChebien.Visible = false;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
