@@ -19,6 +19,7 @@ namespace DCafe
         public ClsHoadon clsHoadon;
         public ClsCTHoadon clsCTHoadon;
         DataTable dtNLCB;
+        private bool add = false;
         
         #region Common
 
@@ -27,11 +28,27 @@ namespace DCafe
             if (tabPages.SelectedTab == tabHoadon)
             {
                 RefreshHD();
+                cbSanpham.SelectedIndex = 0;
             }
             else if (tabPages.SelectedTab == tabChebien)
             {
                 RefreshCB();
             }
+            else if (tabPages.SelectedTab == tabNhanvien)
+            {
+                if (!txtTen_nv.ReadOnly)
+                {
+                    Refresh_NV(add);
+                }
+            }
+            else if (tabPages.SelectedTab == tabNguyenlieu)
+            {
+                Refresh_NL();
+            }
+            else if (tabPages.SelectedTab == tabSanpham)
+            {
+                Refresh_TP();
+            }            
         }
 
         public frmMain()
@@ -56,8 +73,7 @@ namespace DCafe
         {
             if (tabPages.SelectedTab == tabNhanvien)
             {
-                Save_Nhanvien();
-                Load_Nhanvien("");
+                Save_Nhanvien();                
             }
             else if (tabPages.SelectedTab == tabNguyenlieu)
             {
@@ -80,20 +96,20 @@ namespace DCafe
                 else
                 {
                     MessageBox.Show("Chưa chọn sản phẩm.");
+                    return;
                 }
             }
             else if (tabPages.SelectedTab == tabChebien)
             {
                 if (grdNguyenlieuSPCB.Rows.Count > 0)
                 {
-                    //Save_Sanpham();
                     Save_CTSanpham();
-                    //Load_SanphamCB();
                     MessageBox.Show("Tạo công thức chế biến thành công.");
                 }
                 else
                 {
                     MessageBox.Show("Chưa chọn nguyên liệu.");
+                    return;
                 }
             }
         }
@@ -104,29 +120,40 @@ namespace DCafe
             sqlCon.Open();
             if (tabPages.SelectedTab == tabNhanvien)
             {
-                cmd.CommandText = "DELETE FROM T_Nhanvien WHERE ma_nv = @ma_nv";
-                cmd.Parameters.AddWithValue("@ma_nv", txtMa_nv.Text);
-                cmd.ExecuteNonQuery();
-                Load_Nhanvien("");
+                if (MessageBox.Show("Bạn muốn thực hiện thao tác này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    cmd.CommandText = "DELETE FROM T_Nhanvien WHERE ma_nv = @ma_nv";
+                    cmd.Parameters.AddWithValue("@ma_nv", txtMa_nv.Text);
+                    cmd.ExecuteNonQuery();
+                }
             }
             else if (tabPages.SelectedTab == tabNguyenlieu)
             {
                 cmd.CommandText = "DELETE FROM T_Nguyenlieu WHERE ma_nguyenlieu = @ma_nguyenlieu";
                 cmd.Parameters.AddWithValue("@ma_nguyenlieu", txtMaNl.Text);
-                cmd.ExecuteNonQuery();
-                Load_Nguyenlieu("");
+                cmd.ExecuteNonQuery();                
             }
             else if (tabPages.SelectedTab == tabSanpham)
             {
                 cmd.CommandText = "DELETE FROM T_Thanhpham WHERE ma_thanhpham = @ma_thanhpham";
                 cmd.Parameters.AddWithValue("@ma_thanhpham", txtMa_Sanpham.Text);
-                cmd.ExecuteNonQuery();
-                Load_Thanhpham("");
+                cmd.ExecuteNonQuery();                
             }
 
             sqlCon.Close();
 
-            Load_Nhanvien("");
+            if (tabPages.SelectedTab == tabNhanvien)
+            {
+                Load_Nhanvien("");
+            }
+            else if (tabPages.SelectedTab == tabNguyenlieu)
+            {
+                Load_Nguyenlieu("");
+            }
+            else if (tabPages.SelectedTab == tabSanpham)
+            {
+                Load_Thanhpham("");
+            }
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -138,18 +165,126 @@ namespace DCafe
 
         #region Nhan vien
 
+        private void Refresh_NV(bool add)
+        {
+            if (add)
+            {
+                txtMa_nv.Text = "";
+            }
+            txtTen_nv.Text = "";
+            dtNgaysinh.Value = DateTime.Now;
+            txtDiachi.Text = "";
+            dtNgayvaolam.Value = DateTime.Now;
+            txtSdt.Text = "";
+            txtMk.Text = "";
+            txtComfirm.Text = "";
+            rbNam.Checked = true;
+            rbNu.Checked = false;
+            cbMa_kv.SelectedIndex = 0;
+            ckAdmin.Checked = false;
+        }
+
+        private void btnAddNV_Click(object sender, EventArgs e)
+        {
+            add = true;
+            EditMode_NV(true);
+            Refresh_NV(add);
+        }
+
+        private void btnEditNV_Click(object sender, EventArgs e)
+        {
+            add = false;
+            EditMode_NV(true);
+            txtMa_nv.ReadOnly = true;
+            BindTextNhanvien();
+        }
+
+        private void BindTextNhanvien()
+        {
+            clsNhanvien.Ma_Nv = grdDsnhanvien.CurrentRow.Cells[0].Value.ToString();
+            clsNhanvien.Password = grdDsnhanvien.CurrentRow.Cells[1].Value.ToString();
+            clsNhanvien.Ten_Nv = grdDsnhanvien.CurrentRow.Cells[2].Value.ToString();
+            if (grdDsnhanvien.CurrentRow.Cells[3].Value.ToString() == "Male")
+            {
+                clsNhanvien.Gioitinh = true;
+            }
+            else
+            {
+                clsNhanvien.Gioitinh = false;
+            }
+            clsNhanvien.Ma_Kv = grdDsnhanvien.CurrentRow.Cells[4].Value.ToString();
+            clsNhanvien.Is_Admin = Convert.ToBoolean(grdDsnhanvien.CurrentRow.Cells[5].Value);
+            clsNhanvien.Sdt = grdDsnhanvien.CurrentRow.Cells["cSdt"].Value.ToString();
+            clsNhanvien.Ngaysinh = Convert.ToDateTime(grdDsnhanvien.CurrentRow.Cells["cNgaysinh"].Value.ToString());
+            clsNhanvien.Ngayvaolam = Convert.ToDateTime(grdDsnhanvien.CurrentRow.Cells["cNgayvaolam"].Value.ToString());
+            clsNhanvien.Diachi = grdDsnhanvien.CurrentRow.Cells["cDiachi"].Value.ToString();
+
+            txtMa_nv.Text = clsNhanvien.Ma_Nv;
+            txtTen_nv.Text = clsNhanvien.Ten_Nv;
+            rbNam.Checked = clsNhanvien.Gioitinh;
+            rbNu.Checked = !clsNhanvien.Gioitinh;
+            cbMa_kv.SelectedValue = clsNhanvien.Ma_Kv;
+            ckAdmin.Checked = clsNhanvien.Is_Admin;
+            txtSdt.Text = clsNhanvien.Sdt;
+            txtDiachi.Text = clsNhanvien.Diachi;
+            dtNgaysinh.Value = clsNhanvien.Ngaysinh;
+            dtNgayvaolam.Value = clsNhanvien.Ngayvaolam;
+        }
+
+        private void btnCancelNV_Click(object sender, EventArgs e)
+        {
+            EditMode_NV(false);
+            BindTextNhanvien();
+        }
+
+        private void EditMode_NV(bool check)
+        { 
+            txtMa_nv.ReadOnly = !check;
+            txtTen_nv.ReadOnly = !check;
+            dtNgaysinh.Enabled = check;
+            txtDiachi.ReadOnly = !check;
+            dtNgayvaolam.Enabled = check;
+            txtSdt.ReadOnly = !check;
+            txtMk.ReadOnly = !check;
+            txtComfirm.ReadOnly = !check;
+            rbNam.Enabled = check;
+            rbNu.Enabled = check;
+            cbMa_kv.Enabled = check;
+            ckAdmin.Enabled = check;
+
+            txtMk.Text = "";
+            txtComfirm.Text = "";
+        }
+
+        private bool ValidateNhanvien()
+        {
+            bool rs = true;
+            if (String.IsNullOrEmpty(txtMa_nv.Text) || String.IsNullOrEmpty(txtTen_nv.Text) || dtNgaysinh.Value == null || String.IsNullOrEmpty(txtDiachi.Text) ||
+                dtNgayvaolam.Value == null || String.IsNullOrEmpty(txtSdt.Text) || String.IsNullOrEmpty(txtMk.Text) || String.IsNullOrEmpty(txtComfirm.Text) || cbMa_kv.SelectedValue == null)
+            {
+                rs = false;
+            }
+            if (txtComfirm.Text != txtMk.Text)
+            {
+                rs = false;
+            }
+            
+            return rs;
+        }
+
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
             btnDelete.Visible = true;
             Load_Nhanvien("");
             Load_Khuvuc();
+            EditMode_NV(false);
             rbNam.Checked = true;
             tabPages.SelectedTab = tabNhanvien;
         }
 
         private void Load_Nhanvien(string where)
         {
-            string mk = "SELECT ma_nv, password, RTRIM(ten_nhanvien) AS ten_nhanvien, gioitinh = case gioitinh when 'True' then 'Male' else 'Female' end, ma_kv, is_admin FROM T_Nhanvien " + where;
+            string mk = "SELECT ma_nv, password, RTRIM(ten_nhanvien) AS ten_nhanvien, gioitinh = case gioitinh when 'True' then 'Male' else 'Female' end, ma_kv, is_admin, sdt, diachi, ngaysinh, ngayvaolam FROM T_Nhanvien " + where;
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -175,38 +310,67 @@ namespace DCafe
 
         private void Save_Nhanvien()
         {
-            SqlCommand cmd = sqlCon.CreateCommand();
-            sqlCon.Open();
-            if (checkExistNhanvien(txtMa_nv.Text))
+            if (!txtTen_nv.ReadOnly)
             {
-                //Edit
-                cmd.CommandText = "UPDATE T_Nhanvien SET ten_nhanvien  = @ten_nhanvien, password=@password, gioitinh = @gioitinh, ma_kv = @ma_kv, is_admin = @is_admin WHERE ma_nv = @ma_nv";
+                if (MessageBox.Show("Bạn muốn thực hiện thao tác này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    if (ValidateNhanvien())
+                    {
+                        SqlCommand cmd = sqlCon.CreateCommand();
+                        sqlCon.Open();
 
-                cmd.Parameters.AddWithValue("@ten_nhanvien", txtTen_nv.Text);
-                cmd.Parameters.AddWithValue("@password", txtMk.Text);
-                cmd.Parameters.AddWithValue("@gioitinh", rbNam.Checked);
-                cmd.Parameters.AddWithValue("@ma_kv", cbMa_kv.SelectedValue);
-                cmd.Parameters.AddWithValue("@is_admin", ckAdmin.Checked);
-                cmd.Parameters.AddWithValue("@ma_nv", txtMa_nv.Text);
+                        if (checkExistNhanvien(txtMa_nv.Text))
+                        {
+                            //Edit
+                            cmd.CommandText = "UPDATE T_Nhanvien SET ten_nhanvien  = @ten_nhanvien, password=@password, gioitinh = @gioitinh, ma_kv = @ma_kv, is_admin = @is_admin, sdt = @sdt, diachi = @diachi, ngaysinh = @ngaysinh, ngayvaolam = @ngayvaolam WHERE ma_nv = @ma_nv";
 
-                cmd.ExecuteNonQuery();
+                            cmd.Parameters.AddWithValue("@ten_nhanvien", txtTen_nv.Text);
+                            cmd.Parameters.AddWithValue("@password", txtMk.Text);
+                            cmd.Parameters.AddWithValue("@gioitinh", rbNam.Checked);
+                            cmd.Parameters.AddWithValue("@ma_kv", cbMa_kv.SelectedValue);
+                            cmd.Parameters.AddWithValue("@is_admin", ckAdmin.Checked);
+                            cmd.Parameters.AddWithValue("@ma_nv", txtMa_nv.Text);
+
+                            cmd.Parameters.AddWithValue("@sdt", txtSdt.Text);
+                            cmd.Parameters.AddWithValue("@diachi", txtDiachi.Text);
+                            cmd.Parameters.AddWithValue("@ngaysinh", dtNgaysinh.Value);
+                            cmd.Parameters.AddWithValue("@ngayvaolam", dtNgayvaolam.Value);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        else
+                        {
+                            //Add
+                            cmd.CommandText = "INSERT INTO T_Nhanvien (ma_nv, ten_nhanvien, password, gioitinh, ma_kv, is_admin, sdt, diachi, ngaysinh, ngayvaolam) VALUES (@ma_nv, @ten_nhanvien, @password, @gioitinh, @ma_kv, @is_admin, @sdt, @diachi, @ngaysinh, @ngayvaolam)";
+
+                            cmd.Parameters.AddWithValue("@ma_nv", txtMa_nv.Text);
+                            cmd.Parameters.AddWithValue("@ten_nhanvien", txtTen_nv.Text);
+                            cmd.Parameters.AddWithValue("@password", txtMk.Text);
+                            cmd.Parameters.AddWithValue("@gioitinh", rbNam.Checked);
+
+                            cmd.Parameters.AddWithValue("@ma_kv", cbMa_kv.SelectedValue);
+                            cmd.Parameters.AddWithValue("@is_admin", ckAdmin.Checked);
+                            cmd.Parameters.AddWithValue("@sdt", txtSdt.Text);
+                            cmd.Parameters.AddWithValue("@diachi", txtDiachi.Text);
+                            cmd.Parameters.AddWithValue("@ngaysinh", dtNgaysinh.Value);
+                            cmd.Parameters.AddWithValue("@ngayvaolam", dtNgayvaolam.Value);
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        sqlCon.Close();
+                        EditMode_NV(false);
+                        Load_Nhanvien("");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thông tin nhập vào không đúng.");
+                    }
+                }
             }
             else
             {
-                //Add
-                cmd.CommandText = "INSERT INTO T_Nhanvien (ma_nv, ten_nhanvien, password, gioitinh, ma_kv, is_admin) VALUES (@ma_nv, @ten_nhanvien, @password, @gioitinh, @ma_kv, @is_admin)";
-
-                cmd.Parameters.AddWithValue("@ma_nv", txtMa_nv.Text);
-                cmd.Parameters.AddWithValue("@ten_nhanvien", txtTen_nv.Text);
-                cmd.Parameters.AddWithValue("@password", txtMk.Text);
-                cmd.Parameters.AddWithValue("@gioitinh", rbNam.Checked);               
-
-                cmd.Parameters.AddWithValue("@ma_kv", cbMa_kv.SelectedValue);
-                cmd.Parameters.AddWithValue("@is_admin", ckAdmin.Checked);
-
-                cmd.ExecuteNonQuery();
+                MessageBox.Show("Chưa chọn thao tác Thêm hoặc Sửa.");
             }
-            sqlCon.Close();
         }
 
         public bool checkExistNhanvien(string ma_nv)
@@ -225,37 +389,23 @@ namespace DCafe
         }
 
         private void grdDsnhanvien_SelectionChanged(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in grdDsnhanvien.SelectedRows)
-            {
-                clsNhanvien.Ma_Nv = row.Cells[0].Value.ToString();
-                clsNhanvien.Password = row.Cells[1].Value.ToString();
-                clsNhanvien.Ten_Nv = row.Cells[2].Value.ToString();
-                if (row.Cells[3].Value.ToString() == "Male")
-                {
-                    clsNhanvien.Gioitinh = true;
-                }
-                else
-                {
-                    clsNhanvien.Gioitinh = false;
-                }                
-                clsNhanvien.Ma_Kv = row.Cells[4].Value.ToString();
-                clsNhanvien.Is_Admin = Convert.ToBoolean(row.Cells[5].Value);
-            }
-
-            txtMa_nv.Text = clsNhanvien.Ma_Nv;
-            txtTen_nv.Text = clsNhanvien.Ten_Nv;
-            rbNam.Checked = clsNhanvien.Gioitinh;
-            rbNu.Checked = !clsNhanvien.Gioitinh;            
-            cbMa_kv.SelectedValue = clsNhanvien.Ma_Kv;
-            ckAdmin.Checked = clsNhanvien.Is_Admin;
-
+        {            
+            BindTextNhanvien();
         }
 
         #endregion
 
         #region Nguyen lieu
 
+        private void Refresh_NL()
+        {
+            txtMaNl.Text = "";
+            txtTenNl.Text = "";
+            txtDongia.Text = "";
+            cbDonvi.SelectedIndex = 0;
+            dtThoidiem.Value = DateTime.Now;
+        }
+        
         private void btnNguyenlieu_Click(object sender, EventArgs e)
         {
             btnDelete.Visible = true;
@@ -358,6 +508,16 @@ namespace DCafe
 
         #region Thanh pham
 
+        private void Refresh_TP()
+        {
+            txtMa_Sanpham.Text = "";
+            txtTen_Sanpham.Text = "";
+            txtDongiaSP.Text = "";
+            txtGiaban.Text = "";
+            cbDonviSP.SelectedIndex = 0;
+            dtThoidiemSP.Value = DateTime.Now;
+        }
+
         private void btnThanhpham_Click(object sender, EventArgs e)
         {
             btnDelete.Visible = true;
@@ -368,7 +528,7 @@ namespace DCafe
 
         private void Load_Thanhpham(string where)
         {
-            string sql = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) as ten_thanhpham, dongia, giaban, t2.ten_donvi as donvi, thoidiem FROM T_Thanhpham t1 LEFT OUTER JOIN T_Donvi t2 ON t1.donvi = t2.ma_donvi " + where;
+            string sql = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) as ten_thanhpham, dongia, giaban, t2.ten_donvi as ten_donvi, thoidiem, t1.donvi as donvi FROM T_Thanhpham t1 LEFT OUTER JOIN T_Donvi t2 ON t1.donvi = t2.ma_donvi " + where;
             SqlDataAdapter ada = new SqlDataAdapter(sql, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -402,10 +562,10 @@ namespace DCafe
                 cmd.CommandText = "UPDATE T_Thanhpham SET ten_thanhpham  = @ten_thanhpham, dongia=@dongia, giaban = @giaban, donvi = @donvi, thoidiem = @thoidiem WHERE ma_thanhpham = @ma_thanhpham";
 
                 cmd.Parameters.AddWithValue("@ten_thanhpham", txtTen_Sanpham.Text);
-                cmd.Parameters.AddWithValue("@dongia", txtDongiaSP.Text);
-                cmd.Parameters.AddWithValue("@giaban", txtGiaban.Text);
+                cmd.Parameters.AddWithValue("@dongia", int.Parse(txtDongiaSP.Text));
+                cmd.Parameters.AddWithValue("@giaban", int.Parse(txtGiaban.Text));
                 cmd.Parameters.AddWithValue("@donvi", cbDonviSP.SelectedValue);
-                cmd.Parameters.AddWithValue("@thoidiem", dtThoidiem.Value.ToString());
+                cmd.Parameters.AddWithValue("@thoidiem", dtThoidiem.Value);
                 cmd.Parameters.AddWithValue("@ma_thanhpham", txtMa_Sanpham.Text);
 
                 cmd.ExecuteNonQuery();
@@ -418,9 +578,9 @@ namespace DCafe
                 cmd.Parameters.AddWithValue("@ma_thanhpham", txtMa_Sanpham.Text);
                 cmd.Parameters.AddWithValue("@ten_thanhpham", txtTen_Sanpham.Text);
                 cmd.Parameters.AddWithValue("@dongia", int.Parse(txtDongiaSP.Text));
-                cmd.Parameters.AddWithValue("@giaban", int.Parse(txtDongiaSP.Text));
+                cmd.Parameters.AddWithValue("@giaban", int.Parse(txtGiaban.Text));
                 cmd.Parameters.AddWithValue("@donvi", cbDonviSP.SelectedValue);
-                cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemSP.Value.ToString());
+                cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemSP.Value);
                 cmd.ExecuteNonQuery();
             }
             sqlCon.Close();
@@ -447,9 +607,9 @@ namespace DCafe
             {
                 clsThanhpham.Ma_Thanhpham = row.Cells[0].Value.ToString();
                 clsThanhpham.Ten_Thanhpham = row.Cells[1].Value.ToString();
-                clsThanhpham.Dongia = Convert.ToInt16(row.Cells[2].Value);
-                clsThanhpham.Giaban = Convert.ToInt16(row.Cells[3].Value);
-                clsThanhpham.Donvi = row.Cells[4].Value.ToString();
+                clsThanhpham.Dongia = Convert.ToInt32(row.Cells[2].Value);
+                clsThanhpham.Giaban = Convert.ToInt32(row.Cells[3].Value);
+                clsThanhpham.Donvi = row.Cells[6].Value.ToString();
                 clsThanhpham.Thoidiem = Convert.ToDateTime(row.Cells[5].Value);
             }
 
@@ -464,6 +624,20 @@ namespace DCafe
         #endregion
 
         #region Che bien
+
+        private void txtSoluongSPCB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
 
         private void RefreshCB()
         {
@@ -635,42 +809,6 @@ namespace DCafe
             }
             sqlCon.Close();
         }
-
-        //private void Save_Sanpham()
-        //{
-        //    SqlCommand cmd = sqlCon.CreateCommand();
-        //    sqlCon.Open();
-
-        //    if (checkExistThanhpham(txtMaSPCB.Text))
-        //    {
-        //        //Edit
-        //        cmd.CommandText = "UPDATE T_Thanhpham SET ten_thanhpham  = @ten_thanhpham, dongia=@dongia, giaban = @giaban, donvi = @donvi, thoidiem = @thoidiem WHERE ma_thanhpham = @ma_thanhpham";
-
-        //        cmd.Parameters.AddWithValue("@ma_thanhpham", txtMaSPCB.Text);
-        //        cmd.Parameters.AddWithValue("@ten_thanhpham", cbTenSPCB.Text);
-        //        cmd.Parameters.AddWithValue("@dongia", Convert.ToInt32(txtDongiaSPCB.Text));
-        //        cmd.Parameters.AddWithValue("@giaban", Convert.ToInt32(txtGiabanSPCB.Text));
-        //        cmd.Parameters.AddWithValue("@donvi", cbDonviSPCB.SelectedValue);
-        //        cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemSPCB.Value.ToString());
-
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //    else
-        //    {
-        //        //Add
-        //        cmd.CommandText = "INSERT INTO T_Thanhpham (ma_thanhpham, ten_thanhpham, dongia, giaban, donvi, thoidiem) VALUES (@ma_thanhpham, @ten_thanhpham, @dongia, @giaban, @donvi, @thoidiem)";
-
-        //        cmd.Parameters.AddWithValue("@ma_thanhpham", txtMaSPCB.Text);
-        //        cmd.Parameters.AddWithValue("@ten_thanhpham", cbTenSPCB.Text);
-        //        cmd.Parameters.AddWithValue("@dongia", Convert.ToInt32(txtDongiaSPCB.Text));
-        //        cmd.Parameters.AddWithValue("@giaban", Convert.ToInt32(txtDongiaSPCB.Text));
-        //        cmd.Parameters.AddWithValue("@donvi", cbDonviSPCB.SelectedValue);
-        //        cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemSPCB.Value.ToString());
-
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //    sqlCon.Close();
-        //}
 
         private int indexChebien = 0;
 
@@ -1009,7 +1147,7 @@ namespace DCafe
                 {
                     if (row.Cells[1].Value.ToString() == cbSanpham.SelectedValue.ToString())
                     {
-                        // row exists
+                        // row exists;
                         found = true;
                         grdHoadon.Rows[row.Index].Cells[3].Value = txtSoluong.Text;
                         break;
@@ -1035,11 +1173,15 @@ namespace DCafe
 
         private void btnDeleteHD_Click(object sender, EventArgs e)
         {
+            if (grdHoadon.RowCount == 1)
+            {
+                txtSoluong.Text = "";
+            }
             if (grdHoadon.CurrentRow != null)
             {
                 clsCTHoadon.Ma_Hd = grdHoadon.CurrentRow.Cells[0].Value.ToString();
                 clsCTHoadon.Ma_Thanhpham = grdHoadon.CurrentRow.Cells[1].Value.ToString();
-                grdHoadon.Rows.RemoveAt(indexHoadon);
+                grdHoadon.Rows.RemoveAt(indexHoadon);                
             }
         }
         
@@ -1123,19 +1265,5 @@ namespace DCafe
         }
 
         #endregion
-
-        private void txtSoluongSPCB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
-            {
-                e.Handled = true;
-            }
-
-            // only allow one decimal point
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
-        }
     }
 }
