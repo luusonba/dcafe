@@ -74,6 +74,8 @@ namespace DCafe
                 btnNhanvien.Visible = false;
                 btnThanhpham.Visible = false;
                 btnChebien.Visible = false;
+                btnSupport.Visible = false;
+                btnAccounting.Visible = false;
             }
         }
 
@@ -1273,5 +1275,19 @@ namespace DCafe
         }
 
         #endregion
+
+        private void btnSupport_Click(object sender, EventArgs e)
+        {
+            frmSupport f = new frmSupport();
+            f.Show();
+            this.Visible = false;
+        }
+
+        private void btnAccounting_Click(object sender, EventArgs e)
+        {
+            frmAccounting f = new frmAccounting();
+            f.Show();
+            this.Visible = false;
+        }
     }
 }

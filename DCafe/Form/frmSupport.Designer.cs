@@ -590,6 +590,7 @@
             this.Controls.Add(this.aaa);
             this.Name = "frmSupport";
             this.Text = "Quản lý khu vực";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSupport_FormClosed);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdDsKhuvuc)).EndInit();
             this.aaa.ResumeLayout(false);

@@ -258,9 +258,10 @@ namespace DCafe
             sqlCon.Close();
         }
 
-      
-
-        
-
+        private void frmSupport_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form frm = (Form)Application.OpenForms["frmMain"];
+            frm.Visible = true;
+        }
     }
 }

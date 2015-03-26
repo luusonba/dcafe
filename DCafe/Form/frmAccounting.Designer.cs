@@ -184,7 +184,7 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label3.Location = new System.Drawing.Point(619, 448);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 20);
+            this.label3.Size = new System.Drawing.Size(73, 20);
             this.label3.TabIndex = 75;
             this.label3.Text = "Tổng chi";
             // 
@@ -542,7 +542,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label4.Location = new System.Drawing.Point(617, 439);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 20);
+            this.label4.Size = new System.Drawing.Size(74, 20);
             this.label4.TabIndex = 82;
             this.label4.Text = "Tổng thu";
             // 
@@ -827,7 +827,7 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label7.Location = new System.Drawing.Point(649, 428);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(116, 20);
+            this.label7.Size = new System.Drawing.Size(118, 20);
             this.label7.TabIndex = 85;
             this.label7.Text = "Tổng lợi nhuận";
             // 
@@ -1165,6 +1165,7 @@
             this.Controls.Add(this.tab_lnhuan);
             this.Name = "frmAccounting";
             this.Text = "frmAccounting";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAccounting_FormClosed);
             this.tab_lnhuan.ResumeLayout(false);
             this.tab_chiphi.ResumeLayout(false);
             this.tab_chiphi.PerformLayout();

@@ -15,5 +15,11 @@ namespace DCafe
         {
             InitializeComponent();
         }
+
+        private void frmAccounting_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Form frm = (Form)Application.OpenForms["frmMain"];
+            frm.Visible = true;
+        }
     }
 }
