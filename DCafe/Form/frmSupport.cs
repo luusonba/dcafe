@@ -14,6 +14,7 @@ namespace DCafe
     public partial class frmSupport : Form
     {
         public SqlConnection sqlCon;
+
         public frmSupport()
         {
             InitializeComponent();
@@ -179,9 +180,7 @@ namespace DCafe
         {
             Delete_DV();
         }
-
-
-
+        
         private void Load_DSBan(string where)
         {
             string mk = "SELECT maban, RTRIM(tenban) AS tenban, T_Ban.ma_kv, ten_kv FROM T_Ban, T_Khuvuc WHERE T_Ban.ma_kv=T_Khuvuc.ma_kv";
