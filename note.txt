@@ -1,0 +1,1 @@
+nhap bao nhieu nguyen lieu tinh ra bao nhieu san pham, doanh thu bao nhieu, loi nhuan bao nhieu, chi phi

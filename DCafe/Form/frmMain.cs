@@ -22,6 +22,18 @@ namespace DCafe
         
         #region Common
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            if (tabPages.SelectedTab == tabHoadon)
+            {
+                RefreshHD();
+            }
+            else if (tabPages.SelectedTab == tabChebien)
+            {
+                RefreshCB();
+            }
+        }
+
         public frmMain()
         {
             InitializeComponent();
@@ -72,8 +84,17 @@ namespace DCafe
             }
             else if (tabPages.SelectedTab == tabChebien)
             {
-                Save_SPCB();
-                Load_SanphamCB();
+                if (grdNguyenlieuSPCB.Rows.Count > 0)
+                {
+                    //Save_Sanpham();
+                    Save_CTSanpham();
+                    //Load_SanphamCB();
+                    MessageBox.Show("Tạo công thức chế biến thành công.");
+                }
+                else
+                {
+                    MessageBox.Show("Chưa chọn nguyên liệu.");
+                }
             }
         }
 
@@ -101,11 +122,6 @@ namespace DCafe
                 cmd.Parameters.AddWithValue("@ma_thanhpham", txtMa_Sanpham.Text);
                 cmd.ExecuteNonQuery();
                 Load_Thanhpham("");
-            }
-            else if (tabPages.SelectedTab == tabChebien)
-            {
-                Delete_SPCB();
-                Load_DSNL(cbTenSPCB.SelectedValue.ToString());
             }
 
             sqlCon.Close();
@@ -409,6 +425,7 @@ namespace DCafe
             }
             sqlCon.Close();
         }
+
         public bool checkExistThanhpham(string ma_thanhpham)
         {
             string sql = "SELECT ma_thanhpham FROM T_Thanhpham WHERE (ma_thanhpham =@ma_thanhpham)";
@@ -448,6 +465,12 @@ namespace DCafe
 
         #region Che bien
 
+        private void RefreshCB()
+        {
+            cbNguyenlieuSPCB.SelectedIndex = 0;
+            txtSoluongSPCB.Text = "";
+        }
+
         private void Load_SanphamCB()
         {
             string mk = "SELECT ma_thanhpham, RTRIM(ten_thanhpham) AS ten_thanhpham FROM T_Thanhpham";
@@ -475,9 +498,10 @@ namespace DCafe
             cbDonviSPCB.ValueMember = "ma_donvi";
             sqlCon.Close();
         }
+
         private void fillAllTheRest(String ma_thanhpham)
         {
-            string mk = "SELECT ma_thanhpham, dongia, giaban, thoidiem, RTRIM(ten_donvi) AS ten_donvi   FROM T_Thanhpham, T_Donvi  WHERE T_Thanhpham.donvi = T_Donvi.ma_donvi AND T_Donvi.loai_donvi = 'TP' AND ma_thanhpham='" + ma_thanhpham + "'";
+            string mk = "SELECT ma_thanhpham, dongia, giaban, thoidiem, RTRIM(ten_donvi) AS ten_donvi, donvi FROM T_Thanhpham, T_Donvi WHERE T_Thanhpham.donvi = T_Donvi.ma_donvi AND T_Donvi.loai_donvi = 'TP' AND ma_thanhpham='" + ma_thanhpham + "'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -485,14 +509,31 @@ namespace DCafe
             txtMaSPCB.Text = (dt.Rows[0]["ma_thanhpham"].ToString());
             txtDongiaSPCB.Text = (dt.Rows[0]["dongia"].ToString());
             txtGiabanSPCB.Text = (dt.Rows[0]["giaban"].ToString());
-            cbDonviSPCB.SelectedValue = (dt.Rows[0]["ten_donvi"].ToString());
+            cbDonviSPCB.SelectedValue = dt.Rows[0]["donvi"];
             dtThoidiemSPCB.Value = Convert.ToDateTime((dt.Rows[0]["thoidiem"].ToString()));
             sqlCon.Close();
         }
+
+        private void Load_DSNLSave(String ma_thanhpham)
+        {
+            string mk = "SELECT ma_thanhpham, T_Nguyenlieu.ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu, soluong   FROM T_Chebien, T_Nguyenlieu  WHERE T_Chebien.ma_nguyenlieu = T_Nguyenlieu.ma_nguyenlieu AND T_Chebien.ma_thanhpham = '" + ma_thanhpham + "'";
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);            
+            try
+            {
+                dtNLCB.Clear();
+            }
+            catch (DataException e)
+            {
+
+            }
+            ada.Fill(dtNLCB);
+            grdNguyenlieuSPCB.DataSource = dtNLCB;
+        }
+
         private void Load_DSNL(String ma_thanhpham)
         {
             string mk = "SELECT ma_thanhpham, T_Nguyenlieu.ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu, soluong   FROM T_Chebien, T_Nguyenlieu  WHERE T_Chebien.ma_nguyenlieu = T_Nguyenlieu.ma_nguyenlieu AND T_Chebien.ma_thanhpham = '" + ma_thanhpham + "'";
-            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
+            SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);            
             sqlCon.Open();
             try
             {
@@ -506,6 +547,7 @@ namespace DCafe
             grdNguyenlieuSPCB.DataSource = dtNLCB;
             sqlCon.Close();
         }
+
         private void Load_NguyenlieuSPCB()
         {
             string mk = "SELECT ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu FROM T_Nguyenlieu";
@@ -519,9 +561,10 @@ namespace DCafe
             cbNguyenlieuSPCB.ValueMember = "ma_nguyenlieu";
             sqlCon.Close();
         }
+
         private void btnChebien_Click(object sender, EventArgs e)
         {
-            btnDelete.Visible = true;
+            btnDelete.Visible = false;
             tabPages.SelectedTab = tabChebien;
             Load_SanphamCB();
             Load_DonviSPCB();
@@ -530,73 +573,115 @@ namespace DCafe
             Load_NguyenlieuSPCB();
         }
 
-        public void Save_SPCB() 
+        private void Save_CTSanpham()
         {
             SqlCommand cmd = sqlCon.CreateCommand();
             sqlCon.Open();
+            cmd.Parameters.Add(new SqlParameter("@ma_thanhpham", SqlDbType.NChar));
+            cmd.Parameters.Add(new SqlParameter("@ma_nguyenlieu", SqlDbType.NChar));
+            cmd.Parameters.Add(new SqlParameter("@soluong", SqlDbType.Float));
             if (!checkExistThanhpham(txtMaSPCB.Text))
             {
-                //Add
-                cmd.CommandText = "INSERT INTO T_Thanhpham (ma_thanhpham, ten_thanhpham, dongia, giaban, donvi, thoidiem) VALUES (@ma_thanhpham, @ten_thanhpham, @dongia, @giaban, @donvi, @thoidiem)";
-
-                cmd.Parameters.AddWithValue("@ma_thanhpham", txtMaSPCB.Text);
-                cmd.Parameters.AddWithValue("@ten_thanhpham", cbTenSPCB.Text);
-                cmd.Parameters.AddWithValue("@dongia", int.Parse(txtDongiaSPCB.Text));
-                cmd.Parameters.AddWithValue("@giaban", int.Parse(txtDongiaSPCB.Text));
-                cmd.Parameters.AddWithValue("@donvi", cbDonviSPCB.SelectedValue);
-                cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemSPCB.Value.ToString());
-                cmd.ExecuteNonQuery();
-            }
-            foreach (DataGridViewRow row in grdNguyenlieuSPCB.Rows)
-            {
-
-                if (!row.IsNewRow)
+                foreach (DataGridViewRow row in grdNguyenlieuSPCB.Rows)
                 {
-                    using (SqlCommand cmd_insert = new SqlCommand("INSERT INTO T_Chebien (ma_thanhpham, ma_nguyenlieu, soluong) VALUES(@c1,@c2,@c3)", sqlCon))
-                    {
+                    //Add
+                    cmd.CommandText = "INSERT INTO T_Chebien (ma_thanhpham, ma_nguyenlieu, soluong) VALUES (@ma_thanhpham, @ma_nguyenlieu, @soluong)";
 
-                        cmd_insert.Parameters.AddWithValue("@C1", txtMaSPCB.Text);
-                        cmd_insert.Parameters.AddWithValue("@C2", row.Cells[1].Value);
-                        cmd_insert.Parameters.AddWithValue("@C3", row.Cells[3].Value);
-                        try
-                        {
-                            cmd_insert.ExecuteNonQuery();
-                        }
-                        catch
-                        {
-                            using (SqlCommand cmd_update = new SqlCommand("UPDATE T_Chebien SET soluong=@c3 WHERE ma_thanhpham=@c1 AND ma_nguyenlieu=@c2", sqlCon))
-                            {
-                                cmd_update.Parameters.AddWithValue("@C1", row.Cells[0].Value);
-                                cmd_update.Parameters.AddWithValue("@C2", row.Cells[1].Value);
-                                cmd_update.Parameters.AddWithValue("@C3", row.Cells[3].Value);
-                                cmd_update.ExecuteNonQuery();
-                            }
+                    cmd.Parameters["@ma_thanhpham"].Value = txtMaSPCB.Text;
+                    cmd.Parameters["@ma_nguyenlieu"].Value = row.Cells[1].Value;
+                    cmd.Parameters["@soluong"].Value = row.Cells[3].Value;
 
-                        }
-
-                    }
+                    cmd.ExecuteNonQuery();
                 }
             }
-            
-           
+            else
+            {
+                this.grdNguyenlieuSPCB.BindingContext[(DataTable)grdNguyenlieuSPCB.DataSource].EndCurrentEdit();
+                var dataTable = ((DataTable)grdNguyenlieuSPCB.DataSource);                
+                if (dataTable != null && dataTable.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        switch (row.RowState)
+                        {
+                            case DataRowState.Added:
+                                // DO INSERT QUERY
+                                cmd.CommandText = "INSERT INTO T_Chebien (ma_thanhpham, ma_nguyenlieu, soluong) VALUES (@ma_thanhpham, @ma_nguyenlieu, @soluong)";
+                                cmd.Parameters["@ma_thanhpham"].Value = row["ma_thanhpham"];
+                                cmd.Parameters["@ma_nguyenlieu"].Value = row["ma_nguyenlieu"];
+                                cmd.Parameters["@soluong"].Value = row["soluong"];
+                                cmd.ExecuteNonQuery();
+                                break;
+                            case DataRowState.Deleted:
+                                // DO DELETE QUERY
+                                cmd.CommandText = "DELETE FROM T_Chebien WHERE ma_thanhpham = @ma_thanhpham AND ma_nguyenlieu = @ma_nguyenlieu";
+                                cmd.Parameters.Remove(cmd.Parameters["@soluong"]);
+                                cmd.Parameters["@ma_nguyenlieu"].Value = clsNguyenlieu.Ma_Nguyenlieu;
+                                cmd.Parameters["@ma_thanhpham"].Value = clsThanhpham.Ma_Thanhpham;
+                                cmd.ExecuteNonQuery();
+                                cmd.Parameters.Add(new SqlParameter("@soluong", SqlDbType.Float));
+                                break;
+                            case DataRowState.Modified:
+                                cmd.CommandText = "UPDATE T_Chebien SET soluong = @soluong WHERE ma_thanhpham = @ma_thanhpham AND ma_nguyenlieu = @ma_nguyenlieu";
+                                cmd.Parameters["@soluong"].Value = row["soluong"];
+                                cmd.Parameters["@ma_nguyenlieu"].Value = row["ma_nguyenlieu"];
+                                cmd.Parameters["@ma_thanhpham"].Value = row["ma_thanhpham"];
+                                cmd.ExecuteNonQuery();
+                                break;
+                        }
+                    }
+                    Load_DSNLSave(txtMaSPCB.Text);
+                }
+            }
             sqlCon.Close();
         }
 
-        public void Delete_SPCB() 
+        //private void Save_Sanpham()
+        //{
+        //    SqlCommand cmd = sqlCon.CreateCommand();
+        //    sqlCon.Open();
+
+        //    if (checkExistThanhpham(txtMaSPCB.Text))
+        //    {
+        //        //Edit
+        //        cmd.CommandText = "UPDATE T_Thanhpham SET ten_thanhpham  = @ten_thanhpham, dongia=@dongia, giaban = @giaban, donvi = @donvi, thoidiem = @thoidiem WHERE ma_thanhpham = @ma_thanhpham";
+
+        //        cmd.Parameters.AddWithValue("@ma_thanhpham", txtMaSPCB.Text);
+        //        cmd.Parameters.AddWithValue("@ten_thanhpham", cbTenSPCB.Text);
+        //        cmd.Parameters.AddWithValue("@dongia", Convert.ToInt32(txtDongiaSPCB.Text));
+        //        cmd.Parameters.AddWithValue("@giaban", Convert.ToInt32(txtGiabanSPCB.Text));
+        //        cmd.Parameters.AddWithValue("@donvi", cbDonviSPCB.SelectedValue);
+        //        cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemSPCB.Value.ToString());
+
+        //        cmd.ExecuteNonQuery();
+        //    }
+        //    else
+        //    {
+        //        //Add
+        //        cmd.CommandText = "INSERT INTO T_Thanhpham (ma_thanhpham, ten_thanhpham, dongia, giaban, donvi, thoidiem) VALUES (@ma_thanhpham, @ten_thanhpham, @dongia, @giaban, @donvi, @thoidiem)";
+
+        //        cmd.Parameters.AddWithValue("@ma_thanhpham", txtMaSPCB.Text);
+        //        cmd.Parameters.AddWithValue("@ten_thanhpham", cbTenSPCB.Text);
+        //        cmd.Parameters.AddWithValue("@dongia", Convert.ToInt32(txtDongiaSPCB.Text));
+        //        cmd.Parameters.AddWithValue("@giaban", Convert.ToInt32(txtDongiaSPCB.Text));
+        //        cmd.Parameters.AddWithValue("@donvi", cbDonviSPCB.SelectedValue);
+        //        cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemSPCB.Value.ToString());
+
+        //        cmd.ExecuteNonQuery();
+        //    }
+        //    sqlCon.Close();
+        //}
+
+        private int indexChebien = 0;
+
+        private void btnDeleteSPCB_Click(object sender, EventArgs e)
         {
-            try
+            if (grdNguyenlieuSPCB.CurrentRow != null)
             {
-                sqlCon.Open();
+                clsThanhpham.Ma_Thanhpham = grdNguyenlieuSPCB.CurrentRow.Cells[0].Value.ToString();
+                clsNguyenlieu.Ma_Nguyenlieu = grdNguyenlieuSPCB.CurrentRow.Cells[1].Value.ToString();
+                grdNguyenlieuSPCB.Rows.RemoveAt(indexChebien);
             }
-            catch { 
-            }
-            using (SqlCommand cmd_delete = new SqlCommand("DELETE T_Chebien WHERE ma_thanhpham=@c1 AND ma_nguyenlieu=@c2", sqlCon))
-            {
-                cmd_delete.Parameters.AddWithValue("@C1", cbTenSPCB.SelectedValue.ToString());
-                cmd_delete.Parameters.AddWithValue("@C2", cbNguyenlieuSPCB.SelectedValue.ToString());
-                cmd_delete.ExecuteNonQuery();
-            }
-            sqlCon.Close();
         }
 
         private void cbMaSPCB_DropDownClosed(object sender, EventArgs e)
@@ -604,32 +689,50 @@ namespace DCafe
             fillAllTheRest(cbTenSPCB.SelectedValue.ToString());
             Load_DSNL(cbTenSPCB.SelectedValue.ToString());
         }
+
         private void btnSaveSPCB_Click(object sender, EventArgs e)
         {
-            grdNguyenlieuSPCB.Columns[0].Visible = false;
-            grdNguyenlieuSPCB.Columns[1].Visible = false;
-            try
+            bool found = false;
+            this.grdNguyenlieuSPCB.SelectionChanged -= new System.EventHandler(this.grdNguyenlieuSPCB_SelectionChanged);
+            if (txtSoluongSPCB.Text != "")
             {
-                DataRow newRow = dtNLCB.NewRow();
-                dtNLCB.Rows.Add(txtMaSPCB.Text, cbNguyenlieuSPCB.SelectedValue.ToString(), cbNguyenlieuSPCB.Text, Convert.ToInt32(txtSoluongSPCB.Text));
-                //grdNguyenlieuSPCB.Rows.Add(cbMaSPCB.SelectedValue.ToString(), cbNguyenlieuSPCB.SelectedValue.ToString(), cbNguyenlieuSPCB.Text, Convert.ToInt32(txtSoluongSPCB.Text));
+                foreach (DataGridViewRow row in grdNguyenlieuSPCB.Rows)
+                {
+                    if (row.Cells[1].Value.ToString() == cbNguyenlieuSPCB.SelectedValue.ToString())
+                    {
+                        // row exists
+                        found = true;
+                        grdNguyenlieuSPCB.Rows[row.Index].Cells[3].Value = txtSoluongSPCB.Text;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    DataRow newRow = dtNLCB.NewRow();
+                    dtNLCB.Rows.Add(txtMaSPCB.Text, cbNguyenlieuSPCB.SelectedValue.ToString(), cbNguyenlieuSPCB.Text, Convert.ToInt32(txtSoluongSPCB.Text));
+                }
             }
-            catch (Exception ex)
+            else
             {
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
+                MessageBox.Show("Chưa nhập số lượng.");
             }
+            txtSoluongSPCB.Text = "";
+            this.grdNguyenlieuSPCB.SelectionChanged += new System.EventHandler(this.grdNguyenlieuSPCB_SelectionChanged);
 
         }
+
         private void grdNguyenlieuSPCB_SelectionChanged(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in grdNguyenlieuSPCB.SelectedRows)
+            if (grdNguyenlieuSPCB.CurrentRow != null)
             {
-                cbNguyenlieuSPCB.SelectedValue = row.Cells[1].Value.ToString();
-                txtSoluongSPCB.Text = row.Cells[3].Value.ToString();
-            }
+                indexChebien = grdNguyenlieuSPCB.CurrentRow.Index;
 
-           
+                cbNguyenlieuSPCB.SelectedValue = grdNguyenlieuSPCB.CurrentRow.Cells[1].Value;
+                txtSoluongSPCB.Text = grdNguyenlieuSPCB.CurrentRow.Cells[3].Value.ToString();
+            }
         }
+
         #endregion
 
         #region Hoa don
@@ -799,14 +902,15 @@ namespace DCafe
                     cmd.CommandText = "INSERT INTO T_CTHoadon (ma_hd, ma_thanhpham, soluong) VALUES (@ma_hd, @ma_thanhpham, @soluong)";
 
                     cmd.Parameters["@ma_hd"].Value = cbMahoadon.Text;
-                    cmd.Parameters["@ma_thanhpham"].Value = grdHoadon.Rows[row.Index].Cells[1].Value.ToString();
-                    cmd.Parameters["@soluong"].Value = Convert.ToDouble(grdHoadon.Rows[row.Index].Cells[3].Value.ToString());
+                    cmd.Parameters["@ma_thanhpham"].Value = row.Cells[1].Value;
+                    cmd.Parameters["@soluong"].Value = row.Cells[3].Value;
 
                     cmd.ExecuteNonQuery();
                 }
             }
             else
             {
+                this.grdHoadon.BindingContext[(DataTable)grdHoadon.DataSource].EndCurrentEdit();
                 var dataTable = ((DataTable)grdHoadon.DataSource).GetChanges();
                 if (dataTable != null && dataTable.Rows.Count > 0)
                 {
@@ -931,9 +1035,12 @@ namespace DCafe
 
         private void btnDeleteHD_Click(object sender, EventArgs e)
         {
-            clsCTHoadon.Ma_Hd = grdHoadon.CurrentRow.Cells[0].Value.ToString();
-            clsCTHoadon.Ma_Thanhpham = grdHoadon.CurrentRow.Cells[1].Value.ToString();
-            grdHoadon.Rows.RemoveAt(indexHoadon);
+            if (grdHoadon.CurrentRow != null)
+            {
+                clsCTHoadon.Ma_Hd = grdHoadon.CurrentRow.Cells[0].Value.ToString();
+                clsCTHoadon.Ma_Thanhpham = grdHoadon.CurrentRow.Cells[1].Value.ToString();
+                grdHoadon.Rows.RemoveAt(indexHoadon);
+            }
         }
         
         private void grdHoadon_SelectionChanged(object sender, EventArgs e)
@@ -990,14 +1097,6 @@ namespace DCafe
             grdHoadon.DataSource = dt;
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            if (tabPages.SelectedTab == tabHoadon)
-            {
-                RefreshHD();
-            }
-        }
-
         private void dtThoidiemHD_ValueChanged(object sender, EventArgs e)
         {
             if (dtThoidiemHD.Value.Date > DateTime.Now.Date)
@@ -1024,5 +1123,19 @@ namespace DCafe
         }
 
         #endregion
+
+        private void txtSoluongSPCB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

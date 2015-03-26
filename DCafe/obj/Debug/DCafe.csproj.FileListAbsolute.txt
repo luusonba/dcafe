@@ -1,0 +1,15 @@
+D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.exe.manifest
+D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.application
+D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.exe
+D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.pdb
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.frmLogin.resources
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.frmMain.resources
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.frmSupport.resources
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.frmAccounting.resources
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.Properties.Resources.resources
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.csproj.GenerateResource.Cache
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.exe.manifest
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.application
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.exe
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.pdb
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.csprojResolveAssemblyReference.cache
