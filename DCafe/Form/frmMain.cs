@@ -19,10 +19,25 @@ namespace DCafe
         public ClsHoadon clsHoadon;
         public ClsCTHoadon clsCTHoadon;
         DataTable dtNLCB;
+        DataTable dtNL;
         private bool add = false;
         public bool isAdmin = false;
                 
         #region Common
+
+        private void btnSupport_Click(object sender, EventArgs e)
+        {
+            frmSupport f = new frmSupport();
+            f.Show();
+            this.Visible = false;
+        }
+
+        private void btnAccounting_Click(object sender, EventArgs e)
+        {
+            frmAccounting f = new frmAccounting();
+            f.Show();
+            this.Visible = false;
+        }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
@@ -63,6 +78,7 @@ namespace DCafe
             clsHoadon = new ClsHoadon();
             clsCTHoadon = new ClsCTHoadon();
             dtNLCB = new DataTable();
+            dtNL = new DataTable();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -114,7 +130,6 @@ namespace DCafe
                 if (grdNguyenlieuSPCB.Rows.Count > 0)
                 {
                     Save_CTSanpham();
-                    MessageBox.Show("Tạo công thức chế biến thành công.");
                 }
                 else
                 {
@@ -482,6 +497,7 @@ namespace DCafe
             }
             sqlCon.Close();
         }
+
         public bool checkExistNguyenlieu(string ma_nguyenlieu)
         {
             string sql = "SELECT ma_nguyenlieu FROM T_Nguyenlieu WHERE (ma_nguyenlieu =@ma_nguyenlieu)";
@@ -569,10 +585,11 @@ namespace DCafe
             if (checkExistThanhpham(txtMa_Sanpham.Text))
             {
                 //Edit
-                cmd.CommandText = "UPDATE T_Thanhpham SET ten_thanhpham  = @ten_thanhpham, dongia=@dongia, giaban = @giaban, donvi = @donvi, thoidiem = @thoidiem WHERE ma_thanhpham = @ma_thanhpham";
+                //cmd.CommandText = "UPDATE T_Thanhpham SET ten_thanhpham  = @ten_thanhpham, dongia=@dongia, giaban = @giaban, donvi = @donvi, thoidiem = @thoidiem WHERE ma_thanhpham = @ma_thanhpham";
+                cmd.CommandText = "UPDATE T_Thanhpham SET ten_thanhpham  = @ten_thanhpham, giaban = @giaban, donvi = @donvi, thoidiem = @thoidiem WHERE ma_thanhpham = @ma_thanhpham";
 
                 cmd.Parameters.AddWithValue("@ten_thanhpham", txtTen_Sanpham.Text);
-                cmd.Parameters.AddWithValue("@dongia", int.Parse(txtDongiaSP.Text));
+                //cmd.Parameters.AddWithValue("@dongia", int.Parse(txtDongiaSP.Text));
                 cmd.Parameters.AddWithValue("@giaban", int.Parse(txtGiaban.Text));
                 cmd.Parameters.AddWithValue("@donvi", cbDonviSP.SelectedValue);
                 cmd.Parameters.AddWithValue("@thoidiem", dtThoidiem.Value);
@@ -587,7 +604,8 @@ namespace DCafe
 
                 cmd.Parameters.AddWithValue("@ma_thanhpham", txtMa_Sanpham.Text);
                 cmd.Parameters.AddWithValue("@ten_thanhpham", txtTen_Sanpham.Text);
-                cmd.Parameters.AddWithValue("@dongia", int.Parse(txtDongiaSP.Text));
+                //cmd.Parameters.AddWithValue("@dongia", int.Parse(txtDongiaSP.Text));
+                cmd.Parameters.AddWithValue("@dongia", 0);
                 cmd.Parameters.AddWithValue("@giaban", int.Parse(txtGiaban.Text));
                 cmd.Parameters.AddWithValue("@donvi", cbDonviSP.SelectedValue);
                 cmd.Parameters.AddWithValue("@thoidiem", dtThoidiemSP.Value);
@@ -691,7 +709,6 @@ namespace DCafe
             DataTable dt = new DataTable();
             ada.Fill(dt);
             txtMaSPCB.Text = (dt.Rows[0]["ma_thanhpham"].ToString());
-            txtDongiaSPCB.Text = (dt.Rows[0]["dongia"].ToString());
             txtGiabanSPCB.Text = (dt.Rows[0]["giaban"].ToString());
             cbDonviSPCB.SelectedValue = dt.Rows[0]["donvi"];
             dtThoidiemSPCB.Value = Convert.ToDateTime((dt.Rows[0]["thoidiem"].ToString()));
@@ -700,7 +717,7 @@ namespace DCafe
 
         private void Load_DSNLSave(String ma_thanhpham)
         {
-            string mk = "SELECT ma_thanhpham, T_Nguyenlieu.ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu, soluong   FROM T_Chebien, T_Nguyenlieu  WHERE T_Chebien.ma_nguyenlieu = T_Nguyenlieu.ma_nguyenlieu AND T_Chebien.ma_thanhpham = '" + ma_thanhpham + "'";
+            string mk = "SELECT ma_thanhpham, T_Nguyenlieu.ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu, soluong, soluong * T_Nguyenlieu.dongia as dongia, T_Nguyenlieu.dongia  as dongia_nl FROM T_Chebien, T_Nguyenlieu  WHERE T_Chebien.ma_nguyenlieu = T_Nguyenlieu.ma_nguyenlieu AND T_Chebien.ma_thanhpham = '" + ma_thanhpham + "'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);            
             try
             {
@@ -712,11 +729,23 @@ namespace DCafe
             }
             ada.Fill(dtNLCB);
             grdNguyenlieuSPCB.DataSource = dtNLCB;
+
+            LoadTongDongia();
+        }
+
+        private void LoadTongDongia()
+        {
+            int tong = 0;
+            foreach (DataGridViewRow row in grdNguyenlieuSPCB.Rows)
+            {
+                tong = tong + Convert.ToInt32(row.Cells[4].Value);
+            }
+            txtTongDongia.Text = tong.ToString();
         }
 
         private void Load_DSNL(String ma_thanhpham)
         {
-            string mk = "SELECT ma_thanhpham, T_Nguyenlieu.ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu, soluong   FROM T_Chebien, T_Nguyenlieu  WHERE T_Chebien.ma_nguyenlieu = T_Nguyenlieu.ma_nguyenlieu AND T_Chebien.ma_thanhpham = '" + ma_thanhpham + "'";
+            string mk = "SELECT ma_thanhpham, T_Nguyenlieu.ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu, soluong, soluong * T_Nguyenlieu.dongia as dongia, T_Nguyenlieu.dongia  as dongia_nl FROM T_Chebien, T_Nguyenlieu  WHERE T_Chebien.ma_nguyenlieu = T_Nguyenlieu.ma_nguyenlieu AND T_Chebien.ma_thanhpham = '" + ma_thanhpham + "'";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);            
             sqlCon.Open();
             try
@@ -730,17 +759,19 @@ namespace DCafe
             ada.Fill(dtNLCB);
             grdNguyenlieuSPCB.DataSource = dtNLCB;
             sqlCon.Close();
+
+            LoadTongDongia();
         }
 
         private void Load_NguyenlieuSPCB()
         {
-            string mk = "SELECT ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu FROM T_Nguyenlieu";
+            string mk = "SELECT ma_nguyenlieu, RTRIM(ten_nguyenlieu) AS ten_nguyenlieu, dongia FROM T_Nguyenlieu";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
-            DataTable dt = new DataTable();
-            ada.Fill(dt);
+            dtNL = new DataTable();
+            ada.Fill(dtNL);
 
-            cbNguyenlieuSPCB.DataSource = dt;
+            cbNguyenlieuSPCB.DataSource = dtNL;
             cbNguyenlieuSPCB.DisplayMember = "ten_nguyenlieu";
             cbNguyenlieuSPCB.ValueMember = "ma_nguyenlieu";
             sqlCon.Close();
@@ -764,60 +795,68 @@ namespace DCafe
             cmd.Parameters.Add(new SqlParameter("@ma_thanhpham", SqlDbType.NChar));
             cmd.Parameters.Add(new SqlParameter("@ma_nguyenlieu", SqlDbType.NChar));
             cmd.Parameters.Add(new SqlParameter("@soluong", SqlDbType.Float));
-            if (!checkExistThanhpham(txtMaSPCB.Text))
+            bool change = false;
+            
+            this.grdNguyenlieuSPCB.BindingContext[(DataTable)grdNguyenlieuSPCB.DataSource].EndCurrentEdit();
+            var dataTable = ((DataTable)grdNguyenlieuSPCB.DataSource);                
+            if (dataTable != null && dataTable.Rows.Count > 0)
             {
-                foreach (DataGridViewRow row in grdNguyenlieuSPCB.Rows)
+                foreach (DataRow row in dataTable.Rows)
                 {
-                    //Add
-                    cmd.CommandText = "INSERT INTO T_Chebien (ma_thanhpham, ma_nguyenlieu, soluong) VALUES (@ma_thanhpham, @ma_nguyenlieu, @soluong)";
-
-                    cmd.Parameters["@ma_thanhpham"].Value = txtMaSPCB.Text;
-                    cmd.Parameters["@ma_nguyenlieu"].Value = row.Cells[1].Value;
-                    cmd.Parameters["@soluong"].Value = row.Cells[3].Value;
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            else
-            {
-                this.grdNguyenlieuSPCB.BindingContext[(DataTable)grdNguyenlieuSPCB.DataSource].EndCurrentEdit();
-                var dataTable = ((DataTable)grdNguyenlieuSPCB.DataSource);                
-                if (dataTable != null && dataTable.Rows.Count > 0)
-                {
-                    foreach (DataRow row in dataTable.Rows)
+                    switch (row.RowState)
                     {
-                        switch (row.RowState)
-                        {
-                            case DataRowState.Added:
-                                // DO INSERT QUERY
-                                cmd.CommandText = "INSERT INTO T_Chebien (ma_thanhpham, ma_nguyenlieu, soluong) VALUES (@ma_thanhpham, @ma_nguyenlieu, @soluong)";
-                                cmd.Parameters["@ma_thanhpham"].Value = row["ma_thanhpham"];
-                                cmd.Parameters["@ma_nguyenlieu"].Value = row["ma_nguyenlieu"];
-                                cmd.Parameters["@soluong"].Value = row["soluong"];
-                                cmd.ExecuteNonQuery();
-                                break;
-                            case DataRowState.Deleted:
-                                // DO DELETE QUERY
-                                cmd.CommandText = "DELETE FROM T_Chebien WHERE ma_thanhpham = @ma_thanhpham AND ma_nguyenlieu = @ma_nguyenlieu";
-                                cmd.Parameters.Remove(cmd.Parameters["@soluong"]);
-                                cmd.Parameters["@ma_nguyenlieu"].Value = clsNguyenlieu.Ma_Nguyenlieu;
-                                cmd.Parameters["@ma_thanhpham"].Value = clsThanhpham.Ma_Thanhpham;
-                                cmd.ExecuteNonQuery();
-                                cmd.Parameters.Add(new SqlParameter("@soluong", SqlDbType.Float));
-                                break;
-                            case DataRowState.Modified:
-                                cmd.CommandText = "UPDATE T_Chebien SET soluong = @soluong WHERE ma_thanhpham = @ma_thanhpham AND ma_nguyenlieu = @ma_nguyenlieu";
-                                cmd.Parameters["@soluong"].Value = row["soluong"];
-                                cmd.Parameters["@ma_nguyenlieu"].Value = row["ma_nguyenlieu"];
-                                cmd.Parameters["@ma_thanhpham"].Value = row["ma_thanhpham"];
-                                cmd.ExecuteNonQuery();
-                                break;
-                        }
+                        case DataRowState.Added:
+                            // DO INSERT QUERY
+                            change = true;
+                            cmd.CommandText = "INSERT INTO T_Chebien (ma_thanhpham, ma_nguyenlieu, soluong) VALUES (@ma_thanhpham, @ma_nguyenlieu, @soluong)";
+                            cmd.Parameters["@ma_thanhpham"].Value = row["ma_thanhpham"];
+                            cmd.Parameters["@ma_nguyenlieu"].Value = row["ma_nguyenlieu"];
+                            cmd.Parameters["@soluong"].Value = row["soluong"];
+                            cmd.ExecuteNonQuery();
+                            break;
+                        case DataRowState.Deleted:
+                            // DO DELETE QUERY
+                            change = true;
+                            cmd.CommandText = "DELETE FROM T_Chebien WHERE ma_thanhpham = @ma_thanhpham AND ma_nguyenlieu = @ma_nguyenlieu";
+                            cmd.Parameters.Remove(cmd.Parameters["@soluong"]);
+                            cmd.Parameters["@ma_nguyenlieu"].Value = clsNguyenlieu.Ma_Nguyenlieu;
+                            cmd.Parameters["@ma_thanhpham"].Value = clsThanhpham.Ma_Thanhpham;
+                            cmd.ExecuteNonQuery();
+                            cmd.Parameters.Add(new SqlParameter("@soluong", SqlDbType.Float));
+                            break;
+                        case DataRowState.Modified:
+                            change = true;
+                            cmd.CommandText = "UPDATE T_Chebien SET soluong = @soluong WHERE ma_thanhpham = @ma_thanhpham AND ma_nguyenlieu = @ma_nguyenlieu";
+                            cmd.Parameters["@soluong"].Value = row["soluong"];
+                            cmd.Parameters["@ma_nguyenlieu"].Value = row["ma_nguyenlieu"];
+                            cmd.Parameters["@ma_thanhpham"].Value = row["ma_thanhpham"];
+                            cmd.ExecuteNonQuery();
+                            break;
                     }
-                    Load_DSNLSave(txtMaSPCB.Text);
                 }
+                Load_DSNLSave(txtMaSPCB.Text);
             }
+            
+            if (change)
+            {
+                //Update don gia san pham
+                cmd.CommandText = "UPDATE T_Thanhpham SET dongia = @dongia WHERE ma_thanhpham = @ma_thanhpham";
+
+                cmd.Parameters.AddWithValue("@dongia", int.Parse(txtTongDongia.Text));
+                cmd.Parameters["@ma_thanhpham"].Value = txtMaSPCB.Text;
+                cmd.Parameters.Remove(cmd.Parameters["@soluong"]);
+                cmd.Parameters.Remove(cmd.Parameters["@ma_nguyenlieu"]);
+                cmd.ExecuteNonQuery();
+            }
+
             sqlCon.Close();
+
+            if (change)
+            {
+                cbTenSPCB.SelectedIndex = 0;
+                fillAllTheRest(cbTenSPCB.SelectedValue.ToString());
+                Load_DSNL(cbTenSPCB.SelectedValue.ToString());
+            }
         }
 
         private int indexChebien = 0;
@@ -851,6 +890,7 @@ namespace DCafe
                         // row exists
                         found = true;
                         grdNguyenlieuSPCB.Rows[row.Index].Cells[3].Value = txtSoluongSPCB.Text;
+                        grdNguyenlieuSPCB.Rows[row.Index].Cells[4].Value = Convert.ToInt32(grdNguyenlieuSPCB.Rows[row.Index].Cells[5].Value)*Convert.ToInt32(txtSoluongSPCB.Text);
                         break;
                     }
                 }
@@ -858,8 +898,10 @@ namespace DCafe
                 if (!found)
                 {
                     DataRow newRow = dtNLCB.NewRow();
-                    dtNLCB.Rows.Add(txtMaSPCB.Text, cbNguyenlieuSPCB.SelectedValue.ToString(), cbNguyenlieuSPCB.Text, Convert.ToInt32(txtSoluongSPCB.Text));
+                    int dongia = Convert.ToInt32(((DataTable)cbNguyenlieuSPCB.DataSource).Rows[cbNguyenlieuSPCB.SelectedIndex][2]);
+                    dtNLCB.Rows.Add(txtMaSPCB.Text, cbNguyenlieuSPCB.SelectedValue.ToString(), cbNguyenlieuSPCB.Text, Convert.ToInt32(txtSoluongSPCB.Text), dongia * Convert.ToInt32(txtSoluongSPCB.Text), dongia);
                 }
+                LoadTongDongia();
             }
             else
             {
@@ -1275,19 +1317,5 @@ namespace DCafe
         }
 
         #endregion
-
-        private void btnSupport_Click(object sender, EventArgs e)
-        {
-            frmSupport f = new frmSupport();
-            f.Show();
-            this.Visible = false;
-        }
-
-        private void btnAccounting_Click(object sender, EventArgs e)
-        {
-            frmAccounting f = new frmAccounting();
-            f.Show();
-            this.Visible = false;
-        }
     }
 }
