@@ -25,20 +25,6 @@ namespace DCafe
                 
         #region Common
 
-        private void btnSupport_Click(object sender, EventArgs e)
-        {
-            frmSupport f = new frmSupport();
-            f.Show();
-            this.Visible = false;
-        }
-
-        private void btnAccounting_Click(object sender, EventArgs e)
-        {
-            frmAccounting f = new frmAccounting();
-            f.Show();
-            this.Visible = false;
-        }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             if (tabPages.SelectedTab == tabHoadon)
@@ -90,8 +76,7 @@ namespace DCafe
                 btnNhanvien.Visible = false;
                 btnThanhpham.Visible = false;
                 btnChebien.Visible = false;
-                btnSupport.Visible = false;
-                btnAccounting.Visible = false;
+                menuStrip1.Visible = false;
             }
         }
 
@@ -869,6 +854,7 @@ namespace DCafe
                 clsNguyenlieu.Ma_Nguyenlieu = grdNguyenlieuSPCB.CurrentRow.Cells[1].Value.ToString();
                 grdNguyenlieuSPCB.Rows.RemoveAt(indexChebien);
             }
+            LoadTongDongia();
         }
 
         private void cbMaSPCB_DropDownClosed(object sender, EventArgs e)
@@ -959,6 +945,7 @@ namespace DCafe
             Load_CTHoadon(cbMahoadon.Text);
 
             txtSoluong.Text = "";
+            txtThanhtien.Text = "0";
             dtThoidiem.Value = DateTime.Now;
         }
 
@@ -996,7 +983,7 @@ namespace DCafe
 
         private void Load_SanphamHD()
         {
-            string mk = "SELECT ma_thanhpham, ten_thanhpham FROM T_Thanhpham";
+            string mk = "SELECT ma_thanhpham, ten_thanhpham, giaban FROM T_Thanhpham";
             SqlDataAdapter ada = new SqlDataAdapter(mk, sqlCon);
             sqlCon.Open();
             DataTable dt = new DataTable();
@@ -1134,7 +1121,7 @@ namespace DCafe
                                 break;
                         }
                     }
-                    Load_CTHoadon(cbMahoadon.SelectedValue.ToString());
+                    Load_CTHoadon(cbMahoadon.SelectedValue.ToString());                    
                 }
             }
             sqlCon.Close();
@@ -1194,7 +1181,7 @@ namespace DCafe
             bool found = false;
             this.grdHoadon.SelectionChanged -= new System.EventHandler(this.grdHoadon_SelectionChanged);
             if (txtSoluong.Text != "")
-            {
+            {                
                 foreach (DataGridViewRow row in grdHoadon.Rows)
                 {
                     if (row.Cells[1].Value.ToString() == cbSanpham.SelectedValue.ToString())
@@ -1202,6 +1189,7 @@ namespace DCafe
                         // row exists;
                         found = true;
                         grdHoadon.Rows[row.Index].Cells[3].Value = txtSoluong.Text;
+                        grdHoadon.Rows[row.Index].Cells[5].Value = Convert.ToInt32(grdHoadon.Rows[row.Index].Cells[4].Value) * Convert.ToInt32(txtSoluong.Text);
                         break;
                     }
                 }
@@ -1209,7 +1197,8 @@ namespace DCafe
                 if (!found)
                 {
                     DataTable dt = (DataTable)(grdHoadon.DataSource);
-                    dt.Rows.Add(cbMahoadon.Text, cbSanpham.SelectedValue.ToString(), cbSanpham.Text, txtSoluong.Text);
+                    int giaban = Convert.ToInt32(((DataTable)cbSanpham.DataSource).Rows[cbSanpham.SelectedIndex][2]);
+                    dt.Rows.Add(cbMahoadon.Text, cbSanpham.SelectedValue.ToString(), cbSanpham.Text, txtSoluong.Text, giaban, giaban*Convert.ToInt32(txtSoluong.Text));
                     grdHoadon.DataSource = dt;
                 }
             }
@@ -1218,6 +1207,7 @@ namespace DCafe
                 MessageBox.Show("Chưa nhập số lượng.");            
             }
             txtSoluong.Text = "";
+            LoadTongThanhtien();
             this.grdHoadon.SelectionChanged += new System.EventHandler(this.grdHoadon_SelectionChanged);
         }
 
@@ -1235,6 +1225,7 @@ namespace DCafe
                 clsCTHoadon.Ma_Thanhpham = grdHoadon.CurrentRow.Cells[1].Value.ToString();
                 grdHoadon.Rows.RemoveAt(indexHoadon);                
             }
+            LoadTongThanhtien();
         }
         
         private void grdHoadon_SelectionChanged(object sender, EventArgs e)
@@ -1278,17 +1269,28 @@ namespace DCafe
             }
             dr.Close();
             Load_CTHoadon(cbMahoadon.SelectedValue.ToString());
+            LoadTongThanhtien();
             sqlCon.Close();    
         }
 
         private void Load_CTHoadon(string ma_hd)
         {
-            string sql2 = "SELECT t1.ma_hd, t1.ma_thanhpham, t2.ten_thanhpham, t1.soluong FROM T_CTHoadon t1 LEFT OUTER JOIN T_Thanhpham t2 ON t1.ma_thanhpham = t2.ma_thanhpham WHERE ma_hd = @ma_hd";
+            string sql2 = "SELECT t1.ma_hd, t1.ma_thanhpham, t2.ten_thanhpham, t1.soluong, t2.giaban, t1.soluong * t2.giaban as thanhtien FROM T_CTHoadon t1 LEFT OUTER JOIN T_Thanhpham t2 ON t1.ma_thanhpham = t2.ma_thanhpham WHERE ma_hd = @ma_hd";
             SqlDataAdapter ada = new SqlDataAdapter(sql2, sqlCon);
             ada.SelectCommand.Parameters.Add("@ma_hd", SqlDbType.NChar).Value = ma_hd;
             DataTable dt = new DataTable();
             ada.Fill(dt);
             grdHoadon.DataSource = dt;
+        }
+
+        private void LoadTongThanhtien()
+        {
+            int tong = 0;
+            foreach (DataGridViewRow row in grdHoadon.Rows)
+            {
+                tong = tong + Convert.ToInt32(row.Cells[5].Value);
+            }
+            txtThanhtien.Text = tong.ToString();
         }
 
         private void dtThoidiemHD_ValueChanged(object sender, EventArgs e)
@@ -1317,5 +1319,26 @@ namespace DCafe
         }
 
         #endregion
+
+        private void nhapHangToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //frmSupport f = new frmSupport();
+            //f.Show();
+            //this.Visible = false;
+        }
+
+        private void hoTroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSupport f = new frmSupport();
+            f.Show();
+            this.Visible = false;
+        }
+
+        private void kinhDoanhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAccounting f = new frmAccounting();
+            f.Show();
+            this.Visible = false;
+        }
     }
 }
