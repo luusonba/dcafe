@@ -32,6 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmImport));
             this.label1 = new System.Windows.Forms.Label();
             this.grdNhaphang = new System.Windows.Forms.DataGridView();
+            this.cIdnhaphang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cNguyenlieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cSoluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cThoidiem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cThanhtien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cManguyenlieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cDongia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEditNV = new System.Windows.Forms.Button();
@@ -43,13 +50,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.cIdnhaphang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cNguyenlieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cSoluong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cThoidiem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cThanhtien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cManguyenlieu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cDongia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdNhaphang)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,6 +101,66 @@
             this.grdNhaphang.TabIndex = 6;
             this.grdNhaphang.SelectionChanged += new System.EventHandler(this.grdNhaphang_SelectionChanged);
             // 
+            // cIdnhaphang
+            // 
+            this.cIdnhaphang.DataPropertyName = "id_nhaphang";
+            this.cIdnhaphang.HeaderText = "Mã nhập hàng";
+            this.cIdnhaphang.Name = "cIdnhaphang";
+            this.cIdnhaphang.ReadOnly = true;
+            this.cIdnhaphang.Width = 140;
+            // 
+            // cNguyenlieu
+            // 
+            this.cNguyenlieu.DataPropertyName = "ten_nguyenlieu";
+            this.cNguyenlieu.FillWeight = 243.6548F;
+            this.cNguyenlieu.HeaderText = "Nguyên liệu";
+            this.cNguyenlieu.Name = "cNguyenlieu";
+            this.cNguyenlieu.ReadOnly = true;
+            this.cNguyenlieu.Width = 190;
+            // 
+            // cSoluong
+            // 
+            this.cSoluong.DataPropertyName = "soluong";
+            this.cSoluong.FillWeight = 52.11507F;
+            this.cSoluong.HeaderText = "Số lượng";
+            this.cSoluong.Name = "cSoluong";
+            this.cSoluong.ReadOnly = true;
+            this.cSoluong.Width = 120;
+            // 
+            // cThoidiem
+            // 
+            this.cThoidiem.DataPropertyName = "thoidiem";
+            this.cThoidiem.FillWeight = 52.11507F;
+            this.cThoidiem.HeaderText = "Ngày nhập";
+            this.cThoidiem.Name = "cThoidiem";
+            this.cThoidiem.ReadOnly = true;
+            this.cThoidiem.Width = 160;
+            // 
+            // cThanhtien
+            // 
+            this.cThanhtien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cThanhtien.DataPropertyName = "thanhtien";
+            this.cThanhtien.FillWeight = 52.11507F;
+            this.cThanhtien.HeaderText = "Thành tiền";
+            this.cThanhtien.Name = "cThanhtien";
+            this.cThanhtien.ReadOnly = true;
+            // 
+            // cManguyenlieu
+            // 
+            this.cManguyenlieu.DataPropertyName = "ma_nguyenlieu";
+            this.cManguyenlieu.HeaderText = "Mã nguyên liệu";
+            this.cManguyenlieu.Name = "cManguyenlieu";
+            this.cManguyenlieu.ReadOnly = true;
+            this.cManguyenlieu.Visible = false;
+            // 
+            // cDongia
+            // 
+            this.cDongia.DataPropertyName = "dongia";
+            this.cDongia.HeaderText = "Đơn giá";
+            this.cDongia.Name = "cDongia";
+            this.cDongia.ReadOnly = true;
+            this.cDongia.Visible = false;
+            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -121,7 +181,7 @@
             this.btnDelete.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnDelete.Location = new System.Drawing.Point(211, 190);
+            this.btnDelete.Location = new System.Drawing.Point(862, 498);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 27);
             this.btnDelete.TabIndex = 18;
@@ -134,7 +194,7 @@
             this.btnEditNV.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnEditNV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnEditNV.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnEditNV.Location = new System.Drawing.Point(119, 190);
+            this.btnEditNV.Location = new System.Drawing.Point(211, 192);
             this.btnEditNV.Name = "btnEditNV";
             this.btnEditNV.Size = new System.Drawing.Size(75, 27);
             this.btnEditNV.TabIndex = 33;
@@ -147,7 +207,7 @@
             this.btnAddNV.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnAddNV.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnAddNV.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnAddNV.Location = new System.Drawing.Point(25, 190);
+            this.btnAddNV.Location = new System.Drawing.Point(119, 192);
             this.btnAddNV.Name = "btnAddNV";
             this.btnAddNV.Size = new System.Drawing.Size(75, 27);
             this.btnAddNV.TabIndex = 32;
@@ -224,66 +284,6 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 16);
             this.label4.TabIndex = 25;
-            // 
-            // cIdnhaphang
-            // 
-            this.cIdnhaphang.DataPropertyName = "id_nhaphang";
-            this.cIdnhaphang.HeaderText = "Mã nhập hàng";
-            this.cIdnhaphang.Name = "cIdnhaphang";
-            this.cIdnhaphang.ReadOnly = true;
-            this.cIdnhaphang.Width = 140;
-            // 
-            // cNguyenlieu
-            // 
-            this.cNguyenlieu.DataPropertyName = "ten_nguyenlieu";
-            this.cNguyenlieu.FillWeight = 243.6548F;
-            this.cNguyenlieu.HeaderText = "Nguyên liệu";
-            this.cNguyenlieu.Name = "cNguyenlieu";
-            this.cNguyenlieu.ReadOnly = true;
-            this.cNguyenlieu.Width = 190;
-            // 
-            // cSoluong
-            // 
-            this.cSoluong.DataPropertyName = "soluong";
-            this.cSoluong.FillWeight = 52.11507F;
-            this.cSoluong.HeaderText = "Số lượng";
-            this.cSoluong.Name = "cSoluong";
-            this.cSoluong.ReadOnly = true;
-            this.cSoluong.Width = 120;
-            // 
-            // cThoidiem
-            // 
-            this.cThoidiem.DataPropertyName = "thoidiem";
-            this.cThoidiem.FillWeight = 52.11507F;
-            this.cThoidiem.HeaderText = "Ngày nhập";
-            this.cThoidiem.Name = "cThoidiem";
-            this.cThoidiem.ReadOnly = true;
-            this.cThoidiem.Width = 160;
-            // 
-            // cThanhtien
-            // 
-            this.cThanhtien.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cThanhtien.DataPropertyName = "thanhtien";
-            this.cThanhtien.FillWeight = 52.11507F;
-            this.cThanhtien.HeaderText = "Thành tiền";
-            this.cThanhtien.Name = "cThanhtien";
-            this.cThanhtien.ReadOnly = true;
-            // 
-            // cManguyenlieu
-            // 
-            this.cManguyenlieu.DataPropertyName = "ma_nguyenlieu";
-            this.cManguyenlieu.HeaderText = "Mã nguyên liệu";
-            this.cManguyenlieu.Name = "cManguyenlieu";
-            this.cManguyenlieu.ReadOnly = true;
-            this.cManguyenlieu.Visible = false;
-            // 
-            // cDongia
-            // 
-            this.cDongia.DataPropertyName = "dongia";
-            this.cDongia.HeaderText = "Đơn giá";
-            this.cDongia.Name = "cDongia";
-            this.cDongia.ReadOnly = true;
-            this.cDongia.Visible = false;
             // 
             // frmImport
             // 

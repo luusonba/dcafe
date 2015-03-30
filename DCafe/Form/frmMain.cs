@@ -262,12 +262,6 @@ namespace DCafe
             dtNgayvaolam.Value = clsNhanvien.Ngayvaolam;
         }
 
-        private void btnCancelNV_Click(object sender, EventArgs e)
-        {
-            EditMode_NV(false);
-            BindTextNhanvien();
-        }
-
         private void EditMode_NV(bool check)
         { 
             txtMa_nv.ReadOnly = !check;
@@ -422,6 +416,7 @@ namespace DCafe
         private void grdDsnhanvien_SelectionChanged(object sender, EventArgs e)
         {            
             BindTextNhanvien();
+            EditMode_NV(false);
         }
 
         #endregion
