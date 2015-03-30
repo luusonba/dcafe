@@ -25,6 +25,27 @@ namespace DCafe
                 
         #region Common
 
+        private void nhapHangToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmImport f = new frmImport();
+            f.Show();
+            this.Visible = false;
+        }
+
+        private void hoTroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSupport f = new frmSupport();
+            f.Show();
+            this.Visible = false;
+        }
+
+        private void kinhDoanhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAccounting f = new frmAccounting();
+            f.Show();
+            this.Visible = false;
+        }
+
         private void btnClear_Click(object sender, EventArgs e)
         {
             if (tabPages.SelectedTab == tabHoadon)
@@ -1319,26 +1340,5 @@ namespace DCafe
         }
 
         #endregion
-
-        private void nhapHangToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //frmSupport f = new frmSupport();
-            //f.Show();
-            //this.Visible = false;
-        }
-
-        private void hoTroToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmSupport f = new frmSupport();
-            f.Show();
-            this.Visible = false;
-        }
-
-        private void kinhDoanhToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmAccounting f = new frmAccounting();
-            f.Show();
-            this.Visible = false;
-        }
     }
 }

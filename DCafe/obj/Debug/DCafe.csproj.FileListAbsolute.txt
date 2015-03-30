@@ -13,3 +13,4 @@ D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.application
 D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.exe
 D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.pdb
 D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.csprojResolveAssemblyReference.cache
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.frmImport.resources

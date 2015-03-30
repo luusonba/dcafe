@@ -88,6 +88,12 @@
     <Compile Include="Class\ClsNguyenlieu.cs" />
     <Compile Include="Class\ClsCTHoadon.cs" />
     <Compile Include="Class\ClsHoadon.cs" />
+    <Compile Include="Form\frmImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmImport.Designer.cs">
+      <DependentUpon>frmImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form\frmImport.resx">
+      <DependentUpon>frmImport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>

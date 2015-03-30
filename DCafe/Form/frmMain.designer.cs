@@ -2001,7 +2001,7 @@
             this.nhapHangToolStripMenuItem.Name = "nhapHangToolStripMenuItem";
             this.nhapHangToolStripMenuItem.Size = new System.Drawing.Size(174, 24);
             this.nhapHangToolStripMenuItem.Text = "Nhập hàng";
-            this.nhapHangToolStripMenuItem.Visible = false;
+            this.nhapHangToolStripMenuItem.Visible = true;
             this.nhapHangToolStripMenuItem.Click += new System.EventHandler(this.nhapHangToolStripMenuItem_Click);
             // 
             // hoTroToolStripMenuItem
