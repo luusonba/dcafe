@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAccounting));
             this.tab_dthu = new System.Windows.Forms.TabPage();
             this.label5 = new System.Windows.Forms.Label();
             this.tongthu = new System.Windows.Forms.TextBox();
@@ -131,7 +132,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label4.Location = new System.Drawing.Point(617, 439);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 20);
+            this.label4.Size = new System.Drawing.Size(73, 20);
             this.label4.TabIndex = 82;
             this.label4.Text = "Tổng thu";
             // 
@@ -405,6 +406,7 @@
             // 
             // btnIn
             // 
+            this.btnIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnIn.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -626,6 +628,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 540);
             this.Controls.Add(this.tab_lnhuan);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAccounting";
             this.Text = "frmAccounting";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmAccounting_FormClosed);

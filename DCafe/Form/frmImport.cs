@@ -83,46 +83,43 @@ namespace DCafe
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!txtSoluong.ReadOnly)
-            {
-                if (MessageBox.Show("Bạn muốn thực hiện thao tác này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {                
+                if (Validate())
                 {
-                    if (Validate())
+                    SqlCommand cmd = sqlCon.CreateCommand();
+                    sqlCon.Open();
+
+                    if (!add)
                     {
-                        SqlCommand cmd = sqlCon.CreateCommand();
-                        sqlCon.Open();
+                        //Edit
+                        cmd.CommandText = "UPDATE T_Nhaphang SET ma_nguyenlieu  = @ma_nguyenlieu, soluong = @soluong, thoidiem = @thoidiem WHERE id_nhaphang = @id_nhaphang";
 
-                        if (!add)
-                        {
-                            //Edit
-                            cmd.CommandText = "UPDATE T_Nhaphang SET ma_nguyenlieu  = @ma_nguyenlieu, soluong = @soluong, thoidiem = @thoidiem WHERE id_nhaphang = @id_nhaphang";
-
-                            cmd.Parameters.AddWithValue("@ma_nguyenlieu", cbNguyenlieu.SelectedValue);
-                            cmd.Parameters.AddWithValue("@soluong", txtSoluong.Text);
-                            cmd.Parameters.AddWithValue("@thoidiem", dtThoidiem.Value);
-                            cmd.Parameters.AddWithValue("@id_nhaphang", grdNhaphang.CurrentRow.Cells["cIdnhaphang"].Value);
+                        cmd.Parameters.AddWithValue("@ma_nguyenlieu", cbNguyenlieu.SelectedValue);
+                        cmd.Parameters.AddWithValue("@soluong", txtSoluong.Text);
+                        cmd.Parameters.AddWithValue("@thoidiem", dtThoidiem.Value);
+                        cmd.Parameters.AddWithValue("@id_nhaphang", grdNhaphang.CurrentRow.Cells["cIdnhaphang"].Value);
                             
-                            cmd.ExecuteNonQuery();
-                        }
-                        else
-                        {
-                            //Add
-                            cmd.CommandText = "INSERT INTO T_Nhaphang (ma_nguyenlieu, soluong, thoidiem) VALUES (@ma_nguyenlieu, @soluong, @thoidiem)";
-
-                            cmd.Parameters.AddWithValue("@ma_nguyenlieu", cbNguyenlieu.SelectedValue);
-                            cmd.Parameters.AddWithValue("@soluong", txtSoluong.Text);
-                            cmd.Parameters.AddWithValue("@thoidiem", dtThoidiem.Value);
-
-                            cmd.ExecuteNonQuery();
-                        }
-                        sqlCon.Close();
-                        EditMode(false);
-                        Refresh();
-                        Load_Nhaphang("");
+                        cmd.ExecuteNonQuery();
                     }
                     else
                     {
-                        MessageBox.Show("Thông tin nhập vào không đúng.");
+                        //Add
+                        cmd.CommandText = "INSERT INTO T_Nhaphang (ma_nguyenlieu, soluong, thoidiem) VALUES (@ma_nguyenlieu, @soluong, @thoidiem)";
+
+                        cmd.Parameters.AddWithValue("@ma_nguyenlieu", cbNguyenlieu.SelectedValue);
+                        cmd.Parameters.AddWithValue("@soluong", txtSoluong.Text);
+                        cmd.Parameters.AddWithValue("@thoidiem", dtThoidiem.Value);
+
+                        cmd.ExecuteNonQuery();
                     }
+                    sqlCon.Close();
+                    EditMode(false);
+                    Refresh();
+                    Load_Nhaphang("");
+                }
+                else
+                {
+                    MessageBox.Show("Thông tin nhập vào không đúng.");
                 }
             }
             else
