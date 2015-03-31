@@ -12,12 +12,12 @@ namespace DCafe
 {
     public partial class frmMain : Form
     {
-        public SqlConnection sqlCon;
-        public ClsNhanvien clsNhanvien;
-        public ClsNguyenlieu clsNguyenlieu;
-        public ClsThanhpham clsThanhpham;
-        public ClsHoadon clsHoadon;
-        public ClsCTHoadon clsCTHoadon;
+        private SqlConnection sqlCon;
+        private ClsNhanvien clsNhanvien;
+        private ClsNguyenlieu clsNguyenlieu;
+        private ClsThanhpham clsThanhpham;
+        private ClsHoadon clsHoadon;
+        private ClsCTHoadon clsCTHoadon;
         DataTable dtNLCB;
         DataTable dtNL;
         private bool add = false;
@@ -300,6 +300,7 @@ namespace DCafe
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
             btnDelete.Visible = true;
+            btnIn.Visible = false;
             Load_Nhanvien("");
             Load_Khuvuc();
             EditMode_NV(false);
@@ -435,6 +436,7 @@ namespace DCafe
         private void btnNguyenlieu_Click(object sender, EventArgs e)
         {
             btnDelete.Visible = true;
+            btnIn.Visible = false;
             tabPages.SelectedTab = tabNguyenlieu;
             Load_Nguyenlieu("");
             Load_Donvi();
@@ -548,6 +550,7 @@ namespace DCafe
         private void btnThanhpham_Click(object sender, EventArgs e)
         {
             btnDelete.Visible = true;
+            btnIn.Visible = false;
             tabPages.SelectedTab = tabSanpham;
             Load_Thanhpham("");
             Load_DonviSP();
@@ -781,6 +784,7 @@ namespace DCafe
         private void btnChebien_Click(object sender, EventArgs e)
         {
             btnDelete.Visible = false;
+            btnIn.Visible = false;
             tabPages.SelectedTab = tabChebien;
             Load_SanphamCB();
             Load_DonviSPCB();
@@ -942,6 +946,7 @@ namespace DCafe
                 RefreshHD();
             }
             btnDelete.Visible = false;
+            btnIn.Visible = true;
         }
 
         private void RefreshHD()
@@ -1335,5 +1340,10 @@ namespace DCafe
         }
 
         #endregion
+
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

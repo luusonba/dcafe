@@ -1,3 +1,51 @@
 nhap bao nhieu nguyen lieu tinh ra bao nhieu san pham, doanh thu bao nhieu, loi nhuan bao nhieu, chi phi
 
-them cot chi phi,  gia thanh don gia vao san pham hoa don, chi tiet hoa don
+USE [QuanLy]
+GO
+
+/****** Object:  Table [dbo].[T_Nhaphang]    Script Date: 03/31/2015 18:27:13 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[T_Nhaphang](
+	[ma_nguyenlieu] [nchar](3) NOT NULL,
+	[soluong] [float] NOT NULL,
+	[thoidiem] [date] NOT NULL,
+	[id_nhaphang] [int] IDENTITY(1,1) NOT NULL
+) ON [PRIMARY]
+
+GO
+
+
+
+
+USE [QuanLy]
+GO
+
+/****** Object:  Table [dbo].[T_Nhanvien]    Script Date: 03/31/2015 18:27:02 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[T_Nhanvien](
+	[ma_nv] [nchar](4) NOT NULL,
+	[ten_nhanvien] [nvarchar](60) NOT NULL,
+	[gioitinh] [bit] NOT NULL,
+	[ma_kv] [nchar](2) NOT NULL,
+	[is_admin] [bit] NOT NULL,
+	[password] [nvarchar](50) NOT NULL,
+	[ngayvaolam] [date] NOT NULL,
+	[ngaysinh] [date] NOT NULL,
+	[diachi] [nvarchar](60) NOT NULL,
+	[sdt] [nvarchar](11) NOT NULL
+) ON [PRIMARY]
+
+GO
+
+
+SELECT t1.ma_nguyenlieu, RTRIM(t2.ten_nguyenlieu) AS ten_nguyenlieu, sum(soluong) as soluong, sum(soluong * t2.dongia) as thanhtien, t2.dongia  as dongia FROM T_Nhaphang t1, T_Nguyenlieu t2 WHERE t1.ma_nguyenlieu = t2.ma_nguyenlieu group by t1.ma_nguyenlieu, ten_nguyenlieu, dongia--WHERE t1.thoidiem >= @start and t1.thoidiem <= @end
