@@ -70,8 +70,11 @@
     <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -88,51 +91,57 @@
     <Compile Include="Class\ClsNguyenlieu.cs" />
     <Compile Include="Class\ClsCTHoadon.cs" />
     <Compile Include="Class\ClsHoadon.cs" />
-    <Compile Include="Form\frmImport.cs">
+    <Compile Include="Forms\frmImport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmImport.Designer.cs">
+    <Compile Include="Forms\frmImport.Designer.cs">
       <DependentUpon>frmImport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmLogin.cs">
+    <Compile Include="Forms\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmLogin.designer.cs">
+    <Compile Include="Forms\frmLogin.designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmMain.cs">
+    <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmMain.designer.cs">
+    <Compile Include="Forms\frmMain.designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmSupport.cs">
+    <Compile Include="Forms\frmSupport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmSupport.Designer.cs">
+    <Compile Include="Forms\frmSupport.Designer.cs">
       <DependentUpon>frmSupport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form\frmAccounting.cs">
+    <Compile Include="Forms\frmAccounting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form\frmAccounting.Designer.cs">
+    <Compile Include="Forms\frmAccounting.Designer.cs">
       <DependentUpon>frmAccounting.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form\frmImport.resx">
+    <Compile Include="Reports\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmLogin.resx">
+    <EmbeddedResource Include="Forms\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmMain.resx">
+    <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmSupport.resx">
+    <EmbeddedResource Include="Forms\frmSupport.resx">
       <DependentUpon>frmSupport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form\frmAccounting.resx">
+    <EmbeddedResource Include="Forms\frmAccounting.resx">
       <DependentUpon>frmAccounting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -145,6 +154,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

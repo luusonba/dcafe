@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdDsKhuvuc = new System.Windows.Forms.DataGridView();
+            this.MKV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TKV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPages = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -73,8 +75,6 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
-            this.MKV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TKV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdDsKhuvuc)).BeginInit();
             this.tabPages.SuspendLayout();
@@ -131,6 +131,19 @@
             this.grdDsKhuvuc.Size = new System.Drawing.Size(512, 290);
             this.grdDsKhuvuc.TabIndex = 5;
             this.grdDsKhuvuc.SelectionChanged += new System.EventHandler(this.grdDsKhuvuc_SelectionChanged);
+            // 
+            // MKV
+            // 
+            this.MKV.DataPropertyName = "ma_kv";
+            this.MKV.HeaderText = "Mã khu vực";
+            this.MKV.Name = "MKV";
+            // 
+            // TKV
+            // 
+            this.TKV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TKV.DataPropertyName = "ten_kv";
+            this.TKV.HeaderText = "Tên khu vực";
+            this.TKV.Name = "TKV";
             // 
             // tabPages
             // 
@@ -586,19 +599,6 @@
             this.label18.TabIndex = 76;
             this.label18.Text = "QUẢN LÝ ĐƠN VỊ";
             // 
-            // MKV
-            // 
-            this.MKV.DataPropertyName = "ma_kv";
-            this.MKV.HeaderText = "Mã khu vực";
-            this.MKV.Name = "MKV";
-            // 
-            // TKV
-            // 
-            this.TKV.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TKV.DataPropertyName = "ten_kv";
-            this.TKV.HeaderText = "Tên khu vực";
-            this.TKV.Name = "TKV";
-            // 
             // frmSupport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -606,7 +606,7 @@
             this.ClientSize = new System.Drawing.Size(821, 375);
             this.Controls.Add(this.tabPages);
             this.Name = "frmSupport";
-            this.Text = "Quản lý khu vực";
+            this.Text = "Hỗ trợ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSupport_FormClosed);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdDsKhuvuc)).EndInit();

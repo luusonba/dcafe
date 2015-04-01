@@ -265,7 +265,7 @@
             this.btnIn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.btnIn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnIn.Location = new System.Drawing.Point(782, 666);
+            this.btnIn.Location = new System.Drawing.Point(877, 666);
             this.btnIn.Name = "btnIn";
             this.btnIn.Size = new System.Drawing.Size(75, 27);
             this.btnIn.TabIndex = 15;
@@ -2005,21 +2005,21 @@
             // nhapHangToolStripMenuItem
             // 
             this.nhapHangToolStripMenuItem.Name = "nhapHangToolStripMenuItem";
-            this.nhapHangToolStripMenuItem.Size = new System.Drawing.Size(174, 24);
+            this.nhapHangToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.nhapHangToolStripMenuItem.Text = "Nhập hàng";
             this.nhapHangToolStripMenuItem.Click += new System.EventHandler(this.nhapHangToolStripMenuItem_Click);
             // 
             // hoTroToolStripMenuItem
             // 
             this.hoTroToolStripMenuItem.Name = "hoTroToolStripMenuItem";
-            this.hoTroToolStripMenuItem.Size = new System.Drawing.Size(174, 24);
+            this.hoTroToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.hoTroToolStripMenuItem.Text = "Hỗ trợ";
             this.hoTroToolStripMenuItem.Click += new System.EventHandler(this.hoTroToolStripMenuItem_Click);
             // 
             // kinhDoanhToolStripMenuItem
             // 
             this.kinhDoanhToolStripMenuItem.Name = "kinhDoanhToolStripMenuItem";
-            this.kinhDoanhToolStripMenuItem.Size = new System.Drawing.Size(174, 24);
+            this.kinhDoanhToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.kinhDoanhToolStripMenuItem.Text = "Kinh doanh";
             this.kinhDoanhToolStripMenuItem.Click += new System.EventHandler(this.kinhDoanhToolStripMenuItem_Click);
             // 

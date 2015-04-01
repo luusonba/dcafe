@@ -32,8 +32,15 @@ namespace DCafe
             rbnBanra.Checked = true;
             cbNguyenlieu.Enabled = false;
             DateTime day = DateTime.Now;
-            dtStart.Value = new DateTime(day.Year, day.Month,1);
-            dtEnd.Value = new DateTime(day.Year, day.Month, DateTime.DaysInMonth(day.Year,day.Month));
+            DateTime start = new DateTime(day.Year, day.Month, 1);
+            DateTime end = new DateTime(day.Year, day.Month, DateTime.DaysInMonth(day.Year, day.Month));
+
+            dtStart.Value = start;
+            dtEnd.Value = end;
+
+            dtStartThu.Value = start;
+            dtEndThu.Value = end;
+
             Load_Nguyenlieu();
         }
 
@@ -54,8 +61,6 @@ namespace DCafe
             {
                 sql = "SELECT t1.ma_nguyenlieu, t3.ten_nguyenlieu, t3.dongia, SUM(t1.soluong) AS soluong, SUM(t1.soluong) * t3.dongia AS thanhtien FROM t_chebien t1, t_cthoadon t2, t_nguyenlieu t3, t_hoadon t4 WHERE t1.ma_thanhpham = t2.ma_thanhpham AND t1.ma_nguyenlieu = t3.ma_nguyenlieu AND t2.ma_hd = t4.ma_hd AND t4.thoidiem >= @start AND t4.thoidiem <= @end " + and + " GROUP BY t1.ma_nguyenlieu, t3.dongia, t3.ten_nguyenlieu";
             }
-lasthour i day
-            //SELECT t1.ma_nguyenlieu, RTRIM(t2.ten_nguyenlieu) AS ten_nguyenlieu, SUM(soluong) AS soluong, SUM(soluong) * t2.dongia AS thanhtien, t2.dongia  AS dongia FROM T_Nhaphang t1 LEFT OUTER JOIN T_Nguyenlieu t2 ON t1.ma_nguyenlieu = t2.ma_nguyenlieu WHERE DATEADD(dd,0, t1.thoidiem) >= DATEADD(dd,0, '3/1/2015 12:00:00 AM') AND t1.thoidiem <= '3/31/2015 11:00:00 PM' GROUP BY t1.ma_nguyenlieu, ten_nguyenlieu, dongia
 
             SqlDataAdapter ada = new SqlDataAdapter(sql, sqlCon);
             ada.SelectCommand.Parameters.AddWithValue("@start", dtStart.Value);
@@ -69,6 +74,44 @@ lasthour i day
             ada.Fill(dt);
             grdTongchi.DataSource = dt;
             sqlCon.Close();
+            LoadTextTongChi();
+        }
+
+        private void LoadTextTongChi()
+        {
+            int tong = 0;
+            foreach (DataGridViewRow row in grdTongchi.Rows)
+            {
+                tong = tong + Convert.ToInt32(row.Cells["cThanhtien"].Value);
+            }
+            txtTongchi.Text = tong.ToString();
+        }
+
+        private void LoadTongThu()
+        {
+
+            string sql = "SELECT t1.ma_hd, SUM(t1.soluong*t2.dongia) AS thanhtien, t3.thoidiem FROM T_CTHoadon t1, T_Thanhpham t2, T_Hoadon t3 WHERE t1.ma_thanhpham = t2.ma_thanhpham AND t1.ma_hd = t3.ma_hd AND t3.thoidiem >= @start AND t3.thoidiem <= @end GROUP BY t1.ma_hd, t3.thoidiem";
+            
+            SqlDataAdapter ada = new SqlDataAdapter(sql, sqlCon);
+            ada.SelectCommand.Parameters.AddWithValue("@start", dtStartThu.Value);
+            ada.SelectCommand.Parameters.AddWithValue("@end", dtEndThu.Value);
+            
+            sqlCon.Open();
+            DataTable dt = new DataTable();
+            ada.Fill(dt);
+            grdTongThu.DataSource = dt;
+            sqlCon.Close();
+            LoadTextTongThu();
+        }
+
+        private void LoadTextTongThu()
+        {
+            int tong = 0;
+            foreach (DataGridViewRow row in grdTongThu.Rows)
+            {
+                tong = tong + Convert.ToInt32(row.Cells["cThanhtienThu"].Value);
+            }
+            txtTongThu.Text = tong.ToString();
         }
 
         private void Load_Nguyenlieu()
@@ -100,6 +143,11 @@ lasthour i day
         private void btnTim_Click(object sender, EventArgs e)
         {
             LoadTongChi();
+        }
+
+        private void btnTimThu_Click(object sender, EventArgs e)
+        {
+            LoadTongThu();
         }
     }
 }

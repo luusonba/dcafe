@@ -1343,7 +1343,17 @@ namespace DCafe
 
         private void btnIn_Click(object sender, EventArgs e)
         {
-
+            if (grdHoadon.Rows.Count > 0)
+            {
+                Save_Hoadon();
+                Save_CTHoadon();
+                RefreshHD();
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn sản phẩm.");
+                return;
+            }
         }
     }
 }
