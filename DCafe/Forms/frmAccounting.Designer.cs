@@ -33,6 +33,9 @@
             this.btnInThu = new System.Windows.Forms.Button();
             this.btnTimThu = new System.Windows.Forms.Button();
             this.grdTongThu = new System.Windows.Forms.DataGridView();
+            this.cMahoadon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cThoidiemThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cThanhtienThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTongThu = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.dtEndThu = new System.Windows.Forms.DateTimePicker();
@@ -61,9 +64,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabKinhdoanh = new System.Windows.Forms.TabControl();
-            this.cMahoadon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cThoidiemThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cThanhtienThu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabTongthu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdTongThu)).BeginInit();
             this.tabTongchi.SuspendLayout();
@@ -139,6 +139,25 @@
             this.grdTongThu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdTongThu.Size = new System.Drawing.Size(647, 385);
             this.grdTongThu.TabIndex = 102;
+            // 
+            // cMahoadon
+            // 
+            this.cMahoadon.DataPropertyName = "ma_hd";
+            this.cMahoadon.HeaderText = "Mã hóa đơn";
+            this.cMahoadon.Name = "cMahoadon";
+            // 
+            // cThoidiemThu
+            // 
+            this.cThoidiemThu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cThoidiemThu.DataPropertyName = "thoidiem";
+            this.cThoidiemThu.HeaderText = "Thời điểm";
+            this.cThoidiemThu.Name = "cThoidiemThu";
+            // 
+            // cThanhtienThu
+            // 
+            this.cThanhtienThu.DataPropertyName = "thanhtien";
+            this.cThanhtienThu.HeaderText = "Thành tiền";
+            this.cThanhtienThu.Name = "cThanhtienThu";
             // 
             // txtTongThu
             // 
@@ -250,6 +269,7 @@
             this.btnIn.TabIndex = 101;
             this.btnIn.Text = "In";
             this.btnIn.UseVisualStyleBackColor = false;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
             // 
             // btnTim
             // 
@@ -455,25 +475,6 @@
             this.tabKinhdoanh.SelectedIndex = 0;
             this.tabKinhdoanh.Size = new System.Drawing.Size(923, 538);
             this.tabKinhdoanh.TabIndex = 1;
-            // 
-            // cMahoadon
-            // 
-            this.cMahoadon.DataPropertyName = "ma_hd";
-            this.cMahoadon.HeaderText = "Mã hóa đơn";
-            this.cMahoadon.Name = "cMahoadon";
-            // 
-            // cThoidiemThu
-            // 
-            this.cThoidiemThu.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cThoidiemThu.DataPropertyName = "thoidiem";
-            this.cThoidiemThu.HeaderText = "Thời điểm";
-            this.cThoidiemThu.Name = "cThoidiemThu";
-            // 
-            // cThanhtienThu
-            // 
-            this.cThanhtienThu.DataPropertyName = "thanhtien";
-            this.cThanhtienThu.HeaderText = "Thành tiền";
-            this.cThanhtienThu.Name = "cThanhtienThu";
             // 
             // frmAccounting
             // 

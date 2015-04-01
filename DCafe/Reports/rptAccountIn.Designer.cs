@@ -1,6 +1,6 @@
 ﻿namespace DCafe.Reports
 {
-    partial class Form1
+    partial class rptAccountIn
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.rptAccIn = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
-            // reportViewer1
+            // rptAccIn
             // 
-            this.reportViewer1.Location = new System.Drawing.Point(3, 3);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(396, 246);
-            this.reportViewer1.TabIndex = 0;
+            this.rptAccIn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rptAccIn.Location = new System.Drawing.Point(0, 0);
+            this.rptAccIn.Name = "rptAccIn";
+            this.rptAccIn.Size = new System.Drawing.Size(895, 503);
+            this.rptAccIn.TabIndex = 0;
             // 
-            // Form1
+            // rptAccountIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.reportViewer1);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ClientSize = new System.Drawing.Size(895, 503);
+            this.Controls.Add(this.rptAccIn);
+            this.Name = "rptAccountIn";
+            this.Text = "In Tổng chi";
+            this.Load += new System.EventHandler(this.rptAccountIn_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private Microsoft.Reporting.WinForms.ReportViewer rptAccIn;
     }
 }

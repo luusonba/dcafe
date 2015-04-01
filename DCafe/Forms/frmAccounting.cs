@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using DCafe.Reports;
 
 namespace DCafe
 {
@@ -148,6 +149,12 @@ namespace DCafe
         private void btnTimThu_Click(object sender, EventArgs e)
         {
             LoadTongThu();
+        }
+
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            rptAccountIn rpt = new rptAccountIn();
+            rpt.Show();
         }
     }
 }
