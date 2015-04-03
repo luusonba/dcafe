@@ -14,3 +14,8 @@ D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.exe
 D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.pdb
 D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.csprojResolveAssemblyReference.cache
 D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.frmImport.resources
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.Reports.rptAccountIn.resources
+D:\Study\DCafe\trunk\DCafe\obj\Debug\RdlCompile.cache
+D:\Study\DCafe\trunk\DCafe\obj\Debug\RdlCompile.compiled
+D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.exe.config
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.Reports.rptAccountOut.resources

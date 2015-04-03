@@ -529,7 +529,7 @@ namespace DCafe
 
             txtMaNl.Text = clsNguyenlieu.Ma_Nguyenlieu;
             txtTenNl.Text = clsNguyenlieu.Ten_Nguyenlieu;
-            txtDongia.Text = clsNguyenlieu.Dongia.ToString();
+            txtDongia.Text = string.Format("{0:#,##0}", double.Parse(clsNguyenlieu.Dongia.ToString()));
             cbDonvi.SelectedValue = clsNguyenlieu.Donvi;
         }
 
@@ -647,7 +647,7 @@ namespace DCafe
 
             txtMa_Sanpham.Text = clsThanhpham.Ma_Thanhpham;
             txtTen_Sanpham.Text = clsThanhpham.Ten_Thanhpham;
-            txtDongiaSP.Text = clsThanhpham.Dongia.ToString();
+            txtDongiaSP.Text = string.Format("{0:#,##0}", double.Parse(clsThanhpham.Dongia.ToString()));
             txtGiaban.Text = clsThanhpham.Giaban.ToString();
             cbDonviSP.SelectedValue = clsThanhpham.Donvi;
             dtThoidiemSP.Value = clsThanhpham.Thoidiem;
@@ -713,7 +713,7 @@ namespace DCafe
             DataTable dt = new DataTable();
             ada.Fill(dt);
             txtMaSPCB.Text = (dt.Rows[0]["ma_thanhpham"].ToString());
-            txtGiabanSPCB.Text = (dt.Rows[0]["giaban"].ToString());
+            txtGiabanSPCB.Text = string.Format("{0:#,##0}", double.Parse(dt.Rows[0]["giaban"].ToString()));
             cbDonviSPCB.SelectedValue = dt.Rows[0]["donvi"];
             dtThoidiemSPCB.Value = Convert.ToDateTime((dt.Rows[0]["thoidiem"].ToString()));
             sqlCon.Close();
@@ -744,7 +744,7 @@ namespace DCafe
             {
                 tong = tong + Convert.ToInt32(row.Cells[4].Value);
             }
-            txtTongDongia.Text = tong.ToString();
+            txtTongDongia.Text = string.Format("{0:#,##0}", double.Parse(tong.ToString()));
         }
 
         private void Load_DSNL(String ma_thanhpham)
@@ -1311,7 +1311,7 @@ namespace DCafe
             {
                 tong = tong + Convert.ToInt32(row.Cells[5].Value);
             }
-            txtThanhtien.Text = tong.ToString();
+            txtThanhtien.Text = string.Format("{0:#,##0}", double.Parse(tong.ToString()));
         }
 
         private void dtThoidiemHD_ValueChanged(object sender, EventArgs e)
@@ -1354,6 +1354,11 @@ namespace DCafe
                 MessageBox.Show("Chưa chọn sản phẩm.");
                 return;
             }
+        }
+
+        private void txtDongia_Leave(object sender, EventArgs e)
+        {
+            txtDongia.Text = string.Format("{0:#,##0}", double.Parse(txtDongia.Text));
         }
     }
 }

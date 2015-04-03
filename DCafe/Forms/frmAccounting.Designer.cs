@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAccounting));
             this.tabTongthu = new System.Windows.Forms.TabPage();
             this.btnInThu = new System.Windows.Forms.Button();
@@ -103,6 +105,7 @@
             this.btnInThu.TabIndex = 115;
             this.btnInThu.Text = "In";
             this.btnInThu.UseVisualStyleBackColor = false;
+            this.btnInThu.Click += new System.EventHandler(this.btnInThu_Click);
             // 
             // btnTimThu
             // 
@@ -156,6 +159,8 @@
             // cThanhtienThu
             // 
             this.cThanhtienThu.DataPropertyName = "thanhtien";
+            dataGridViewCellStyle1.Format = "N0";
+            this.cThanhtienThu.DefaultCellStyle = dataGridViewCellStyle1;
             this.cThanhtienThu.HeaderText = "Thành tiền";
             this.cThanhtienThu.Name = "cThanhtienThu";
             // 
@@ -338,6 +343,9 @@
             // cThanhtien
             // 
             this.cThanhtien.DataPropertyName = "thanhtien";
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.cThanhtien.DefaultCellStyle = dataGridViewCellStyle2;
             this.cThanhtien.HeaderText = "Thành tiền";
             this.cThanhtien.Name = "cThanhtien";
             // 
@@ -517,11 +525,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnIn;
         private System.Windows.Forms.Button btnTim;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cManguyenlieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cTennguyenlieu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cSoluong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cDongia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cThanhtien;
         private System.Windows.Forms.Button btnInThu;
         private System.Windows.Forms.Button btnTimThu;
         private System.Windows.Forms.DataGridView grdTongThu;
@@ -535,6 +538,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cMahoadon;
         private System.Windows.Forms.DataGridViewTextBoxColumn cThoidiemThu;
         private System.Windows.Forms.DataGridViewTextBoxColumn cThanhtienThu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cManguyenlieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cTennguyenlieu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cSoluong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cDongia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cThanhtien;
 
     }
 }

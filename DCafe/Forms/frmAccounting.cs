@@ -84,8 +84,8 @@ namespace DCafe
             foreach (DataGridViewRow row in grdTongchi.Rows)
             {
                 tong = tong + Convert.ToInt32(row.Cells["cThanhtien"].Value);
-            }
-            txtTongchi.Text = tong.ToString();
+            }            
+            txtTongchi.Text = string.Format("{0:#,##0}", double.Parse(tong.ToString()));
         }
 
         private void LoadTongThu()
@@ -112,7 +112,7 @@ namespace DCafe
             {
                 tong = tong + Convert.ToInt32(row.Cells["cThanhtienThu"].Value);
             }
-            txtTongThu.Text = tong.ToString();
+            txtTongThu.Text = string.Format("{0:#,##0}", double.Parse(tong.ToString()));
         }
 
         private void Load_Nguyenlieu()
@@ -141,19 +141,45 @@ namespace DCafe
             }
         }
 
+        private bool _chkTenhang = false;
+        private bool _rbnNhapvao = false;
+        private object _dtStart = null;
+        private object _dtEnd = null;
+        private object _cbNguyenlieu = null;  
+
         private void btnTim_Click(object sender, EventArgs e)
         {
+            _chkTenhang = chkTenhang.Checked;
+            _rbnNhapvao = rbnNhapvao.Checked;
+            _dtStart = dtStart.Value;
+            _dtEnd = dtEnd.Value;
+            _cbNguyenlieu = cbNguyenlieu.SelectedValue;
             LoadTongChi();
         }
 
         private void btnTimThu_Click(object sender, EventArgs e)
         {
+            _dtStart = dtStartThu.Value;
+            _dtEnd = dtEndThu.Value;
             LoadTongThu();
         }
 
         private void btnIn_Click(object sender, EventArgs e)
         {
             rptAccountIn rpt = new rptAccountIn();
+            rpt.chkTenhang = _chkTenhang;
+            rpt.rbnNhapvao = _rbnNhapvao;
+            rpt.dtStart = _dtStart;
+            rpt.dtEnd = _dtEnd;
+            rpt.cbNguyenlieu = _cbNguyenlieu;
+            rpt.Show();
+        }
+
+        private void btnInThu_Click(object sender, EventArgs e)
+        {
+            rptAccountOut rpt = new rptAccountOut();
+            rpt.dtStart = _dtStart;
+            rpt.dtEnd = _dtEnd;
             rpt.Show();
         }
     }

@@ -24,25 +24,7 @@ namespace DCafe.Reports
         public bool rbnNhapvao = false;
         public object dtStart = null;
         public object dtEnd = null;
-        public object cbNguyenlieu = null;
-
-        private void FLoad()
-        {
-            string sql = "SELECT * from T_Nguyenlieu";
-            SqlDataAdapter ada = new SqlDataAdapter(sql, sqlCon);
-            
-            sqlCon.Open();
-            DataSet ds = new DataSet();
-            ada.Fill(ds,"Dataset1");
-
-            rptAccIn.ProcessingMode = ProcessingMode.Local;
-            rptAccIn.LocalReport.DataSources.Clear();
-            rptAccIn.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds.Tables[0]));
-            rptAccIn.LocalReport.Refresh();
-            rptAccIn.RefreshReport();
-
-            sqlCon.Close();
-        }
+        public object cbNguyenlieu = null;       
 
         private void LoadTongChi()
         {
@@ -71,7 +53,12 @@ namespace DCafe.Reports
             }
             sqlCon.Open();
             DataSet ds = new DataSet();
-            ada.Fill(ds);
+            ada.Fill(ds,"DsQuanLy");
+
+            ds.Tables[0].TableName = "T_TongNhap";
+
+            this.T_TongNhapbindingSource.DataSource = ds;
+            this.rptAccIn.RefreshReport();
 
             sqlCon.Close();
         }
@@ -80,8 +67,14 @@ namespace DCafe.Reports
         {
             Conn conn = new Conn();
             sqlCon = conn.createConn();
-            FLoad();
-            this.rptAccIn.RefreshReport();
+
+            System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
+            ps.Landscape = true;
+            ps.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1170);
+            ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A4;
+            rptAccIn.SetPageSettings(ps);
+
+            LoadTongChi();
         }
     }
 }
