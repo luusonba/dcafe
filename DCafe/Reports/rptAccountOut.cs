@@ -21,7 +21,7 @@ namespace DCafe.Reports
         }
                 
         public object dtStart = null;
-        public object dtEnd = null;     
+        public object dtEnd = null;
 
         private void LoadTongChi()
         {

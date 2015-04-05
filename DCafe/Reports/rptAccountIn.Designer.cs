@@ -29,36 +29,37 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource rptDsQuanLy = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.rptAccIn = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.DsQuanLy = new DCafe.Dataset.DsQuanLy();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptAccountIn));
             this.T_TongNhapbindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.DsQuanLy = new DCafe.Dataset.DsQuanLy();
+            this.rptAccIn = new Microsoft.Reporting.WinForms.ReportViewer();
             this.t_TongNhapTableAdapter = new DCafe.Dataset.DsQuanLyTableAdapters.T_TongNhapTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.DsQuanLy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.T_TongNhapbindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DsQuanLy)).BeginInit();
             this.SuspendLayout();
             // 
-            // rptAccIn
+            // T_TongNhapbindingSource
             // 
-            this.rptAccIn.Dock = System.Windows.Forms.DockStyle.Fill;
-            rptDsQuanLy.Name = "DsQuanLy";
-            rptDsQuanLy.Value = this.T_TongNhapbindingSource;
-            this.rptAccIn.LocalReport.DataSources.Add(rptDsQuanLy);
-            this.rptAccIn.LocalReport.ReportEmbeddedResource = "DCafe.Reports.TongChi.rdlc";
-            this.rptAccIn.Location = new System.Drawing.Point(0, 0);
-            this.rptAccIn.Name = "rptAccIn";
-            this.rptAccIn.Size = new System.Drawing.Size(895, 503);
-            this.rptAccIn.TabIndex = 0;
+            this.T_TongNhapbindingSource.DataMember = "T_TongNhap";
+            this.T_TongNhapbindingSource.DataSource = this.DsQuanLy;
             // 
             // DsQuanLy
             // 
             this.DsQuanLy.DataSetName = "DsQuanLy";
             this.DsQuanLy.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // T_TongNhapbindingSource
+            // rptAccIn
             // 
-            this.T_TongNhapbindingSource.DataMember = "T_TongNhap";
-            this.T_TongNhapbindingSource.DataSource = this.DsQuanLy;
+            this.rptAccIn.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "DsQuanLy";
+            reportDataSource1.Value = this.T_TongNhapbindingSource;
+            this.rptAccIn.LocalReport.DataSources.Add(reportDataSource1);
+            this.rptAccIn.LocalReport.ReportEmbeddedResource = "DCafe.Reports.TongChi.rdlc";
+            this.rptAccIn.Location = new System.Drawing.Point(0, 0);
+            this.rptAccIn.Name = "rptAccIn";
+            this.rptAccIn.Size = new System.Drawing.Size(895, 503);
+            this.rptAccIn.TabIndex = 0;
             // 
             // t_TongNhapTableAdapter
             // 
@@ -70,11 +71,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 503);
             this.Controls.Add(this.rptAccIn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "rptAccountIn";
             this.Text = "In Tổng chi";
             this.Load += new System.EventHandler(this.rptAccountIn_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DsQuanLy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.T_TongNhapbindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DsQuanLy)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -24,7 +24,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -96,6 +96,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsQuanLy.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\DsQuanLy1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsQuanLy1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +145,12 @@
     <Compile Include="Reports\rptAccountIn.Designer.cs">
       <DependentUpon>rptAccountIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rptBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\rptBill.Designer.cs">
+      <DependentUpon>rptBill.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Forms\frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,8 +176,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\HoaDon.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptAccountOut.resx">
       <DependentUpon>rptAccountOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptBill.resx">
+      <DependentUpon>rptBill.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\TongThu.rdlc" />
     <EmbeddedResource Include="Reports\TongChi.rdlc" />
@@ -185,8 +202,20 @@
     <None Include="Dataset\DsQuanLy.xss">
       <DependentUpon>DsQuanLy.xsd</DependentUpon>
     </None>
+    <None Include="Dataset\DsQuanLy1.xsc">
+      <DependentUpon>DsQuanLy1.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\DsQuanLy1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsQuanLy1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\DsQuanLy1.xss">
+      <DependentUpon>DsQuanLy1.xsd</DependentUpon>
+    </None>
     <None Include="Properties\DataSources\DCafe.Dataset.DsQuanLy+T_TongThuDataTable.datasource" />
     <None Include="Properties\DataSources\DCafe.Dataset.DsQuanLy.datasource" />
+    <None Include="Properties\DataSources\DCafe.Dataset.DsQuanLy1.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using DCafe.Reports;
 
 namespace DCafe
 {
@@ -1142,7 +1143,7 @@ namespace DCafe
                                 break;
                         }
                     }
-                    Load_CTHoadon(cbMahoadon.SelectedValue.ToString());                    
+                    ////////Load_CTHoadon(cbMahoadon.SelectedValue.ToString());                    
                 }
             }
             sqlCon.Close();
@@ -1228,6 +1229,7 @@ namespace DCafe
                 MessageBox.Show("Chưa nhập số lượng.");            
             }
             txtSoluong.Text = "";
+            cbSanpham.Focus();
             LoadTongThanhtien();
             this.grdHoadon.SelectionChanged += new System.EventHandler(this.grdHoadon_SelectionChanged);
         }
@@ -1347,13 +1349,22 @@ namespace DCafe
             {
                 Save_Hoadon();
                 Save_CTHoadon();
-                RefreshHD();
+                ////////RefreshHD();
             }
             else
             {
                 MessageBox.Show("Chưa chọn sản phẩm.");
                 return;
             }
+
+            rptBill rpt = new rptBill();
+            rpt.so_hoadon = cbMahoadon.Text;
+            rpt.soban = cbSoban.SelectedValue.ToString();
+            rpt.ten_khuvuc = cbKhuvuc.Text;
+            rpt.ten_nhanvien = cbNhanvien.Text;
+            rpt.Show();
+
+            RefreshHD();
         }
 
         private void txtDongia_Leave(object sender, EventArgs e)
