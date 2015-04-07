@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSupport));
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.grdDsKhuvuc = new System.Windows.Forms.DataGridView();
@@ -605,9 +606,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(821, 375);
             this.Controls.Add(this.tabPages);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSupport";
             this.Text = "Hỗ trợ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSupport_FormClosed);
+            this.Load += new System.EventHandler(this.frmSupport_Load);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdDsKhuvuc)).EndInit();
             this.tabPages.ResumeLayout(false);

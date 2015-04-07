@@ -17,7 +17,8 @@ namespace DCafe
         public frmSupport()
         {
             InitializeComponent();
-            //Load_Khuvuc("");
+            Conn conn = new Conn();
+            sqlCon = conn.createConn();
         }
 
         private void Load_Khuvuc(string where)
@@ -260,6 +261,13 @@ namespace DCafe
         {
             Form frm = (Form)Application.OpenForms["frmMain"];
             frm.Visible = true;
+        }
+
+        private void frmSupport_Load(object sender, EventArgs e)
+        {
+            Load_Khuvuc("");
+            Load_DSDonvi("");
+            Load_DSBan("");
         }
     }
 }
