@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using DCafe.Reports;
+using DCafe.Forms;
 
 namespace DCafe
 {
@@ -1370,6 +1371,13 @@ namespace DCafe
         private void txtDongia_Leave(object sender, EventArgs e)
         {
             txtDongia.Text = string.Format("{0:#,##0}", double.Parse(txtDongia.Text));
+        }
+        
+        private void grdDsSanpham_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            frmDetailProduct frm = new frmDetailProduct();
+            frm.ma_thanhpham = grdDsSanpham.CurrentRow.Cells[0].Value.ToString();
+            frm.Show();
         }
     }
 }

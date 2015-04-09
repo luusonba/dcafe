@@ -142,6 +142,7 @@
             this.grdTongThu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdTongThu.Size = new System.Drawing.Size(647, 385);
             this.grdTongThu.TabIndex = 102;
+            this.grdTongThu.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdTongThu_CellDoubleClick);
             // 
             // cMahoadon
             // 

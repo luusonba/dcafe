@@ -106,9 +106,9 @@
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox2.Controls.Add(this.grdDsKhuvuc);
-            this.groupBox2.Location = new System.Drawing.Point(281, 28);
+            this.groupBox2.Location = new System.Drawing.Point(265, 28);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(524, 315);
+            this.groupBox2.Size = new System.Drawing.Size(540, 315);
             this.groupBox2.TabIndex = 75;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Danh sách ";
@@ -127,9 +127,10 @@
             this.TKV});
             this.grdDsKhuvuc.Location = new System.Drawing.Point(6, 19);
             this.grdDsKhuvuc.Name = "grdDsKhuvuc";
+            this.grdDsKhuvuc.ReadOnly = true;
             this.grdDsKhuvuc.RowHeadersVisible = false;
             this.grdDsKhuvuc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdDsKhuvuc.Size = new System.Drawing.Size(512, 290);
+            this.grdDsKhuvuc.Size = new System.Drawing.Size(528, 290);
             this.grdDsKhuvuc.TabIndex = 5;
             this.grdDsKhuvuc.SelectionChanged += new System.EventHandler(this.grdDsKhuvuc_SelectionChanged);
             // 
@@ -138,6 +139,7 @@
             this.MKV.DataPropertyName = "ma_kv";
             this.MKV.HeaderText = "Mã khu vực";
             this.MKV.Name = "MKV";
+            this.MKV.ReadOnly = true;
             // 
             // TKV
             // 
@@ -145,6 +147,7 @@
             this.TKV.DataPropertyName = "ten_kv";
             this.TKV.HeaderText = "Tên khu vực";
             this.TKV.Name = "TKV";
+            this.TKV.ReadOnly = true;
             // 
             // tabPages
             // 
@@ -208,7 +211,7 @@
             // 
             this.lblTen_nv.AutoSize = true;
             this.lblTen_nv.BackColor = System.Drawing.Color.Transparent;
-            this.lblTen_nv.Location = new System.Drawing.Point(13, 56);
+            this.lblTen_nv.Location = new System.Drawing.Point(17, 56);
             this.lblTen_nv.Name = "lblTen_nv";
             this.lblTen_nv.Size = new System.Drawing.Size(68, 13);
             this.lblTen_nv.TabIndex = 78;
@@ -218,7 +221,7 @@
             // 
             this.lblManv.AutoSize = true;
             this.lblManv.BackColor = System.Drawing.Color.Transparent;
-            this.lblManv.Location = new System.Drawing.Point(17, 22);
+            this.lblManv.Location = new System.Drawing.Point(21, 22);
             this.lblManv.Name = "lblManv";
             this.lblManv.Size = new System.Drawing.Size(64, 13);
             this.lblManv.TabIndex = 77;
@@ -267,7 +270,7 @@
             // 
             this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox3.Controls.Add(this.grdDsBan);
-            this.groupBox3.Location = new System.Drawing.Point(264, 31);
+            this.groupBox3.Location = new System.Drawing.Point(265, 28);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(541, 315);
             this.groupBox3.TabIndex = 78;
@@ -290,33 +293,41 @@
             this.Column3});
             this.grdDsBan.Location = new System.Drawing.Point(6, 19);
             this.grdDsBan.Name = "grdDsBan";
+            this.grdDsBan.ReadOnly = true;
             this.grdDsBan.RowHeadersVisible = false;
+            this.grdDsBan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDsBan.Size = new System.Drawing.Size(529, 290);
             this.grdDsBan.TabIndex = 5;
+            this.grdDsBan.SelectionChanged += new System.EventHandler(this.grdDsBan_SelectionChanged);
             // 
             // MB
             // 
             this.MB.DataPropertyName = "maban";
             this.MB.HeaderText = "Mã bàn";
             this.MB.Name = "MB";
+            this.MB.ReadOnly = true;
             // 
             // Column1
             // 
             this.Column1.DataPropertyName = "tenban";
             this.Column1.HeaderText = "Tên bàn";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // Column2
             // 
             this.Column2.DataPropertyName = "ma_kv";
             this.Column2.HeaderText = "Mã khu vực";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Visible = false;
             // 
             // Column3
             // 
             this.Column3.DataPropertyName = "ten_kv";
             this.Column3.HeaderText = "Tên khu vực";
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // groupBox4
             // 
@@ -330,7 +341,7 @@
             this.groupBox4.Controls.Add(this.txtMaban);
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.Controls.Add(this.label3);
-            this.groupBox4.Location = new System.Drawing.Point(6, 31);
+            this.groupBox4.Location = new System.Drawing.Point(7, 28);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(252, 315);
             this.groupBox4.TabIndex = 77;
@@ -350,7 +361,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(24, 93);
+            this.label5.Location = new System.Drawing.Point(38, 93);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 87;
@@ -361,7 +372,7 @@
             this.btnXoaban.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnXoaban.BackColor = System.Drawing.Color.Transparent;
             this.btnXoaban.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaban.Location = new System.Drawing.Point(165, 281);
+            this.btnXoaban.Location = new System.Drawing.Point(168, 281);
             this.btnXoaban.Name = "btnXoaban";
             this.btnXoaban.Size = new System.Drawing.Size(75, 28);
             this.btnXoaban.TabIndex = 86;
@@ -373,7 +384,7 @@
             this.btnThemban.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnThemban.BackColor = System.Drawing.Color.Transparent;
             this.btnThemban.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemban.Location = new System.Drawing.Point(70, 281);
+            this.btnThemban.Location = new System.Drawing.Point(73, 281);
             this.btnThemban.Name = "btnThemban";
             this.btnThemban.Size = new System.Drawing.Size(75, 28);
             this.btnThemban.TabIndex = 85;
@@ -400,7 +411,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(24, 56);
+            this.label2.Location = new System.Drawing.Point(38, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 82;
@@ -410,7 +421,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(28, 22);
+            this.label3.Location = new System.Drawing.Point(42, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 81;
@@ -421,7 +432,7 @@
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label12.Location = new System.Drawing.Point(311, 4);
+            this.label12.Location = new System.Drawing.Point(308, 3);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(136, 24);
             this.label12.TabIndex = 76;
@@ -452,7 +463,7 @@
             this.groupBox6.Controls.Add(this.label6);
             this.groupBox6.Controls.Add(this.button1);
             this.groupBox6.Controls.Add(this.button2);
-            this.groupBox6.Location = new System.Drawing.Point(9, 28);
+            this.groupBox6.Location = new System.Drawing.Point(7, 28);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(252, 315);
             this.groupBox6.TabIndex = 79;
@@ -462,7 +473,7 @@
             // txtLoaiDV
             // 
             this.txtLoaiDV.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtLoaiDV.Location = new System.Drawing.Point(87, 95);
+            this.txtLoaiDV.Location = new System.Drawing.Point(87, 90);
             this.txtLoaiDV.Name = "txtLoaiDV";
             this.txtLoaiDV.Size = new System.Drawing.Size(156, 20);
             this.txtLoaiDV.TabIndex = 82;
@@ -471,7 +482,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(21, 98);
+            this.label7.Location = new System.Drawing.Point(25, 93);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 13);
             this.label7.TabIndex = 81;
@@ -480,7 +491,7 @@
             // txtTenDV
             // 
             this.txtTenDV.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtTenDV.Location = new System.Drawing.Point(87, 56);
+            this.txtTenDV.Location = new System.Drawing.Point(87, 53);
             this.txtTenDV.Name = "txtTenDV";
             this.txtTenDV.Size = new System.Drawing.Size(156, 20);
             this.txtTenDV.TabIndex = 80;
@@ -497,7 +508,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(22, 59);
+            this.label4.Location = new System.Drawing.Point(26, 56);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 78;
@@ -507,7 +518,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(26, 22);
+            this.label6.Location = new System.Drawing.Point(30, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 77;
@@ -543,7 +554,7 @@
             // 
             this.groupBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox5.Controls.Add(this.grdDsDonvi);
-            this.groupBox5.Location = new System.Drawing.Point(267, 28);
+            this.groupBox5.Location = new System.Drawing.Point(265, 28);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(540, 315);
             this.groupBox5.TabIndex = 78;
@@ -565,6 +576,7 @@
             this.Column5});
             this.grdDsDonvi.Location = new System.Drawing.Point(6, 19);
             this.grdDsDonvi.Name = "grdDsDonvi";
+            this.grdDsDonvi.ReadOnly = true;
             this.grdDsDonvi.RowHeadersVisible = false;
             this.grdDsDonvi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdDsDonvi.Size = new System.Drawing.Size(528, 290);
@@ -576,25 +588,28 @@
             this.MADV.DataPropertyName = "ma_donvi";
             this.MADV.HeaderText = "Mã đơn vị";
             this.MADV.Name = "MADV";
+            this.MADV.ReadOnly = true;
             // 
             // Column4
             // 
             this.Column4.DataPropertyName = "ten_donvi";
             this.Column4.HeaderText = "Tên đơn vị";
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
             this.Column5.DataPropertyName = "loai_donvi";
             this.Column5.HeaderText = "Loại đơn vị";
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // label18
             // 
             this.label18.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label18.Location = new System.Drawing.Point(311, 4);
+            this.label18.Location = new System.Drawing.Point(308, 3);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(161, 24);
             this.label18.TabIndex = 76;
@@ -665,10 +680,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbKhuvuc;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtLoaiDV;
         private System.Windows.Forms.Label label7;
@@ -683,5 +694,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn MKV;
         private System.Windows.Forms.DataGridViewTextBoxColumn TKV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }

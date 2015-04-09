@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using DCafe.Reports;
+using DCafe.Forms;
 
 namespace DCafe
 {
@@ -181,6 +182,13 @@ namespace DCafe
             rpt.dtStart = _dtStart;
             rpt.dtEnd = _dtEnd;
             rpt.Show();
+        }
+
+        private void grdTongThu_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            frmDetailBill frm = new frmDetailBill();
+            frm.ma_hd = grdTongThu.CurrentRow.Cells[0].Value.ToString();
+            frm.Show();
         }
     }
 }

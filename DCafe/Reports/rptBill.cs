@@ -35,8 +35,9 @@ namespace DCafe.Reports
             ps.PaperSize = new System.Drawing.Printing.PaperSize("BILL", 100, 300);
             ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A6;
             rptHoadon.SetPageSettings(ps);
-
+            
             LoadHoadon();
+            ////this.Close();
         }
 
         private void LoadHoadon()

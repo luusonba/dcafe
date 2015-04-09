@@ -12,7 +12,7 @@ namespace DCafe
 {
     public partial class frmSupport : Form
     {
-        public SqlConnection sqlCon;
+        private SqlConnection sqlCon;
 
         public frmSupport()
         {
@@ -92,10 +92,10 @@ namespace DCafe
 
         private void grdDsKhuvuc_SelectionChanged(object sender, System.EventArgs e)
         {
-            foreach (DataGridViewRow row in grdDsKhuvuc.SelectedRows)
+            if (grdDsKhuvuc.CurrentRow != null)
             {
-                txtTen_kv.Text = row.Cells[0].Value.ToString();
-                txtMa_kv.Text = row.Cells[1].Value.ToString();              
+                txtMa_kv.Text = grdDsKhuvuc.CurrentRow.Cells[0].Value.ToString();
+                txtTen_kv.Text = grdDsKhuvuc.CurrentRow.Cells[1].Value.ToString();
             }
         }
 
@@ -107,7 +107,7 @@ namespace DCafe
             DataTable dt = new DataTable();
             ada.Fill(dt);
 
-            grdDsBan.DataSource = dt;
+            grdDsDonvi.DataSource = dt;
             sqlCon.Close();
         }
 
@@ -162,12 +162,12 @@ namespace DCafe
         }
 
         private void grdDsDonvi_SelectionChanged(object sender, System.EventArgs e)
-        {
-            foreach (DataGridViewRow row in grdDsDonvi.SelectedRows)
+        {            
+            if (grdDsDonvi.CurrentRow != null)
             {
-                txtMaDV.Text = row.Cells[0].Value.ToString();
-                txtTenDV.Text = row.Cells[1].Value.ToString();
-                txtLoaiDV.Text = row.Cells[2].Value.ToString();
+                txtMaDV.Text = grdDsDonvi.CurrentRow.Cells[0].Value.ToString();
+                txtTenDV.Text = grdDsDonvi.CurrentRow.Cells[1].Value.ToString();
+                txtLoaiDV.Text = grdDsDonvi.CurrentRow.Cells[2].Value.ToString();   
             }
         }
 
@@ -265,9 +265,20 @@ namespace DCafe
 
         private void frmSupport_Load(object sender, EventArgs e)
         {
+            Load_CBKhuvuc("");
             Load_Khuvuc("");
             Load_DSDonvi("");
             Load_DSBan("");
+        }
+
+        private void grdDsBan_SelectionChanged(object sender, EventArgs e)
+        {
+            if (grdDsBan.CurrentRow != null)
+            {
+                txtMaban.Text = grdDsBan.CurrentRow.Cells[0].Value.ToString();
+                txtTenban.Text = grdDsBan.CurrentRow.Cells[1].Value.ToString();
+                cbKhuvuc.SelectedValue = grdDsBan.CurrentRow.Cells[2].Value;
+            }
         }
     }
 }
