@@ -101,6 +101,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DsQuanLy1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmDetailBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDetailBill.Designer.cs">
+      <DependentUpon>frmDetailBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmDetailProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmDetailProduct.Designer.cs">
+      <DependentUpon>frmDetailProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +163,12 @@
     <Compile Include="Reports\rptBill.Designer.cs">
       <DependentUpon>rptBill.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\frmDetailBill.resx">
+      <DependentUpon>frmDetailBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmDetailProduct.resx">
+      <DependentUpon>frmDetailProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmImport.resx">
       <DependentUpon>frmImport.cs</DependentUpon>
     </EmbeddedResource>
