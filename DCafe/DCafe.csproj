@@ -91,15 +91,13 @@
     <Compile Include="Class\ClsNguyenlieu.cs" />
     <Compile Include="Class\ClsCTHoadon.cs" />
     <Compile Include="Class\ClsHoadon.cs" />
+    <Compile Include="Class\ReportPrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dataset\DsQuanLy.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DsQuanLy.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Dataset\DsQuanLy1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DsQuanLy1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmDetailBill.cs">
       <SubType>Form</SubType>
@@ -202,6 +200,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBill.resx">
       <DependentUpon>rptBill.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\TongThu.rdlc" />
     <EmbeddedResource Include="Reports\TongChi.rdlc" />
@@ -219,17 +218,6 @@
     </None>
     <None Include="Dataset\DsQuanLy.xss">
       <DependentUpon>DsQuanLy.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\DsQuanLy1.xsc">
-      <DependentUpon>DsQuanLy1.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\DsQuanLy1.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DsQuanLy1.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dataset\DsQuanLy1.xss">
-      <DependentUpon>DsQuanLy1.xsd</DependentUpon>
     </None>
     <None Include="Properties\DataSources\DCafe.Dataset.DsQuanLy+T_TongThuDataTable.datasource" />
     <None Include="Properties\DataSources\DCafe.Dataset.DsQuanLy.datasource" />

@@ -32,27 +32,27 @@
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptBill));
             this.HoadonbindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DsQuanLy1 = new DCafe.Dataset.DsQuanLy1();
+            this.DsQuanLy = new DCafe.Dataset.DsQuanLy();
             this.rptHoadon = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.t_HoadonTableAdapter = new DCafe.Dataset.DsQuanLy1TableAdapters.T_HoadonTableAdapter();
+            this.t_HoadonTableAdapter = new DCafe.Dataset.DsQuanLyTableAdapters.T_HoadonTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.HoadonbindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DsQuanLy1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DsQuanLy)).BeginInit();
             this.SuspendLayout();
             // 
             // HoadonbindingSource
             // 
             this.HoadonbindingSource.DataMember = "T_Hoadon";
-            this.HoadonbindingSource.DataSource = this.DsQuanLy1;
+            this.HoadonbindingSource.DataSource = this.DsQuanLy;
             // 
-            // DsQuanLy1
+            // DsQuanLy
             // 
-            this.DsQuanLy1.DataSetName = "DsQuanLy1";
-            this.DsQuanLy1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.DsQuanLy.DataSetName = "DsQuanLy";
+            this.DsQuanLy.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // rptHoadon
             // 
             this.rptHoadon.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DsQuanLy1";
+            reportDataSource1.Name = "DsQuanLy";
             reportDataSource1.Value = this.HoadonbindingSource;
             this.rptHoadon.LocalReport.DataSources.Add(reportDataSource1);
             this.rptHoadon.LocalReport.ReportEmbeddedResource = "DCafe.Reports.HoaDon.rdlc";
@@ -76,7 +76,7 @@
             this.Text = "Hóa đơn";
             this.Load += new System.EventHandler(this.rptBill_Load);
             ((System.ComponentModel.ISupportInitialize)(this.HoadonbindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DsQuanLy1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DsQuanLy)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -85,7 +85,7 @@
 
         private Microsoft.Reporting.WinForms.ReportViewer rptHoadon;
         private System.Windows.Forms.BindingSource HoadonbindingSource;
-        private Dataset.DsQuanLy1 DsQuanLy1;
-        private Dataset.DsQuanLy1TableAdapters.T_HoadonTableAdapter t_HoadonTableAdapter;
+        private Dataset.DsQuanLy DsQuanLy;
+        private Dataset.DsQuanLyTableAdapters.T_HoadonTableAdapter t_HoadonTableAdapter;
     }
 }

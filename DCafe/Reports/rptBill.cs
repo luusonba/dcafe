@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Microsoft.Reporting.WinForms;
+using DCafe.Class;
 
 namespace DCafe.Reports
 {
@@ -30,14 +31,17 @@ namespace DCafe.Reports
             Conn conn = new Conn();
             sqlCon = conn.createConn();
 
+            LoadHoadon();
+
+            ReportPrintDocument RP = new ReportPrintDocument(rptHoadon.LocalReport);
             System.Drawing.Printing.PageSettings ps = new System.Drawing.Printing.PageSettings();
             ps.Landscape = true;
             ps.PaperSize = new System.Drawing.Printing.PaperSize("BILL", 100, 300);
             ps.PaperSize.RawKind = (int)System.Drawing.Printing.PaperKind.A6;
             rptHoadon.SetPageSettings(ps);
-            
-            LoadHoadon();
-            ////this.Close();
+            RP.Print();
+
+            this.Close();
         }
 
         private void LoadHoadon()
@@ -49,7 +53,7 @@ namespace DCafe.Reports
 
             sqlCon.Open();
             DataSet ds = new DataSet();
-            ada.Fill(ds, "DsQuanLy1");
+            ada.Fill(ds, "DsQuanLy");
 
             ds.Tables[0].TableName = "T_Hoadon";
 

@@ -19,3 +19,6 @@ D:\Study\DCafe\trunk\DCafe\obj\Debug\RdlCompile.cache
 D:\Study\DCafe\trunk\DCafe\obj\Debug\RdlCompile.compiled
 D:\Study\DCafe\trunk\DCafe\bin\Debug\DCafe.exe.config
 D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.Reports.rptAccountOut.resources
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.Forms.frmDetailBill.resources
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.Forms.frmDetailProduct.resources
+D:\Study\DCafe\trunk\DCafe\obj\Debug\DCafe.Reports.rptBill.resources

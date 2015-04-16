@@ -16,7 +16,7 @@ using Microsoft.Reporting.WinForms;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 
-namespace PrintReportSample
+namespace DCafe.Class
 {
     /// <summary>
     /// The ReportPrintDocument will print all of the pages of a ServerReport or LocalReport.
