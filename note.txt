@@ -1,4 +1,0 @@
-nhap bao nhieu nguyen lieu tinh ra bao nhieu san pham, doanh thu bao nhieu, loi nhuan bao nhieu, chi phi
-
-http://www.codeproject.com/Articles/28899/Crystal-Report-with-DataSet-and-DataTable-using-C
-http://www.codeproject.com/Articles/12694/Creating-Crystal-Reports-using-C-with-Datasets
